@@ -1,0 +1,56 @@
+#toolbar {
+  overflow: hidden;
+  background-color: #f2ede5;
+  padding: 90px 10px;
+  transition: 0.5s;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+  border: 1px solid #555;
+  
+}
+#toolbar a {
+  color: black;
+  text-decoration: none;
+  padding: 8px;
+  size: 6px;
+  font-size: smaller;
+}
+@media screen and (max-width: 1080px) {
+  #toolbar a {
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    padding: 8px;
+    transition: 0.3;
+    font-size: small;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  #toolbar {
+    padding: 20px 10px !important;
+  }
+}
+
+#toolbar #logo {
+  /* height: 200px; */
+  /* width: 200px; */
+  padding: 8px;
+  padding-left: 30px;
+  font-weight: bold;
+  transition: 0.4s;
+}
+
+#toolbar #navbar-right {
+  float: right;
+}
+.spacer {
+  flex: 1;
+}
+#sing_up {
+  background-color: black;
+  color: white !important;
+  border-radius: 8px;
+}
