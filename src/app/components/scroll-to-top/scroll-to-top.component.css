@@ -18,20 +18,28 @@
 .go_to-top-button.active {
   display: block !important; /* Hidden by default */
   position: fixed;
-  bottom: 20px;
+  bottom: 40px;
   right: 30px;
   z-index: 99;
   border: none;
   outline: none;
-  background-color: #018294;
+  background-color: #146307;
   color: #fff;
   cursor: pointer;
   padding: 8px;
   border-radius: 12px;
   font-size: 16px;
-  box-shadow: 4px 2px 4px 2px #e9decd;
+
+  & .arrow_drop_up {
+    transform: scale(1);
+    transition: 0.5s;
+  }
 }
 
 #go_to-top-button:hover {
-  background-color: #555;
+  background-color: #22c807;
+  & .arrow_drop_up {
+    transform: scale(1.4);
+    transition: 0.5s;
+  }
 }

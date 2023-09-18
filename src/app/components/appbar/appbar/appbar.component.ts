@@ -8,9 +8,6 @@ import { Component, HostListener } from '@angular/core';
 export class AppbarComponent {
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
-    console.log(document.body.scrollTop);
-    console.log(document.documentElement.scrollTop);
-
     if (
       document.body.scrollTop > 20 ||
       document.documentElement.scrollTop > 20
@@ -20,9 +17,8 @@ export class AppbarComponent {
       document.getElementById('logo')!.style.width = '100px';
     } else {
       document.getElementById('toolbar')!.style.padding = '80px 10px';
-      document.getElementById('logo')!.style.height = "200px";
-      document.getElementById('logo')!.style.width = "200px";
+      document.getElementById('logo')!.style.height = '200px';
+      document.getElementById('logo')!.style.width = '200px';
     }
-   
   }
 }

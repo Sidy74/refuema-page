@@ -11,24 +11,22 @@ export class ScrollToTopComponent {
     var mybutton = document.getElementById('go_to-top-button');
     if (mybutton!.className.includes(' active')) {
       mybutton!.className = mybutton!.className.split(' active')[0];
-      console.log(mybutton!.className);
     }
     if (
       document.body.scrollTop > 100 ||
       document.documentElement.scrollTop > 100
     ) {
+     
       if (mybutton!.className.includes(' active')) {
+       
         mybutton!.className = mybutton!.className.split(' active')[0];
-        console.log(mybutton!.className);
       }
       mybutton!.className += ' active';
-      console.log(mybutton!.className);
 
       // mybutton!.style.display = 'block';
       // mybutton!.style.transition = 'display 3s';
     } else {
       mybutton!.style.display = 'none';
-      console.log(mybutton!.className);
     }
   }
 
