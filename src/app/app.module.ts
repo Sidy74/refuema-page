@@ -8,9 +8,10 @@ import { AppbarModule } from './components/appbar/appbar.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, ScrollToTopComponent, HomeComponent],
+  declarations: [AppComponent, ScrollToTopComponent, HomeComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
