@@ -7,9 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppbarModule } from './components/appbar/appbar.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, ScrollToTopComponent],
+  declarations: [AppComponent, ScrollToTopComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
