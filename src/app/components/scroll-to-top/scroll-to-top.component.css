@@ -23,7 +23,7 @@
   z-index: 99;
   border: none;
   outline: none;
-  background-color: #146307;
+  background-color: #013B45;
   color: #fff;
   cursor: pointer;
   padding: 8px;
@@ -37,7 +37,7 @@
 }
 
 #go_to-top-button:hover {
-  background-color: #22c807;
+  background-color: #1D930A;
   & .arrow_drop_up {
     transform: scale(1.4);
     transition: 0.5s;
