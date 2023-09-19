@@ -13,8 +13,8 @@ export class ScrollToTopComponent {
       mybutton!.className = mybutton!.className.split(' active')[0];
     }
     if (
-      document.body.scrollTop > 100 ||
-      document.documentElement.scrollTop > 100
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
     ) {
      
       if (mybutton!.className.includes(' active')) {

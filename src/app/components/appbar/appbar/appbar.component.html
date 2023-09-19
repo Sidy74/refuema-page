@@ -1,23 +1,29 @@
-<mat-toolbar class="toolbar" id="toolbar">
-  <div class="#navbar-left">
-    <a routerLink="/" routerLinkActive="true" [routerLinkActiveOptions]='{exact: true}' >
-      <img src="assets/svgs/Logo.svg" alt="" id="logo" />
-    </a>
-  </div>
-  <div class="spacer"></div>
-  <div id="menuItems" class="#navbar-center">
-    <a href="#" routerLink="/" routerLinkActive="true"> item #1 </a>
-    <a href="#" routerLink="/" routerLinkActive="true"> item #2 </a>
-    <a href="#" routerLink="/" routerLinkActive="true"> item #3 </a>
-    <a href="#" routerLink="/" routerLinkActive="true"> item #4 </a>
-    <a href="#" routerLink="/" routerLinkActive="true"> item #5 </a>
-    <a href="#" routerLink="/" routerLinkActive="true"> item #6 </a>
-  </div>
-  <div class="spacer"></div>
-  <div id="navbar-right">
-    <a routerLink="/login" routerLinkActive="true">Se connecter </a>
-    <a routerLink="/sign-up" routerLinkActive="true" id="sing_up">
-      S'inscrire
-    </a>
-  </div>
-</mat-toolbar>
+<div id="navbar">
+  <mat-toolbar class="toolbar" id="toolbar">
+    <div class="#navbar-left">
+      <a
+        routerLink="/"
+        routerLinkActive="true"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <img src="assets/svgs/Logo.svg" alt="" id="logo" />
+      </a>
+    </div>
+    <div class="spacer"></div>
+    <div id="menuItems" class="#navbar-center">
+      <a href="#" routerLink="/" routerLinkActive="true"> item #1 </a>
+      <a href="#" routerLink="/" routerLinkActive="true"> item #2 </a>
+      <a href="#" routerLink="/" routerLinkActive="true"> item #3 </a>
+      <a href="#" routerLink="/" routerLinkActive="true"> item #4 </a>
+      <a href="#" routerLink="/" routerLinkActive="true"> item #5 </a>
+      <a href="#" routerLink="/" routerLinkActive="true"> item #6 </a>
+    </div>
+    <div class="spacer"></div>
+    <div id="navbar-right">
+      <a routerLink="/login" routerLinkActive="true">Se connecter </a>
+      <a routerLink="/sign-up" routerLinkActive="true" id="sing_up">
+        S'inscrire
+      </a>
+    </div>
+  </mat-toolbar>
+</div>

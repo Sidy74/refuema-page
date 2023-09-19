@@ -2,8 +2,8 @@
   overflow: hidden;
   background-color: #f2ede5;
   padding: 90px 10px;
-  transition: 0.5s;
-  position: sticky;
+  transition: 0.3s;
+  position: fixed;
   width: 100%;
   top: 0;
   z-index: 99;
@@ -51,4 +51,10 @@
   background-color: black;
   color: white !important;
   border-radius: 8px;
+}
+
+#navbar{
+  padding: 90px 0px; 
+  transition: 0.3s;
+ 
 }
