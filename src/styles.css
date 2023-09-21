@@ -1,11 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-color: #0A1208; }
-
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: #0a1208;
+}
 
 .form-control :focus {
-    box-shadow: #0A1208 !important;
+  box-shadow: #0a1208 !important;
+}
+#btn-submit {
+  background-color: #013b45;
+  border: none;
+}
+#btn-submit:hover {
+  background-color: #016678;
 }

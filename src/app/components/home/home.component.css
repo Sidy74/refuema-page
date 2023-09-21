@@ -37,16 +37,16 @@
   #universitaires,
   #enseignantes,
   #mali {
-    & #r {
-      color: #3f2a85;
-
-      font-size: 150px;
-    }
+   
     & #f,
     #u,
     #m,
+    #r,
     #e {
       font-size: 70px;
+    }
+    & #r {
+      color: #3f2a85;
     }
     & #f {
       color: #20eb01;
