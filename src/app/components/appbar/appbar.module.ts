@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatToolbarModule} from '@angular/material/toolbar'
-import {MatButtonModule} from '@angular/material/button';
-import{MatIconModule} from '@angular/material/icon'
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { AppbarComponent } from './appbar/appbar.component';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    AppbarComponent
-  ],
+  declarations: [AppbarComponent],
   imports: [
-    CommonModule,MatToolbarModule,
+    CommonModule,
+    MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    RouterModule,
+    MatIconModule,
   ],
-  exports:[AppbarComponent]
+  exports: [AppbarComponent],
 })
-export class AppbarModule { }
+export class AppbarModule {}
