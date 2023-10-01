@@ -37,3 +37,23 @@
   padding: 0px;
   font-size: 100%;
 }
+
+::ng-deep .profil-menu {
+  margin-top: 0px;
+  border-radius: 8px !important;
+  position: relative;
+  padding: 0px 5px;
+}
+::ng-deep .mat-menu-item:hover{
+  background-color: #01766e13 !important;
+} 
+#mat-menu-item-text{
+  font-size: small;
+  color: #01766e;
+}
+#mat-menu-item-icon{
+  padding: 5px 0px;
+  font-size: medium;
+  color: #01766e;
+  margin-right: 0px;
+}

@@ -1,4 +1,9 @@
-import { Component, HostListener } from '@angular/core';
+import {
+  Component,
+  HostListener,
+
+} from '@angular/core';
+import { LoginService } from 'src/app/core/services/login.service';
 
 @Component({
   selector: 'app-appbar',
@@ -6,8 +11,8 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./appbar.component.css'],
 })
 export class AppbarComponent {
+  constructor(public loginService: LoginService) {}
 
-  isAuth:boolean=false ;
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
     if (
