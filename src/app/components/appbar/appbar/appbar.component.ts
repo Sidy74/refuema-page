@@ -6,6 +6,8 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./appbar.component.css'],
 })
 export class AppbarComponent {
+
+  isAuth:boolean=false ;
   @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
     if (

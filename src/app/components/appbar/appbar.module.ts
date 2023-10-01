@@ -3,17 +3,20 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import{MatCardModule} from '@angular/material/card'
 import { AppbarComponent } from './appbar/appbar.component';
 import { RouterModule } from '@angular/router';
+import { AppbarAvatarComponent } from './appbar-avatar/appbar-avatar.component';
 
 @NgModule({
-  declarations: [AppbarComponent],
+  declarations: [AppbarComponent, AppbarAvatarComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
     MatButtonModule,
     RouterModule,
     MatIconModule,
+    MatCardModule
   ],
   exports: [AppbarComponent],
 })

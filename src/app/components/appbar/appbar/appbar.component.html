@@ -33,12 +33,15 @@
     </div>
     <div class="spacer"></div>
     <div id="navbar-right">
-      <a routerLink="/login" routerLinkActive="active-link">
-        <span>Se connecter</span>
-      </a>
-      <a routerLink="/sign-up" routerLinkActive="active-link" id="sing_up">
-        <span>S'inscrire</span>
-      </a>
+      <div *ngIf="isAuth" >
+        <a routerLink="/login" routerLinkActive="active-link">
+          <span>Se connecter</span>
+        </a>
+        <a routerLink="/sign-up" routerLinkActive="active-link" id="sing_up">
+          <span>S'inscrire</span>
+        </a>
+      </div>
+      <app-appbar-avatar *ngIf="!isAuth" ></app-appbar-avatar>
     </div>
   </mat-toolbar>
 </div>

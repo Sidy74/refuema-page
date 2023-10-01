@@ -1,0 +1,39 @@
+.avatar-container {
+  position: relative;
+  width: fit-content;
+  padding: auto;
+  padding-bottom: 10px;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+#image-container {
+  height: 50px;
+  width: 50px;
+  z-index: 1;
+  border-radius: 50%;
+  background-color: #fff;
+  background-position: center;
+  background-size: cover;
+  transition: 0.5s;
+  box-shadow: -2px 5px 20px 5px #01716a17;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+
+  & img {
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    transition: 0.5s;
+  }
+}
+#keyboard_arrow_down {
+  margin: 0px;
+  color: #01766e !important;
+  padding: 0px;
+  font-size: 100%;
+}
