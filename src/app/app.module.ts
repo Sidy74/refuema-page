@@ -11,9 +11,10 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
-  declarations: [AppComponent, ScrollToTopComponent, HomeComponent, LoginComponent, SignUpComponent, ProfilComponent],
+  declarations: [AppComponent, ScrollToTopComponent, HomeComponent, LoginComponent, SignUpComponent, ProfilComponent, CardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
