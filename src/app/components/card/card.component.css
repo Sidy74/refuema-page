@@ -34,3 +34,10 @@
 #btn-print:hover {
   background-color: #016678;
 }
+
+#section-title{
+  font-size: larger;
+  color: #02181C;
+  font-family: 'Times New Roman', Times, serif;
+ font-weight: 300;
+}

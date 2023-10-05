@@ -14,9 +14,10 @@ import { ProfilComponent } from './components/profil/profil.component';
 import { CardComponent } from './components/card/card.component';
 import { FrontCardComponent } from './components/card/front-card/front-card.component';
 import { BackCardComponent } from './components/card/back-card/back-card.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 @NgModule({
-  declarations: [AppComponent, ScrollToTopComponent, HomeComponent, LoginComponent, SignUpComponent, ProfilComponent, CardComponent, FrontCardComponent, BackCardComponent],
+  declarations: [AppComponent, ScrollToTopComponent, HomeComponent, LoginComponent, SignUpComponent, ProfilComponent, CardComponent, FrontCardComponent, BackCardComponent, ContactUsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
