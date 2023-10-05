@@ -1,0 +1,44 @@
+<div class="avatar-container" mat-button [matMenuTriggerFor]="profilMenu">
+  <div id="image-container">
+    <img id="profil-image" src="assets/svgs/Mali.svg" />
+  </div>
+  <mat-icon
+    fontIcon="keyboard_arrow_down"
+    aria-hidden="false"
+    id="keyboard_arrow_down"
+  ></mat-icon>
+</div>
+<mat-menu
+  #profilMenu="matMenu"
+  xPosition="before"
+  class="profil-menu"
+  overlapTrigger="false"
+>
+  <!-- <span (mouseleave)="closeMyMenu()"> -->
+  <button
+    mat-menu-item
+    class="mat-menu-item"
+    style="font-size: 10px"
+    routerLink="/profil"
+    routerLinkActive="active-link"
+  >
+    <mat-icon id="mat-menu-item-icon">person</mat-icon>
+    <span id="mat-menu-item-text">Profil</span>
+  </button>
+  <button
+    mat-menu-item
+    class="mat-menu-item"
+    style="font-size: 10px"
+    routerLink="/card"
+    routerLinkActive="active-link"
+  >
+    <mat-icon id="mat-menu-item-icon">credit_card</mat-icon>
+    <span id="mat-menu-item-text"> Ma carte</span>
+  </button>
+ 
+  <button mat-menu-item class="mat-menu-item" (click)="logout()">
+    <mat-icon id="mat-menu-item-icon">logout</mat-icon>
+    <span id="mat-menu-item-text"> Déconnexion</span>
+  </button>
+  <!-- </span> -->
+</mat-menu>

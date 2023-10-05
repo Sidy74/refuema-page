@@ -10,9 +10,13 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ProfilComponent } from './components/profil/profil.component';
+import { CardComponent } from './components/card/card.component';
+import { FrontCardComponent } from './components/card/front-card/front-card.component';
+import { BackCardComponent } from './components/card/back-card/back-card.component';
 
 @NgModule({
-  declarations: [AppComponent, ScrollToTopComponent, HomeComponent, LoginComponent, SignUpComponent],
+  declarations: [AppComponent, ScrollToTopComponent, HomeComponent, LoginComponent, SignUpComponent, ProfilComponent, CardComponent, FrontCardComponent, BackCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

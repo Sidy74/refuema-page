@@ -98,7 +98,6 @@ a.active-link {
   transition: 0.3s;
 }
 
-#logo-route-link:hover
-{
-  border-bottom:transparent !important ;
+#logo-route-link:hover {
+  border-bottom: transparent !important ;
 }

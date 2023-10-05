@@ -1,0 +1,17 @@
+
+.backcard,
+.frontcard {
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 70%;
+}
+.backcardsvg,
+.frontcardsvg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}

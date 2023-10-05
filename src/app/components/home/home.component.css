@@ -37,16 +37,15 @@
   #universitaires,
   #enseignantes,
   #mali {
-    & #r {
-      color: #3f2a85;
-
-      font-size: 150px;
-    }
     & #f,
     #u,
     #m,
+    #r,
     #e {
       font-size: 70px;
+    }
+    & #r {
+      color: #3f2a85;
     }
     & #f {
       color: #20eb01;
@@ -75,18 +74,31 @@
     transition: 1s;
     height: auto;
   }
-}
-@media screen and (max-width: 764px) {
-  .head_section {
-    transition: 1s;
-    height: 264px;
-  }
+}*/
+@media screen and (max-width: 770px) {
   .container {
-    height: 214px;
-    width: auto;
+    & span {
+      font-size: medium;
+      font-weight: bold;
+      padding-bottom: 30px;
+      padding-top: 30px;
+    }
+    & #reseau,
+    #femmes,
+    #universitaires,
+    #enseignantes,
+    #mali {
+      & #f,
+      #u,
+      #m,
+      #r,
+      #e {
+        font-size: 30px;
+      }
+    }
   }
 }
-
+/*
 @media screen and (max-width: 664px) {
   .head_section {
     transition: 1s;

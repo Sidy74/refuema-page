@@ -1,0 +1,59 @@
+.avatar-container {
+  position: relative;
+  width: fit-content;
+  padding: auto;
+  padding-bottom: 10px;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+#image-container {
+  height: 50px;
+  width: 50px;
+  z-index: 1;
+  border-radius: 50%;
+  background-color: #fff;
+  background-position: center;
+  background-size: cover;
+  transition: 0.5s;
+  box-shadow: -2px 5px 20px 5px #01716a17;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+
+  & img {
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    transition: 0.5s;
+  }
+}
+#keyboard_arrow_down {
+  margin: 0px;
+  color: #01766e !important;
+  padding: 0px;
+  font-size: 100%;
+}
+
+::ng-deep .profil-menu {
+  margin-top: 0px;
+  border-radius: 8px !important;
+  position: relative;
+  padding: 0px 5px;
+}
+::ng-deep .mat-menu-item:hover{
+  background-color: #01766e13 !important;
+} 
+#mat-menu-item-text{
+  font-size: small;
+  color: #01766e;
+}
+#mat-menu-item-icon{
+  padding: 5px 0px;
+  font-size: medium;
+  color: #01766e;
+  margin-right: 0px;
+}

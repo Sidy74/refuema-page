@@ -1,11 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-color: #0A1208; }
-
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: #0a1208;
+}
 
 .form-control :focus {
-    box-shadow: #0A1208 !important;
+  box-shadow: #0a1208 !important;
+}
+#btn-submit {
+  background-color: #013b45;
+  border: none;
+}
+#btn-submit:hover {
+  background-color: #016678;
+}
+
+.form-check-input:checked {
+  background-color: #158104;
+  border-color: #158104;
+}
+.form-control:focus {
+  color: #233221;
+  background-color: white;
+  border-color: #4eca3b;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem #1175012b;
+}
+
+.form-check-input:focus {
+  border-color: hsla(176, 98%, 23%, 0.1);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem hsla(176, 98%, 23%, 0.1);
 }
