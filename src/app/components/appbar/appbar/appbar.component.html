@@ -7,14 +7,14 @@
     </div>
     <div class="spacer"></div>
     <div id="menuItems" class="#navbar-center">
-      <a
+      <!-- <a
         href="#"
         routerLink="/"
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
         <span>item #1</span></a
-      >
+      > -->
       <a href="#" routerLink="/item2" routerLinkActive="active-link">
         <span>item #2</span>
       </a>
@@ -24,17 +24,21 @@
       <a href="#" routerLink="/item4" routerLinkActive="active-link">
         <span>item #4</span>
       </a>
-      <a href="#" routerLink="/item5" routerLinkActive="active-link">
-        <span>item #5</span>
+      <a href="#" routerLink="/about" routerLinkActive="active-link">
+        <span>À propos</span>
       </a>
-      <a href="#" routerLink="/item6" routerLinkActive="active-link">
-        <span>item #6</span>
+      <a href="#" routerLink="/contact-us" routerLinkActive="active-link">
+        <span>Contactez-nous</span>
       </a>
     </div>
     <div class="spacer"></div>
     <div id="navbar-right">
       <div *ngIf="this.loginService.isAuth">
-        <a routerLink="/login" routerLinkActive="active-link" (click)="this.loginService.changeState()">
+        <a
+          routerLink="/login"
+          routerLinkActive="active-link"
+          (click)="this.loginService.changeState()"
+        >
           <span>Se connecter</span>
         </a>
         <a routerLink="/sign-up" routerLinkActive="active-link" id="sing_up">
