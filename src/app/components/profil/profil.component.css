@@ -1,0 +1,60 @@
+.profil_header {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  background-color: #133e37;
+  padding: 40px;
+  padding-right: 10px;
+  align-self: center;
+
+  & .profil_image {
+    display: flex;
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+
+    & #img {
+      vertical-align: middle;
+      image-resolution: 100%;
+      object-fit: cover;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  & .profil_text {
+    padding: auto;
+    font-family: "Cairo";
+    align-self: center;
+    text-align: center;
+    font-weight: 900;
+    font-size: x-large;
+    color: azure;
+    width: 80%;
+  }
+  & .profil_edit {
+    display: flex;
+    color: white;
+    align-self: center;
+    cursor: pointer;
+  }
+  .profil_edit:hover {
+    color: #d2eee9;
+  }
+}
+.profil_body {
+  padding: 40px;
+}
+
+@media screen and (max-width: 564px) {
+  .profil_text {
+    font-size: medium;
+  }
+}
+@media screen and (max-width: 280px) {
+  .profil_text {
+    font-size: smaller;
+  }
+}

@@ -1,1 +1,30 @@
-<p>profil works!</p>
+<div class="profil_header" (click)="openImageModal">
+  <div class="profil_image">
+    <img
+      id="img"
+      class="shadow-4-strong"
+      alt="avatar2"
+      src="assets/svgs/Mali.svg"
+    />
+  </div>
+  <div class="profil_text">
+    <p>Coulibaly Fatoumata Mohamed Ag</p>
+  </div>
+  <div class="profil_edit" (click)="openEditModal()">
+    <mat-icon>edit</mat-icon>
+  </div>
+</div>
+<div class="profil_body">
+  <p>INformations</p>
+  <hr />
+
+  <div>
+    Phone :
+    <span>N/A</span>
+  </div>
+
+  <div>
+    Email :
+    <span>N/A</span>
+  </div>
+</div>

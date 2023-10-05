@@ -19,15 +19,4 @@ import {
 })
 export class AppComponent {
   title = 'refue-m';
-
-  isProfilComponent: boolean = false;
-  constructor(private router: Router) {
-    this.router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) {
-        val.url != '/profil'
-          ? (this.isProfilComponent = true)
-          : (this.isProfilComponent = false);
-      }
-    });
-  }
 }
