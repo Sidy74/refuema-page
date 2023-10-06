@@ -1,4 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { EditUserModalComponent } from './edit-user-modal/edit-user-modal.component';
 
 @Component({
   selector: 'app-profil',
@@ -6,6 +8,14 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./profil.component.css'],
 })
 export class ProfilComponent {
-  openImageModal(){}
-  openEditModal(){}
+  constructor(public dialog: MatDialog) {}
+
+  openEditModal() {
+    const dialogRef = this.dialog.open(EditUserModalComponent,{ panelClass: 'edit_user_modal' });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    // console.log(`Dialog result: ${result}`);
+    // });
+  }
+  openImageModal() {}
 }

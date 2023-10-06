@@ -41,7 +41,7 @@
     cursor: pointer;
   }
   .profil_edit:hover {
-    color: #d2eee9;
+    color: #016678;;
   }
 }
 .profil_body {
@@ -57,4 +57,11 @@
   .profil_text {
     font-size: smaller;
   }
+}
+
+::ng-deep .profil-menu {
+  margin-top: 0px;
+  border-radius: 8px !important;
+  position: relative;
+  padding: 0px 5px;
 }
