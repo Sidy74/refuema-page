@@ -1,16 +1,18 @@
 <div class="container">
   <div>
     <span id="section-title"> Section carte membre</span>
-    <button id="btn-print" class="btn btn-primary btn-block mb-4">
-      Imprimer
-    </button>
+   
   </div>
-  <div class="card">
-    <app-front-card class="frontcard"> </app-front-card>
-
-    <app-back-card class="backcard" cardRole="Carte Membre 1"></app-back-card>
+  <div id="print-section">
+    <div class="card">
+      <div class="frontcard">
+        <app-front-card> </app-front-card>
+      </div>
+      <div class="backcard">
+        <app-back-card cardRole="Carte Membre 1"></app-back-card>
+      </div>
+    </div>
   </div>
-
   <!-- <button id="btn-print" class="btn btn-primary btn-block mb-4">
     Imprimer
   </button> -->
