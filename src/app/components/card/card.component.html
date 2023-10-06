@@ -1,7 +1,16 @@
 <div class="container">
   <div>
     <span id="section-title"> Section carte membre</span>
-   
+    <button
+      id="btn-print"
+      class="btn btn-primary btn-block mb-4"
+      printSectionId="print-section"
+      [useExistingCss]="true"
+      [previewOnly]="false"
+      ngxPrint
+    >
+      Imprimer
+    </button>
   </div>
   <div id="print-section">
     <div class="card">
