@@ -16,7 +16,6 @@ import { BackCardComponent } from './components/card/back-card/back-card.compone
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutComponent } from './about/about.component';
 import { ProfilModule } from './components/profil/profil/profil.module';
-import { EditUserImageModalComponent } from './edit-user-image-modal/edit-user-image-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { EditUserImageModalComponent } from './edit-user-image-modal/edit-user-i
     BackCardComponent,
     ContactUsComponent,
     AboutComponent,
-    EditUserImageModalComponent,
   ],
   imports: [
     BrowserModule,

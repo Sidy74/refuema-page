@@ -11,11 +11,10 @@ export class ProfilComponent {
   constructor(public dialog: MatDialog) {}
 
   openEditModal() {
-    const dialogRef = this.dialog.open(EditUserModalComponent,{ panelClass: 'edit_user_modal' });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    // console.log(`Dialog result: ${result}`);
-    // });
+    const dialogRef = this.dialog.open(EditUserModalComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
-  openImageModal() {}
+  
 }
