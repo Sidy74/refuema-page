@@ -10,20 +10,32 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { ProfilComponent } from './components/profil/profil.component';
 import { CardComponent } from './components/card/card.component';
 import { FrontCardComponent } from './components/card/front-card/front-card.component';
 import { BackCardComponent } from './components/card/back-card/back-card.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutComponent } from './about/about.component';
+import { ProfilModule } from './components/profil/profil/profil.module';
 
 @NgModule({
-  declarations: [AppComponent, ScrollToTopComponent, HomeComponent, LoginComponent, SignUpComponent, ProfilComponent, CardComponent, FrontCardComponent, BackCardComponent, ContactUsComponent, AboutComponent],
+  declarations: [
+    AppComponent,
+    ScrollToTopComponent,
+    HomeComponent,
+    LoginComponent,
+    SignUpComponent,
+    CardComponent,
+    FrontCardComponent,
+    BackCardComponent,
+    ContactUsComponent,
+    AboutComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AppbarModule,
+    ProfilModule,
     MatIconModule,
   ],
   providers: [],

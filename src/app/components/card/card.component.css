@@ -2,9 +2,8 @@
   width: auto;
   height: 100%;
   overflow: hidden;
-  background-color:  #f2ede5;;
+  background-color: #f2ede5;
   padding: 10px 30px;
-  align-items: center;
   border: none;
 }
 
@@ -35,9 +34,10 @@
   background-color: #016678;
 }
 
-#section-title{
+#section-title {
   font-size: larger;
-  color: #02181C;
-  font-family: 'Times New Roman', Times, serif;
- font-weight: 300;
+  color: #334144;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 300;
 }
+
