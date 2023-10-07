@@ -1,0 +1,36 @@
+.card {
+  width: auto;
+  height: 100%;
+  /* overflow: hidden; */
+  background-color: #f2ede5;
+  padding: 10px 30px;
+  margin-top: 10px;
+  border: none;
+  align-items: center;
+}
+
+.backcard {
+  position: relative;
+  margin-top: 100px;
+  padding: 10px;
+  height: 5.5cm;
+  width: 8.5cm;
+}
+
+.frontcard {
+  position: relative;
+  height: 5.5cm;
+  width: 8.5cm;
+  margin-top: 100px;
+  padding: 10px;
+  break-after: page;
+}
+
+.backcardsvg,
+.frontcardsvg {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
