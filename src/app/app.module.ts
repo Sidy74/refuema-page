@@ -13,6 +13,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutComponent } from './about/about.component';
 import { ProfilModule } from './components/profil/profil/profil.module';
 import { CardModule } from './components/card/card/card.module';
+import { MiniArticleComponent } from './mini-article/mini-article.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CardModule } from './components/card/card/card.module';
     SignUpComponent,
     ContactUsComponent,
     AboutComponent,
+    MiniArticleComponent,
   ],
   imports: [
     BrowserModule,
