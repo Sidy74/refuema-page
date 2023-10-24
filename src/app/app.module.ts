@@ -15,6 +15,7 @@ import { ProfilModule } from './components/profil/profil/profil.module';
 import { CardModule } from './components/card/card/card.module';
 import { MiniArticleComponent } from './mini-article/mini-article.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     ContactUsComponent,
     AboutComponent,
     MiniArticleComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
