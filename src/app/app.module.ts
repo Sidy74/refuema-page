@@ -14,6 +14,7 @@ import { AboutComponent } from './about/about.component';
 import { ProfilModule } from './components/profil/profil/profil.module';
 import { CardModule } from './components/card/card/card.module';
 import { MiniArticleComponent } from './mini-article/mini-article.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MiniArticleComponent } from './mini-article/mini-article.component';
     ProfilModule,
     MatIconModule,
     CardModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
