@@ -5,8 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UserAuthService {
   isUserAuthService = false;
-  constructor( ) {}
-  login(){
-
-  }
+  constructor() {}
+  login() {}
+  logout() {}
 }
