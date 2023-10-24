@@ -1,0 +1,35 @@
+<div class="ps-4 pe-4">
+  <div class="" mat-dialog-title>
+    <h4>Modifier informations utilisateur</h4>
+    <hr />
+  </div>
+
+  <mat-dialog-content class="mat-typography">
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Nom (disabled)</mat-label>
+        <input matInput disabled value="Coulibaly" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Prénom (disabled)</mat-label>
+        <input matInput disabled value="Fatoumata Mohamed Ag" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Téléphone (disabled)</mat-label>
+        <input matInput disabled value="60 24 44 02" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Email (disabled)</mat-label>
+        <input matInput disabled value="user@gmail.ml" />
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button class="m-2" id="btn-print " mat-button mat-dialog-close>
+      Retour
+    </button>
+    <button class="m-2" mat-button [mat-dialog-close]="true" cdkFocusInitial>
+      Modifier
+    </button>
+  </mat-dialog-actions>
+</div>

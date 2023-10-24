@@ -1,12 +1,17 @@
 .card {
   width: auto;
   height: 100%;
-  overflow: hidden;
-  background-color:  #f2ede5;;
+  /* overflow: hidden; */
+  background-color: #f2ede5;
   padding: 10px 30px;
-  align-items: center;
+  margin-top: 10px;
   border: none;
+  align-items: center;
 }
+
+
+
+
 
 .backcard,
 .frontcard {
@@ -18,11 +23,11 @@
 
 .backcardsvg,
 .frontcardsvg {
-  position: absolute;
+  position: relative;
   height: 100%;
-  width: 80%;
+  width: 100%;
   left: 0;
-  /* top: 0; */
+  top: 0;
 }
 
 #btn-print {
@@ -33,4 +38,11 @@
 }
 #btn-print:hover {
   background-color: #016678;
+}
+
+#section-title {
+  font-size: larger;
+  color: #334144;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 300;
 }

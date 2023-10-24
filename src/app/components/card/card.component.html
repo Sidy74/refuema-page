@@ -1,17 +1,29 @@
 <div class="container">
-  <h1>Section ma carte memebre 
-    <button id="btn-print" class="btn btn-primary btn-block mb-4">
+  <div>
+    <span id="section-title"> Section carte membre</span>
+    <button
+      id="btn-print"
+      class="btn btn-primary btn-block mb-4"
+      printSectionId="print-section"
+      [useExistingCss]="false"
+      [previewOnly]="false"
+      styleSheetFile="assets/css/printcard.css"
+      ngxPrint
+    >
       Imprimer
     </button>
-  </h1>
-  
-
-  <div class="card" btn-print>
-    <app-front-card class="frontcard"></app-front-card>
-    <app-back-card class="backcard" cardRole="Carte Membre 1"></app-back-card>
   </div>
-
-  <button id="btn-print" class="btn btn-primary btn-block mb-4">
+  <div id="print-section">
+    <div class="card">
+      <div class="frontcard">
+        <app-front-card> </app-front-card>
+      </div>
+      <div class="backcard">
+        <app-back-card cardRole="Carte Membre 1"></app-back-card>
+      </div>
+    </div>
+  </div>
+  <!-- <button id="btn-print" class="btn btn-primary btn-block mb-4">
     Imprimer
-  </button>
+  </button> -->
 </div>

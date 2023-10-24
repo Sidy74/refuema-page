@@ -1,3 +1,8 @@
+# Version
+
+Angular CLI: 16.2.2
+Node: 18.18.0
+
 # RefueM
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.

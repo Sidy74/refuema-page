@@ -22,6 +22,15 @@ body {
   background-color: #016678;
 }
 
+#btn-print {
+  background-color: #013b45;
+  border: none;
+  float: right !important;
+  margin-bottom: 100px;
+}
+#btn-print:hover {
+  background-color: #016678;
+}
 .form-check-input:checked {
   background-color: #158104;
   border-color: #158104;
