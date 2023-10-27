@@ -36,5 +36,7 @@ export class AppbarAvatarComponent {
       document.getElementById('profil-image')!.style.height = '50px';
     }
   }
-  logout() {}
+  logout() {
+    this.userAuthService.logout();
+  }
 }

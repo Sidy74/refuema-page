@@ -16,14 +16,14 @@ import { CardModule } from './components/card/card/card.module';
 import { MiniArticleComponent } from './mini-article/mini-article.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
+import { LoginModule } from './components/login/login/login.module';
+import { SignUpModule } from './components/sign-up/sign-up/sign-up.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScrollToTopComponent,
     HomeComponent,
-    LoginComponent,
-    SignUpComponent,
     ContactUsComponent,
     AboutComponent,
     MiniArticleComponent,
@@ -36,6 +36,8 @@ import { UserComponent } from './user/user.component';
     AppbarModule,
     ProfilModule,
     MatIconModule,
+    LoginModule,
+    SignUpModule,
     CardModule,
     HttpClientModule,
   ],

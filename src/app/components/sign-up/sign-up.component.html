@@ -1,104 +1,139 @@
 <section class="background-radial-gradient overflow-hidden">
-    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-      <div class="row gx-lg-5 align-items-center mb-5">
-  
-        <div class="col-lg-6  mb-5 mb-lg-0" style="z-index: 10; align-self: self-start;">
-            
-            <h1
-              class="my-5 display-5 fw-bold ls-tight"
-              style="font-size: 300%; ; color: hsl(218, 81%, 95%)"
-            >
-              Inscription <br />
-            </h1>
-            <h1
-              class="my-5 display-5 fw-bold ls-tight"
-              style="color: hsl(218, 81%, 95%)"
-            >
-            REFUEMA<br />
-              <span style="color: hsl(218, 81%, 75%)"
-                >Réseau des Femmes Universitaires et Enseignantes du Mali</span
-              >
-            </h1>
-            <p class="mb-4 opacity-90" style="color: hsl(218, 81%, 85%)">
-             S'il vous plait rensaigner correctement vos informations pour vous connecter a votre compte 
-            </p>
-          </div>
-        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-          <div
-            id="radius-shape-1"
-            class="position-absolute rounded-circle shadow-5-strong"
-          ></div>
-          <div
-            id="radius-shape-2"
-            class="position-absolute shadow-5-strong"
-          ></div>
-          
-          <div class="card bg-glass">
-            <div class="card-body px-4 py-5 px-md-5">
-              <form>
+  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="row gx-lg-5 align-items-center mb-5">
+      <div
+        class="col-lg-6 mb-5 mb-lg-0"
+        style="z-index: 10; align-self: self-start"
+      >
+        <h1
+          class="my-5 display-5 fw-bold ls-tight"
+          style="font-size: 300%; color: hsl(218, 81%, 95%)"
+        >
+          Demande d'inscription <br />
+        </h1>
+        <h1
+          class="my-5 display-5 fw-bold ls-tight"
+          style="color: hsl(218, 81%, 95%)"
+        >
+          REFUEMA<br />
+          <span style="color: hsl(218, 81%, 75%)"
+            >Réseau des Femmes Universitaires et Enseignantes du Mali</span
+          >
+        </h1>
+        <p class="mb-4 opacity-90" style="color: hsl(218, 81%, 85%)">
+          S'il vous plait rensaigner correctement vos informations pour vous
+          connecter a votre compte
+        </p>
+      </div>
+      <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+        <div
+          id="radius-shape-1"
+          class="position-absolute rounded-circle shadow-5-strong"
+        ></div>
+        <div
+          id="radius-shape-2"
+          class="position-absolute shadow-5-strong"
+        ></div>
 
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <input type="text" id="form3Example1" class="form-control" />
-                      <label class="form-label" for="form3Example1">Nom</label>
-                    </div>
+        <div class="card bg-glass">
+          <div class="card-body px-4 py-5 px-md-5">
+            <form [formGroup]="signForm" (ngSubmit)="onSubmit()" novalidate>
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <div class="form-outline">
+                    <input
+                      type="text"
+                      id="form3Example1"
+                      class="form-control"
+                      formControlName="lastName"
+                    />
+                    <label class="form-label" for="form3Example1">Nom</label>
                   </div>
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <input type="text" id="form3Example2" class="form-control" />
-                      <label class="form-label" for="form3Example2">Prenom</label>
-                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="form-outline">
+                    <input
+                      type="text"
+                      id="form3Example2"
+                      class="form-control"
+                      formControlName="firstName"
+                    />
+                    <label class="form-label" for="form3Example2">Prenom</label>
                   </div>
                 </div>
-  
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3" class="form-control" />
-                  <label class="form-label" for="form3Example3">Telephone</label>
-                </div>
-  
-                <div class="form-outline mb-4">
-                  <input type="email" id="form_email" class="form-control" />
-                  <label class="form-label" for="form_email"
-                    >Email</label
-                  >
-                </div>
-  
-               
-                <div class="form-outline mb-4">
-                  <input
-                    type="password"
-                    id="form_password"
-                    class="form-control"
-                  />
-                  <label class="form-label" for="form_password">Mot de passe</label>
-                </div>
-  
-                <!-- Checkbox -->
-                <div class="form-check d-flex justify-content-center mb-4">
-                  <input
-                    class="form-check-input me-2"
-                    type="checkbox"
-                    value=""
-                    id="form2Example33"
-                    unchecked
-                  />
-                  <label class="form-check-label" for="form2Example33">
-                    Se souvenez de moi ?
-                  </label>
-                </div>
-  
-                <!-- Submit button -->
-                <button type="submit" id="btn-submit"
-                  class="btn btn-primary btn-block mb-4">
-                  S'inscrire
-                </button>
-              </form>
-            </div>
+              </div>
+
+              <!-- Phone input -->
+              <div class="form-outline mb-2">
+                <span>errorororo is herer errorororo is herer</span>
+                <input
+                  type="phone"
+                  id="form3Example3"
+                  class="form-control"
+                  formControlName="phone"
+                />
+                <label class="form-label" for="form3Example3">Telephone</label>
+              </div>
+
+              <div class="form-outline mb-2">
+                <input
+                  type="email"
+                  id="form_email"
+                  class="form-control"
+                  formControlName="email"
+                />
+                <label class="form-label" for="form_email">Email</label>
+              </div>
+
+              <div class="form-outline mb-2">
+                <input
+                  type="password"
+                  id="form_password"
+                  class="form-control"
+                  formControlName="password"
+                />
+                <label class="form-label" for="form_password"
+                  >Mot de passe</label
+                >
+              </div>
+              <div class="form-outline mb-2">
+                <input
+                  type="file"
+                  id="form_userFile"
+                  class="form-control"
+                  formControlName="userFile"
+                />
+                <label class="form-label" for="form_userFile"
+                  >Document (pdf,png,jpeg)</label
+                >
+              </div>
+
+              <!-- Checkbox -->
+              <div class="form-check d-flex justify-content-center mb-4">
+                <input
+                  class="form-check-input me-2"
+                  type="checkbox"
+                  value=""
+                  id="form2Example33"
+                  unchecked
+                />
+                <label class="form-check-label" for="form2Example33">
+                  Se souvenez de moi ?
+                </label>
+              </div>
+
+              <!-- Submit button -->
+              <button
+                type="submit"
+                id="btn-submit"
+                class="btn btn-primary btn-block mb-4"
+              >
+                S'inscrire
+              </button>
+            </form>
           </div>
         </div>
-        
       </div>
     </div>
-  </section>  
+  </div>
+</section>
