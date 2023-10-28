@@ -41,23 +41,25 @@
               <div class="row">
                 <div class="col-md-6 mb-2">
                   <div class="form-outline">
-                    <span
-                      *ngIf="
-                        signForm.controls['lastName'].invalid &&
-                        (signForm.controls['lastName'].dirty ||
-                          signForm.controls['lastName'].touched)
-                      "
-                    >
-                      <span
-                        class="errorMessage"
-                        *ngIf="[
-                          (signForm.controls['lastName']?.errors)![
-                            'required'
-                          ] && signForm.get('lastName')?.touched
-                        ]"
-                        >*Veuillez saisir votre nom!</span
+                    <div class="error_message">
+                      <div
+                        *ngIf="
+                          signForm.controls['lastName'].invalid &&
+                          (signForm.controls['lastName'].dirty ||
+                            signForm.controls['lastName'].touched)
+                        "
                       >
-                    </span>
+                        <span
+                          class="error_message_content"
+                          *ngIf="[
+                            (signForm.controls['lastName']?.errors)![
+                              'required'
+                            ] && signForm.get('lastName')?.touched
+                          ]"
+                          >*Veuillez saisir votre nom!</span
+                        >
+                      </div>
+                    </div>
                     <input
                       [ngClass]="{
                         isInvalid:
@@ -74,19 +76,22 @@
                 </div>
                 <div class="col-md-6 mb-2">
                   <div class="form-outline">
-                    <span
-                      *ngIf="
-                        signForm.controls['firstName'].invalid &&
-                        (signForm.controls['firstName'].dirty ||
-                          signForm.controls['firstName'].touched)
-                      "
-                    >
-                      <span
-                        class="errorMessage"
-                        *ngIf="signForm.controls['lastName'].errors?.['required']"
-                        >Veuillez saisir votre prenom!</span
+                    <div class="error_message">
+                      <div
+                        *ngIf="
+                          signForm.controls['firstName'].invalid &&
+                          (signForm.controls['firstName'].dirty ||
+                            signForm.controls['firstName'].touched)
+                        "
                       >
-                    </span>
+                        <span
+                          class="error_message_content"
+                          style="font-size: 13px;"
+                          *ngIf="signForm.controls['lastName'].errors?.['required']"
+                          >*Veuillez saisir votre prenom!</span
+                        >
+                      </div>
+                    </div>
                     <input
                       [ngClass]="{
                         isInvalid:
@@ -104,28 +109,32 @@
               </div>
 
               <!-- Phone input -->
-              <div class="form-outline mb-2">
-                <span
-                  *ngIf="
-                    signForm.controls['lastName'].invalid &&
-                    (signForm.controls['lastName'].dirty ||
-                      signForm.controls['lastName'].touched)
-                  "
-                >
-                  <span
-                    class="errorMessage"
+              <div class="form-outline mb-1">
+                <!--  Phone input error section-->
+                <div class="error_message">
+                  <div
                     *ngIf="
-                      signForm.get('phone')?.touched &&
-                      signForm.get('phone')?.invalid
+                      signForm.controls['phone'].invalid &&
+                      (signForm.controls['phone'].dirty ||
+                        signForm.controls['phone'].touched)
                     "
-                    >Veuillez saisir votre numero de telephone !</span
                   >
-                </span>
+                    <span
+                      class="error_message_content"
+                      *ngIf="
+                        signForm.get('phone')?.touched &&
+                        signForm.get('phone')?.invalid
+                      "
+                      >*Veuillez saisir votre numero de telephone !</span
+                    >
+                  </div>
+                </div>
+
                 <input
                   [ngClass]="{
                     isInvalid:
-                      signForm.get('lastName')?.invalid &&
-                      signForm.get('lastName')?.touched
+                      signForm.get('phone')?.invalid &&
+                      signForm.get('phone')?.touched
                   }"
                   type="phone"
                   id="form3Example3"
@@ -134,31 +143,34 @@
                 />
                 <label class="form-label" for="form3Example3">Telephone</label>
               </div>
-
-              <div class="form-outline mb-2">
-                <span
-                  *ngIf="
-                    signForm.controls['lastName'].invalid &&
-                    (signForm.controls['lastName'].dirty ||
-                      signForm.controls['lastName'].touched)
-                  "
-                >
-                  <span
-                    class="errorMessage"
+              <!-- Email input -->
+              <div class="form-outline mb-1">
+                <!--  Email input error section-->
+                <div class="error_message">
+                  <div
                     *ngIf="
-                      signForm.get('mail')?.touched &&
-                      signForm.get('mail')?.invalid
+                      signForm.controls['mail'].invalid &&
+                      (signForm.controls['mail'].dirty ||
+                        signForm.controls['mail'].touched)
                     "
-                    >Veuillez saisir votre email !</span
                   >
-                  <span
-                    class="errorMessage"
-                    *ngIf="
+                    <span
+                      class="error_message_content"
+                      *ngIf="
+                        signForm.get('mail')?.touched &&
+                        signForm.get('mail')?.invalid
+                      "
+                      >*Veuillez saisir votre email !</span
+                    >
+                    <span
+                      class="error_message_content"
+                      *ngIf="
                       signForm.controls['mail'].errors?.['email']
                     "
-                    >Verifier le format de votre email!</span
-                  >
-                </span>
+                      >Verifier le format de votre email!</span
+                    >
+                  </div>
+                </div>
 
                 <input
                   (keyup)="key($event)"
@@ -175,23 +187,26 @@
                 <label class="form-label" for="form_email">Email</label>
               </div>
               <!-- Password input -->
-              <div class="form-outline mb-2">
-                <span
-                  *ngIf="
-                    signForm.controls['lastName'].invalid &&
-                    (signForm.controls['lastName'].dirty ||
-                      signForm.controls['lastName'].touched)
-                  "
-                >
-                  <span
-                    class="errorMessage"
+              <div class="form-outline mb-1">
+                <!--  Password input error section-->
+                <div class="error_message">
+                  <div
                     *ngIf="
-                      signForm.get('password')?.touched &&
-                      signForm.get('password')?.invalid
+                      signForm.controls['password'].invalid &&
+                      (signForm.controls['password'].dirty ||
+                        signForm.controls['password'].touched)
                     "
-                    >Veuillez saisir votre mot de passe!</span
                   >
-                </span>
+                    <span
+                      class="error_message_content"
+                      *ngIf="
+                        signForm.get('password')?.touched &&
+                        signForm.get('password')?.invalid
+                      "
+                      >*Veuillez saisir votre mot de passe!</span
+                    >
+                  </div>
+                </div>
                 <input
                   [ngClass]="{
                     isInvalid:
@@ -208,23 +223,26 @@
                 >
               </div>
               <!-- Document input -->
-              <div class="form-outline mb-2">
-                <span
-                  *ngIf="
-                    signForm.controls['lastName'].invalid &&
-                    (signForm.controls['lastName'].dirty ||
-                      signForm.controls['lastName'].touched)
-                  "
-                >
-                  <span
-                    class="errorMessage"
+              <div class="form-outline mb-1">
+                <!--  Document input error section-->
+                <div class="error_message">
+                  <div
                     *ngIf="
-                      signForm.get('userFile')?.touched &&
-                      signForm.get('userFile')?.invalid
+                      signForm.controls['lastName'].invalid &&
+                      (signForm.controls['lastName'].dirty ||
+                        signForm.controls['lastName'].touched)
                     "
-                    >Veuillez selectioner votre document!</span
                   >
-                </span>
+                    <span
+                      class="error_message_content"
+                      *ngIf="
+                        signForm.get('userFile')?.touched &&
+                        signForm.get('userFile')?.invalid
+                      "
+                      >Veuillez selectioner votre document!</span
+                    >
+                  </div>
+                </div>
 
                 <input
                   [ngClass]="{
