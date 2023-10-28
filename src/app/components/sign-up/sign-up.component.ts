@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,16 +16,19 @@ export class SignUpComponent implements OnInit {
   signForm!: FormGroup;
   ngOnInit(): void {
     this.signForm = this.fb.group({
-      lastName: [''],
-      firstName: [''],
-      email: [''],
-      phone: [''],
-      password: [''],
-      pwrd: [''],
-      userFile: [''],
+      lastName: [null, Validators.required],
+      firstName: [null, [Validators.required]],
+      mail: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      userFile: ['', [Validators.required]],
     });
   }
+
   onSubmit() {
-    console.log(this.signForm.value);
+    console.log(this.signForm.controls['email']);
+  }
+  key(x:any){
+    console.log(this.signForm.controls['email']);
   }
 }

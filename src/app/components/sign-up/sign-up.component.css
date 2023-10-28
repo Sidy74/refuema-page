@@ -37,8 +37,23 @@
   overflow: hidden;
 }
 
-
 .bg-glass {
   background-color: hsla(0, 0%, 100%, 0.36) !important;
   backdrop-filter: saturate(200%) blur(25px);
+}
+
+.isInvalid {
+  color: none;
+  transition: 1s;
+  background-color: white;
+  border-color: #ff0015b7;
+  outline: 0;
+  box-shadow: 0 0 0 0.15rem #ff00152a;
+}
+.errorMessage {
+  color: #ff0015b7;
+  padding-bottom: 2px;
+}
+.form-label {
+  font-weight: 400;
 }
