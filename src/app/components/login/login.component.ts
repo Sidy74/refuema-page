@@ -15,16 +15,15 @@ export class LoginComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: [''],
-      password: [''],
+      mail: ['', [Validators.required,Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
     });
-    throw new Error('Method not implemented.');
   }
 
   login() {
-    console.log('email' + this.loginForm.contains);
+    console.log('password' + this.loginForm.controls['password'].status);
 
-    console.warn(this.loginForm.value);
+   
     this.userAuthService.login();
   }
 }

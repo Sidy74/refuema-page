@@ -39,18 +39,83 @@
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
             <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+              <div class="error_message">
+                <div
+                  *ngIf="
+                    loginForm.controls['mail'].invalid &&
+                    (loginForm.controls['mail'].dirty ||
+                      loginForm.controls['mail'].touched)
+                  "
+                >
+                  <span
+                    class="error_message_content"
+                    *ngIf="loginForm.controls['mail'].errors?.['required']"
+                    >*Email ou mot de passe recorrecte !</span
+                  >
+                </div>
+              </div>
               <div class="form-outline mb-4">
+                <div class="error_message">
+                  <div
+                    *ngIf="
+                      loginForm.controls['mail'].invalid &&
+                      (loginForm.controls['mail'].dirty ||
+                        loginForm.controls['mail'].touched)
+                    "
+                  >
+                    <span
+                      class="error_message_content"
+                      *ngIf="loginForm.controls['mail'].errors?.['required']"
+                      >*Veuillez saisir votre email!</span
+                    >
+                    <span
+                      class="error_message_content"
+                      *ngIf="loginForm.controls['mail'].errors?.['email']"
+                      >*Veuillez saisir le bon format d'email!</span
+                    >
+                  </div>
+                </div>
                 <input
+                  [ngClass]="{
+                    isInvalid:
+                      loginForm.get('mail')?.invalid &&
+                      loginForm.get('mail')?.touched
+                  }"
                   type="email"
                   id="form_email"
                   class="form-control"
-                  formControlName="email"
+                  formControlName="mail"
                 />
                 <label class="form-label" for="form_email">Email</label>
               </div>
 
               <div class="form-outline mb-4">
+                <div class="error_message">
+                  <div
+                    *ngIf="
+                      loginForm.controls['password'].invalid &&
+                      (loginForm.controls['password'].dirty ||
+                        loginForm.controls['password'].touched)
+                    "
+                  >
+                    <span
+                      class="error_message_content"
+                      *ngIf="loginForm.controls['password'].errors?.['required']"
+                      >*Veuillez saisir votre mot de passe!</span
+                    >
+                    <span
+                      class="error_message_content"
+                      *ngIf="loginForm.controls['password'].errors?.['minlength']"
+                      >*Veuillez saisir 4 charactères au minimun!</span
+                    >
+                  </div>
+                </div>
                 <input
+                  [ngClass]="{
+                    isInvalid:
+                      loginForm.get('password')?.invalid &&
+                      loginForm.get('password')?.touched
+                  }"
                   type="password"
                   id="form_password"
                   class="form-control"
