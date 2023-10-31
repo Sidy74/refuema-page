@@ -86,7 +86,7 @@
                       >
                         <span
                           class="error_message_content"
-                          style="font-size: 13px;"
+                          style="font-size: 13px"
                           *ngIf="signForm.controls['lastName'].errors?.['required']"
                           >*Veuillez saisir votre prenom!</span
                         >
@@ -122,10 +122,17 @@
                     <span
                       class="error_message_content"
                       *ngIf="
-                        signForm.get('phone')?.touched &&
-                        signForm.get('phone')?.invalid
+                      signForm.controls['phone'].errors?.['required'] 
                       "
                       >*Veuillez saisir votre numero de telephone !</span
+                    >
+                    <span
+                      class="error_message_content"
+                      *ngIf="
+                    signForm.controls['phone'].errors?.['maxlength'] ||
+                    signForm.controls['phone'].errors?.['minlength']
+                    "
+                      >8 chiffres au maxmium!</span
                     >
                   </div>
                 </div>
@@ -136,7 +143,7 @@
                       signForm.get('phone')?.invalid &&
                       signForm.get('phone')?.touched
                   }"
-                  type="phone"
+                  type="tel"
                   id="form3Example3"
                   class="form-control"
                   formControlName="phone"
