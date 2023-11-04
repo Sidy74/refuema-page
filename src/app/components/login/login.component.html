@@ -1,10 +1,13 @@
 <section class="background-radial-gradient overflow-hidden">
   <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
     <div class="row gx-lg-5 align-items-center mb-5">
-      <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10;align-self: self-start;">
+      <div
+        class="col-lg-6 mb-5 mb-lg-0"
+        style="z-index: 10; align-self: self-start"
+      >
         <h1
           class="my-5 display-5 fw-bold ls-tight"
-          style="font-size: 300%; ; color: hsl(218, 81%, 95%)"
+          style="font-size: 300%; color: hsl(218, 81%, 95%)"
         >
           Connexion <br />
         </h1>
@@ -12,13 +15,14 @@
           class="my-5 display-5 fw-bold ls-tight"
           style="color: hsl(218, 81%, 95%)"
         >
-        REFUEMA<br />
+          REFUEMA<br />
           <span style="color: hsl(218, 81%, 75%)"
             >Réseau des Femmes Universitaires et Enseignantes du Mali</span
           >
         </h1>
         <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-         S'il vous plait rensaigner correctement vos informations pour vous connecter a votre compte 
+          S'il vous plait rensaigner correctement vos informations pour vous
+          connecter a votre compte
         </p>
       </div>
 
@@ -34,22 +38,92 @@
 
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
-            <form>
-              <div class="form-outline mb-4">
-                <input type="email" id="form_email" class="form-control" />
-                <label class="form-label" for="form_email"
-                  >Email</label
+            <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+              <div class="error_message">
+                <div
+                  *ngIf="
+                    loginForm.controls['mail'].invalid &&
+                    (loginForm.controls['mail'].dirty ||
+                      loginForm.controls['mail'].touched)
+                  "
                 >
+                  <span
+                    class="error_message_content"
+                    *ngIf="loginForm.controls['mail'].errors?.['required']"
+                    >*Email ou mot de passe recorrecte !</span
+                  >
+                </div>
+              </div>
+              <div class="form-outline mb-4">
+                <div class="error_message">
+                  <div
+                    *ngIf="
+                      loginForm.controls['mail'].invalid &&
+                      (loginForm.controls['mail'].dirty ||
+                        loginForm.controls['mail'].touched)
+                    "
+                  >
+                    <span
+                      class="error_message_content"
+                      *ngIf="loginForm.controls['mail'].errors?.['required']"
+                      >*Veuillez saisir votre email!</span
+                    >
+                    <span
+                      class="error_message_content"
+                      *ngIf="loginForm.controls['mail'].errors?.['email']"
+                      >*Veuillez saisir le bon format d'email!</span
+                    >
+                  </div>
+                </div>
+                <input
+                  [ngClass]="{
+                    isInvalid:
+                      loginForm.get('mail')?.invalid &&
+                      loginForm.get('mail')?.touched
+                  }"
+                  type="email"
+                  id="form_email"
+                  class="form-control"
+                  formControlName="mail"
+                />
+                <label class="form-label" for="form_email">Email</label>
               </div>
 
-             
               <div class="form-outline mb-4">
+                <div class="error_message">
+                  <div
+                    *ngIf="
+                      loginForm.controls['password'].invalid &&
+                      (loginForm.controls['password'].dirty ||
+                        loginForm.controls['password'].touched)
+                    "
+                  >
+                    <span
+                      class="error_message_content"
+                      *ngIf="loginForm.controls['password'].errors?.['required']"
+                      >*Veuillez saisir votre mot de passe!</span
+                    >
+                    <span
+                      class="error_message_content"
+                      *ngIf="loginForm.controls['password'].errors?.['minlength']"
+                      >*Veuillez saisir 4 charactères au minimun!</span
+                    >
+                  </div>
+                </div>
                 <input
+                  [ngClass]="{
+                    isInvalid:
+                      loginForm.get('password')?.invalid &&
+                      loginForm.get('password')?.touched
+                  }"
                   type="password"
                   id="form_password"
                   class="form-control"
+                  formControlName="password"
                 />
-                <label class="form-label" for="form_password">Mot de passe</label>
+                <label class="form-label" for="form_password"
+                  >Mot de passe</label
+                >
               </div>
 
               <!-- Checkbox -->
@@ -65,10 +139,13 @@
                   Se souvenez de moi ?
                 </label>
               </div>
-
               <!-- Submit button -->
-              <button type="submit" id="btn-submit"
-                class="btn btn-primary btn-block mb-4">
+              <button
+                id="btn-submit"
+                type="submit"
+                [disabled]="!loginForm.valid"
+                class="btn btn-primary btn-block mb-4"
+              >
                 Connexion
               </button>
             </form>

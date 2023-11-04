@@ -1,6 +1,6 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { LoginService } from '../../../core/services/login.service';
+import { UserAuthService } from 'src/app/core/_services/user-auth.service';
 
 @Component({
   selector: 'app-appbar-avatar',
@@ -8,7 +8,7 @@ import { LoginService } from '../../../core/services/login.service';
   styleUrls: ['./appbar-avatar.component.css'],
 })
 export class AppbarAvatarComponent {
-  constructor(private loginService: LoginService) {}
+  constructor(private userAuthService: UserAuthService) {}
 
   @ViewChild(MatMenuTrigger)
   trigger!: MatMenuTrigger;
@@ -37,6 +37,6 @@ export class AppbarAvatarComponent {
     }
   }
   logout() {
-    this.loginService.changeState();
+    this.userAuthService.logout();
   }
 }
