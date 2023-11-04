@@ -5,6 +5,7 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
+import { RegistrationService } from 'src/app/core/_services/registration.service';
 
 class newUser {
   lastName!: string;
@@ -21,7 +22,10 @@ class newUser {
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private registrationService: RegistrationService
+  ) {}
   newuser = new newUser();
   signForm!: FormGroup;
   ngOnInit(): void {
@@ -46,15 +50,23 @@ export class SignUpComponent implements OnInit {
     console.log(this.signForm);
     formData.append('prenom', this.signForm.controls['firstName'].value);
     formData.append('nom', this.signForm.controls['lastName'].value);
+    formData.append('telephone', this.signForm.controls['phone'].value);
     formData.append('email', this.signForm.controls['mail'].value);
-    formData.append('phone', this.signForm.controls['phone'].value);
-    formData.append('document[]', this.signForm.controls['userFile'].value);
     formData.append('password', this.signForm.controls['password'].value);
+    formData.append('document[]', this.signForm.controls['userFile'].value);
     console.log(
       formData.forEach((element) => {
         console.log(element);
       })
     );
+    this.registrationService.registre(formData).subscribe({
+      next(value) {
+        console.log(value);
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
   }
   key(x: any) {
     console.log(this.signForm.controls['email']);
