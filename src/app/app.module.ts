@@ -16,6 +16,7 @@ import { UserComponent } from './user/user.component';
 import { LoginModule } from './components/login/login/login.module';
 import { SignUpModule } from './components/sign-up/sign-up/sign-up.module';
 import { PresentationComponent } from './presentation/presentation.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PresentationComponent } from './presentation/presentation.component';
     MiniArticleComponent,
     UserComponent,
     PresentationComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
