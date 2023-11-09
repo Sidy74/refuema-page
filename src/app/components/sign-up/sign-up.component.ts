@@ -42,23 +42,23 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(event: any) {
     const formData = new FormData();
     if (this.signForm) {
     }
 
-    console.log(this.signForm);
+    
     formData.append('prenom', this.signForm.controls['firstName'].value);
     formData.append('nom', this.signForm.controls['lastName'].value);
     formData.append('telephone', this.signForm.controls['phone'].value);
     formData.append('email', this.signForm.controls['mail'].value);
     formData.append('password', this.signForm.controls['password'].value);
     formData.append('document[]', this.signForm.controls['userFile'].value);
-    console.log(
-      formData.forEach((element) => {
-        console.log(element);
-      })
-    );
+    // console.log(
+    //   formData.forEach((element) => {
+    //     console.log(element);
+    //   })
+    // );
     this.registrationService.registre(formData).subscribe({
       next(value) {
         console.log(value);

@@ -22,8 +22,8 @@
       <a href="#" routerLink="/item4" routerLinkActive="active-link">
         <span>Articles</span>
       </a>
-      <a href="#" routerLink="/item4" routerLinkActive="active-link">
-        <span>Ajouter article</span>
+      <a  href="#" routerLink="/item4" *ngIf="isAuthentified" routerLinkActive="active-link">
+        <span>Créer un article</span>
       </a>
       <a href="#" routerLink="/contact-us" routerLinkActive="active-link">
         <span>Contactez-nous</span>
