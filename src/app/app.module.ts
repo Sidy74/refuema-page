@@ -1,4 +1,4 @@
-import {  LOCALE_ID,NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,8 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { LoginModule } from './components/login/login/login.module';
 import { SignUpModule } from './components/sign-up/sign-up/sign-up.module';
-import { PresentationComponent } from './presentation/presentation.component';
 import { FooterComponent } from './footer/footer.component';
+import { ObjectifsComponent } from './components/home/objectifs/objectifs.component';
+import { PresentationComponent } from './components/presentation/presentation.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,11 @@ import { FooterComponent } from './footer/footer.component';
     ScrollToTopComponent,
     HomeComponent,
     ContactUsComponent,
-
     MiniArticleComponent,
     UserComponent,
-    PresentationComponent,
     FooterComponent,
+    ObjectifsComponent,
+    PresentationComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +43,7 @@ import { FooterComponent } from './footer/footer.component';
     CardModule,
     HttpClientModule,
   ],
-  providers: [ { provide: LOCALE_ID, useValue: 'fr' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

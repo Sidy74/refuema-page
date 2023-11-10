@@ -8,11 +8,13 @@ import { CardComponent } from './components/card/card.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { authGuard } from './core/_helpers/auth.guard';
 import { UserComponent } from './user/user.component';
+import { PresentationComponent } from './components/presentation/presentation.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
+  { path: 'presentation', component: PresentationComponent },
   {
     path: 'user',
     component: UserComponent,
@@ -23,7 +25,7 @@ const routes: Routes = [
     ],
   },
 
- { path: 'contact-us', component: ContactUsComponent },
+  { path: 'contact-us', component: ContactUsComponent },
 ];
 
 @NgModule({
