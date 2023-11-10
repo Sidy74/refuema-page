@@ -6,8 +6,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { CardComponent } from './components/card/card.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { AboutComponent } from './about/about.component';
-import { authGuard } from './_helpers/auth.guard';
+import { authGuard } from './core/_helpers/auth.guard';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
@@ -24,8 +23,7 @@ const routes: Routes = [
     ],
   },
 
-  { path: 'about', component: AboutComponent },
-  { path: 'contact-us', component: ContactUsComponent },
+ { path: 'contact-us', component: ContactUsComponent },
 ];
 
 @NgModule({

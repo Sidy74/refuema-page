@@ -7,7 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class RegistrationService {
   constructor(private http: HttpClient) {}
-  registre(newUser: any): Observable<any> {
+  registre(newUser: FormData): Observable<any> {
+    newUser.forEach((element) => {
+      console.log('service' + element);
+    });
+
     let url = environment.apiUrl + '/register';
     console.log(environment.apiUrl);
     return this.http.post(url, newUser);

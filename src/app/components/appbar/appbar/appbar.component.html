@@ -9,21 +9,21 @@
     <div id="menuItems" class="#navbar-center">
       <a
         href="#"
-        routerLink="/item2"
+        routerLink="/presentation"
         routerLinkActive="active-link"
         routerLinkActive="active-link"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <span>item #2</span>
+        <span>Présentation</span>
       </a>
       <a href="#" routerLink="/item3" routerLinkActive="active-link">
-        <span>item #3</span>
+        <span>Actualités</span>
       </a>
       <a href="#" routerLink="/item4" routerLinkActive="active-link">
-        <span>item #4</span>
+        <span>Articles</span>
       </a>
-      <a href="#" routerLink="/about" routerLinkActive="active-link">
-        <span>À propos</span>
+      <a  href="#" routerLink="/item4" *ngIf="isAuthentified" routerLinkActive="active-link">
+        <span>Créer un article</span>
       </a>
       <a href="#" routerLink="/contact-us" routerLinkActive="active-link">
         <span>Contactez-nous</span>
@@ -43,9 +43,7 @@
           <span>S'inscrire</span>
         </a>
       </div>
-      <app-appbar-avatar
-        *ngIf="isAuthentified"
-      ></app-appbar-avatar>
+      <app-appbar-avatar *ngIf="isAuthentified"></app-appbar-avatar>
     </div>
   </mat-toolbar>
 </div>

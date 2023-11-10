@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {  LOCALE_ID,NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,10 +7,7 @@ import { AppbarModule } from './components/appbar/appbar.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { AboutComponent } from './about/about.component';
 import { ProfilModule } from './components/profil/profil/profil.module';
 import { CardModule } from './components/card/card/card.module';
 import { MiniArticleComponent } from './mini-article/mini-article.component';
@@ -18,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { LoginModule } from './components/login/login/login.module';
 import { SignUpModule } from './components/sign-up/sign-up/sign-up.module';
+import { PresentationComponent } from './presentation/presentation.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +24,11 @@ import { SignUpModule } from './components/sign-up/sign-up/sign-up.module';
     ScrollToTopComponent,
     HomeComponent,
     ContactUsComponent,
-    AboutComponent,
+
     MiniArticleComponent,
     UserComponent,
+    PresentationComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +42,7 @@ import { SignUpModule } from './components/sign-up/sign-up/sign-up.module';
     CardModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [ { provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
