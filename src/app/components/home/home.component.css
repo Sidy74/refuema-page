@@ -1,10 +1,11 @@
 .head_section {
   position: relative;
   width: auto;
-  padding-bottom: 100%;
   vertical-align: middle;
   overflow: hidden;
+  padding-bottom: 100%;
   padding: 30px 30px;
+  margin: 0px -60px 30px -60px;
   transition: 1s;
   background-image: url("../../../assets/svgs/wave.svg");
   /* background-color: #013b45; */
