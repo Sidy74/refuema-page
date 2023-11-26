@@ -11,13 +11,14 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { ProfilModule } from './components/user/profil/profil/profil.module';
 import { CardModule } from './components/user/card/card/card.module';
 import { MiniArticleComponent } from './components/mini-article/mini-article.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserComponent } from './components/user/user.component';
 import { LoginModule } from './components/login/login/login.module';
 import { SignUpModule } from './components/sign-up/sign-up/sign-up.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { ObjectifsComponent } from './components/home/objectifs/objectifs.component';
 import { PresentationComponent } from './components/presentation/presentation.component';
+import { TokenInterceptor } from './core/_helpers/intercepteurs/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,14 @@ import { PresentationComponent } from './components/presentation/presentation.co
     CardModule,
     HttpClientModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'fr' }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+    { provide: LOCALE_ID, useValue: 'fr' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
