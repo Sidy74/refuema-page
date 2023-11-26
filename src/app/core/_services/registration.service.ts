@@ -10,8 +10,7 @@ export class RegistrationService {
   constructor(private http: HttpClient) {}
   registre(newUser: FormData): Observable<any> {
     let url = environment.apiUrl + '/register';
-
-    return this.http.post(url, newUser,);
+    return this.http.post(url, newUser);
   }
 
   getTitre(): Observable<any> {
