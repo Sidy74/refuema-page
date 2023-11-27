@@ -4,11 +4,11 @@
       id="img"
       class="shadow-4-strong"
       alt="avatar2"
-      src="assets/svgs/Mali.svg"
+      [src]="user.photo ? user.photo : 'assets/svgs/Mali.svg'"
     />
   </div>
   <div class="profil_text">
-    <p>Coulibaly Fatoumata Mohamed Ag</p>
+    <p>{{ user.firstName }} {{ user.lastName }}</p>
   </div>
   <div class="profil_edit" (click)="openEditModal()">
     <mat-icon>edit</mat-icon>
@@ -19,10 +19,11 @@
   <hr />
   <div>
     Email :
-    <span>N/A</span>
+
+    <span>{{ user.mail }}</span>
   </div>
   <div>
     Numéro de téléphone :
-    <span>N/A</span>
+    <span>{{ user.phone }}</span>
   </div>
 </div>

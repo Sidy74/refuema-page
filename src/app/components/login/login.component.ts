@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private loginService: LoginService,
     private fb: FormBuilder,
-    private router: Router,
+    private router: Router
   ) {}
   ngOnDestroy(): void {}
 
@@ -37,22 +37,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     formData.append('email', this.formControl['mail'].value);
     formData.append('password', this.formControl['password'].value);
     this.loginService.login(formData).subscribe({
-      next:() => {
+      next: () => {
         this.router.navigateByUrl('/');
       },
       error: (err: HttpErrorResponse) => {
         this.erroStatus = err.status;
-      },
-    });
-
-    this.loginService.currentUserInfos$.subscribe({
-      next: (user) => {
-        if (user) {
-          this.user = user;
-        }
-      },
-      error(err) {
-        console.log(err);
       },
     });
   }
