@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { UserAuthService } from 'src/app/core/_services/user-auth.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/core/_services/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserTokenService } from 'src/app/core/_services/user-token.service';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from 'src/app/core/_models/user..models';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  user: User = new User();
   loginForm!: FormGroup;
   formControl: any;
+  @Input() erroStatus!: number;
   constructor(
-    private router :Router,
-    private userAuthService: UserAuthService,
+    private loginService: LoginService,
     private fb: FormBuilder,
-    private userTokenService: UserTokenService
+    private router: Router,
   ) {}
+  ngOnDestroy(): void {}
+
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       mail: ['', [Validators.required, Validators.email]],
@@ -30,11 +36,24 @@ export class LoginComponent implements OnInit {
     let formData = new FormData();
     formData.append('email', this.formControl['mail'].value);
     formData.append('password', this.formControl['password'].value);
-    this.userAuthService.login(formData).subscribe((val) => {
+    this.loginService.login(formData).subscribe({
+      next:() => {
+        this.router.navigateByUrl('/');
+      },
+      error: (err: HttpErrorResponse) => {
+        this.erroStatus = err.status;
+      },
+    });
 
-      if (val.token){ this.userTokenService.saveTokenInLocalStorage(val.token);}
-      this.router.navigateByUrl('/')
-
+    this.loginService.currentUserInfos$.subscribe({
+      next: (user) => {
+        if (user) {
+          this.user = user;
+        }
+      },
+      error(err) {
+        console.log(err);
+      },
     });
   }
 }

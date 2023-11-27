@@ -1,18 +1,33 @@
-import { AfterContentInit, Component, HostListener } from '@angular/core';
-import { UserAuthService } from 'src/app/core/_services/user-auth.service';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { Subscription } from 'rxjs';
+import { LoginService } from 'src/app/core/_services/login.service';
 
 @Component({
   selector: 'app-appbar',
   templateUrl: './appbar.component.html',
   styleUrls: ['./appbar.component.css'],
 })
-export class AppbarComponent implements AfterContentInit{
+export class AppbarComponent implements OnInit, OnDestroy {
+  loginSubscription?: Subscription;
   isAuthentified!: boolean;
-  constructor(public userAuthService: UserAuthService) {
-    
+  ErroStatus !: string;
+  constructor(private loginService: LoginService) {
+    this.loginSubscription = this.loginService.isLogged().subscribe({
+      next: (value) => {
+        this.isAuthentified = value;
+      },
+    });
   }
-  ngAfterContentInit(): void {
-    this.isAuthentified = this.userAuthService.isUserAuthService;
+
+  ngOnInit(): void {}
+
+  logout() {
+    this.loginService.logout();
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -33,5 +48,9 @@ export class AppbarComponent implements AfterContentInit{
       document.getElementById('logo')!.style.width = '200px';
       document.getElementById('toolbar')!.style.opacity = '1';
     }
+  }
+
+  ngOnDestroy(): void {
+    this.loginSubscription?.unsubscribe();
   }
 }
