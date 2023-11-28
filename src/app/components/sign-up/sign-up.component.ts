@@ -1,7 +1,15 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Titre } from 'src/app/core/_models/titre.model';
 import { TypeDocument } from 'src/app/core/_models/type-document.models';
+import { LoadingService } from 'src/app/core/_services/loading.service';
 import { RegistrationService } from 'src/app/core/_services/registration.service';
 import { PasswordValidator } from 'src/app/core/_validator/password.validator';
 
@@ -10,34 +18,48 @@ import { PasswordValidator } from 'src/app/core/_validator/password.validator';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
   signForm!: FormGroup;
   formControls: any;
   files: any;
-  
-  selectedTypeDocuments!: TypeDocument ;
+  loadingSubscription$?: Subscription;
+  isLoading: boolean = false;
+  selectedTypeDocuments!: TypeDocument;
   type_documents!: Array<TypeDocument>;
   selectedTitre!: Titre;
   titres!: Array<Titre>;
 
   constructor(
     private fb: FormBuilder,
-    private registrationService: RegistrationService
+    private registrationService: RegistrationService,
+    private loadingService: LoadingService
   ) {}
- 
+  ngOnDestroy(): void {
+    this.loadingSubscription$?.unsubscribe();
+  }
 
   ngOnInit(): void {
+    this.loadingSubscription$ = this.loadingService.isLoading$.subscribe({
+      next: (value) => {
+        this.isLoading = value;
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
+
+    //Get all titre
     this.registrationService.getTitre().subscribe((titres) => {
       this.titres = titres.titre;
-      this.selectedTitre = this.titres[0]
+      this.selectedTitre = this.titres[0];
       console.log(this.titres);
-      
     });
+
+    //Get all type document
     this.registrationService.getTypeDocument().subscribe((type_documents) => {
       this.type_documents = type_documents.type_de_document;
-      this.selectedTypeDocuments = this.type_documents[0]
+      this.selectedTypeDocuments = this.type_documents[0];
       console.log(this.type_documents);
-      
     });
 
     this.signForm = this.fb.group({
@@ -69,8 +91,6 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(event: any) {
-    
-    
     const formData = new FormData();
     if (this.signForm) {
     }
@@ -85,10 +105,9 @@ export class SignUpComponent implements OnInit {
     for (const iterator of this.files) {
       formData.append('document[]', iterator.name);
     }
-    
-    
+
     formData.append('titre', this.formControls['titre'].value);
-   
+
     formData.append('type', this.formControls['fileType'].value);
     formData.append('specialite', this.formControls['specialite'].value);
 
@@ -97,11 +116,10 @@ export class SignUpComponent implements OnInit {
     //     console.log(element);
     //   })
     // );
-    formData.forEach(element => {
+    formData.forEach((element) => {
       console.log(element);
-      
     });
-    
+
     this.registrationService.registre(formData).subscribe({
       next(value) {
         console.log(value);

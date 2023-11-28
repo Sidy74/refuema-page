@@ -36,6 +36,8 @@
         ></div>
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
+             <!-- Loading Component -->
+            <app-progress-bar *ngIf="isLoading"></app-progress-bar>
             <form
               [formGroup]="signForm"
               (ngSubmit)="onSubmit($event)"

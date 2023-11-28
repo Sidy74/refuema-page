@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   user: User = new User();
   loginForm!: FormGroup;
   formControl: any;
-  soadingSubscription$?: Subscription;
+  loadingSubscription$?: Subscription;
   isLoading: boolean = false;
   @Input() erroStatus!: number;
 
@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
   ngOnDestroy(): void {
-    this.soadingSubscription$?.unsubscribe();
+    this.loadingSubscription$?.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.soadingSubscription$ = this.loadingService.isLoading$.subscribe({
+    this.loadingSubscription$ = this.loadingService.isLoading$.subscribe({
       next: (value) => {
         this.isLoading = value;
       },
