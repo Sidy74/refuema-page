@@ -15,12 +15,9 @@ export class TokenInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    let x = next.handle(request);
-    //Change is loading state when request is sended or completed
+    const x = next.handle(request);
+    //Change is-loading state when request is sended or completed
     this.loadingService.isLoading.next(true);
-    x.subscribe((val) => {
-    //  this.loadingService.isLoading.next(false);
-    });
     return x;
   }
 }

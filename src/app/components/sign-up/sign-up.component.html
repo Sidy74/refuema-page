@@ -36,7 +36,7 @@
         ></div>
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
-             <!-- Loading Component -->
+            <!-- Loading Component -->
             <app-progress-bar *ngIf="isLoading"></app-progress-bar>
             <form
               [formGroup]="signForm"
@@ -524,7 +524,7 @@
                 type="submit"
                 id="btn-submit"
                 class="btn btn-primary btn-block mb-4"
-                [disabled]="signForm.invalid"
+                [disabled]="signForm.invalid || isLoading"
               >
                 S'inscrire
               </button>

@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Titre } from 'src/app/core/_models/titre.model';
@@ -111,19 +105,12 @@ export class SignUpComponent implements OnInit, OnDestroy {
     formData.append('type', this.formControls['fileType'].value);
     formData.append('specialite', this.formControls['specialite'].value);
 
-    // console.log(
-    //   formData.forEach((element) => {
-    //     console.log(element);
-    //   })
-    // );
-    formData.forEach((element) => {
-      console.log(element);
-    });
+    // formData.forEach((element) => {
+    //   console.log(element);
+    // });
 
     this.registrationService.registre(formData).subscribe({
-      next(value) {
-        console.log(value);
-      },
+      next(value) {},
       error(err) {
         console.log(err);
       },
