@@ -19,6 +19,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ObjectifsComponent } from './components/home/objectifs/objectifs.component';
 import { PresentationComponent } from './components/presentation/presentation.component';
 import { TokenInterceptor } from './core/_helpers/intercepteurs/token.interceptor';
+import { ProgressBarModule } from './shared/progress-bar/progress-bar.module';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TokenInterceptor } from './core/_helpers/intercepteurs/token.intercepto
     LoginModule,
     SignUpModule,
     CardModule,
+    ProgressBarModule,
     HttpClientModule,
   ],
   providers: [

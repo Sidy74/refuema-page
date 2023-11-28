@@ -38,19 +38,17 @@
 
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
+            <app-progress-bar *ngIf="isLoading"></app-progress-bar>
             <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
               <div class="error_message">
                 <div
                   *ngIf="
-                    erroStatus==401  &&
-                    (loginForm.dirty || loginForm.touched)
+                    erroStatus == 401 && (loginForm.dirty || loginForm.touched)
                   "
                 >
-                  <span
-                    class="error_message_content"
-                   style="font-size: medium;"
-                    >*Email ou mot de passe incorrecte </span
-                  >
+                  <span class="error_message_content" style="font-size: medium"
+                    >*Email ou mot de passe incorrecte
+                  </span>
                 </div>
               </div>
               <!-- Email -->
@@ -142,7 +140,7 @@
               <button
                 id="btn-submit"
                 type="submit"
-                [disabled]="loginForm.invalid"
+                [disabled]="loginForm.invalid || isLoading"
                 class="btn btn-primary btn-block mb-4"
               >
                 Connexion

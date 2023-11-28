@@ -5,16 +5,17 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User, UserInfos } from '../_models/user..models';
 import { ShareUserInfosService } from './share-user-infos.service';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  ErroStatus!: number;
-
+  
   constructor(
     private userTokenService: UserTokenService,
     private http: HttpClient,
+    private loadingService:LoadingService ,
     private shareUserInfosService: ShareUserInfosService
   ) {}
 
@@ -23,6 +24,9 @@ export class LoginService {
     let x = this.http.post(url, user);
     x.subscribe({
       next: (value: any) => {
+        //Loading false requêt is completed 
+        this.loadingService.isLoading.next(false)
+
         this.userTokenService.login(value.token);
         if (value.user) {
           this.shareUserInfosService.setUserData(
@@ -37,7 +41,9 @@ export class LoginService {
         }
       },
       error: (err: HttpErrorResponse) => {
-        this.ErroStatus = err.status;
+       
+        //Loading false requêt is completed 
+        this.loadingService.isLoading.next(false)
       },
     });
     return x;
