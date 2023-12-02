@@ -22,6 +22,7 @@ import { TokenInterceptor } from './core/_helpers/intercepteurs/token.intercepto
 import { ProgressBarModule } from './shared/progress-bar/progress-bar.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,6 @@ import { SnackbarComponent } from './shared/snackbar/snackbar.component';
     FooterComponent,
     ObjectifsComponent,
     PresentationComponent,
-    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +47,7 @@ import { SnackbarComponent } from './shared/snackbar/snackbar.component';
     LoginModule,
     SignUpModule,
     CardModule,
+    SharedModule,
     ProgressBarModule,
     HttpClientModule,
   ],

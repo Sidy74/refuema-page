@@ -28,7 +28,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
     });
   }
   open() {
-    this.toastService.openError('message egeeg', ' xxx');
+    this.toastService.openError('message egeeg', 'x');
   }
 
   openEditModal() {
