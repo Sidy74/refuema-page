@@ -59,7 +59,7 @@
                           *ngIf="
                             formControls['lastName'].errors?.['required']       
                           "
-                          >*Veuillez saisir votre nom!</span
+                          >Veuillez saisir votre nom.</span
                         >
                         <span
                           class="error_message_content"
@@ -67,7 +67,7 @@
                           *ngIf="
                           formControls['lastName'].errors?.['minlength']       
                         "
-                          >Au minimum 3 caractères
+                          >Au minimum 3 caractères.
                         </span>
                       </div>
                     </div>
@@ -98,7 +98,7 @@
                         <span
                           class="error_message_content"
                           *ngIf="formControls['firstName'].errors?.['required']"
-                          >*Veuillez saisir votre prenom!</span
+                          >Veuillez saisir votre prénom.</span
                         >
                         <span
                           class="error_message_content"
@@ -106,7 +106,7 @@
                           *ngIf="
                         formControls['firstName'].errors?.['minlength']       
                       "
-                          >Au minimum 3 caractères
+                          >Au minimum 3 caractères.
                         </span>
                       </div>
                     </div>
@@ -139,6 +139,12 @@
                             formControls['titre'].touched)
                         "
                       >
+                        <span
+                          class="error_message_content"
+                          *ngIf="
+                        formControls['titre'].errors?.['required']
+                      "
+                          >Selectioner votre titre.</span
                         >
                       </div>
                     </div>
@@ -155,6 +161,9 @@
                           formControls['titre'].touched
                       }"
                     >
+                      <option selected *ngIf="!titres" [value]="0">
+                        <span> N/A</span>
+                      </option>
                       <option *ngFor="let item of titres" [value]="item.id">
                         <span> {{ item.titre }}</span>
                       </option>
@@ -180,7 +189,7 @@
                           *ngIf="
                       formControls['specialite'].errors?.['required'] 
                       "
-                          >*Veuillez entrer votre specialité.</span
+                          >Veuillez entrer votre specialité.</span
                         >
                         <span
                           class="error_message_content"
@@ -270,14 +279,14 @@
                       *ngIf="
                        formControls['mail'].errors?.['required']
                       "
-                      >*Veuillez saisir votre email !</span
+                      >Veuillez saisir votre email.</span
                     >
                     <span
                       class="error_message_content"
                       *ngIf="
                       formControls['mail'].errors?.['email']
                     "
-                      >Verifier le format de votre email!</span
+                      >Verifier le format de votre email.</span
                     >
                   </div>
                 </div>
@@ -362,7 +371,7 @@
                         class="error_message_content"
                         *ngIf="formControls['pwrdForm'].errors?.['passwordmatcherror']
                     "
-                        >Les mots de passe doivent être les mêmes
+                        >Les mots de passe doivent être les mêmes.
                       </span>
                     </div>
 
@@ -384,7 +393,7 @@
                         *ngIf="
                           formControls['pwrdForm'].controls['confirmPassword'].errors?.['required']
                         "
-                        >*Veuillez saisir votre mot de passe!</span
+                        >Veuillez saisir votre mot de passe.</span
                       >
                     </div>
                   </div>
@@ -411,6 +420,23 @@
               </div>
 
               <div class="form-outline mb-1">
+                <div class="error_message">
+                  <div
+                    *ngIf="
+                      formControls['fileType'].invalid &&
+                      (formControls['fileType'].dirty ||
+                        formControls['fileType'].touched)
+                    "
+                  >
+                    <span
+                      class="error_message_content"
+                      *ngIf="formControls['fileType'].errors?.['required']
+                      "
+                      >Selectioner le type de document.</span
+                    >
+                  </div>
+                </div>
+
                 <select
                   class="form-select"
                   aria-label="Default select example"
@@ -419,11 +445,14 @@
                   formControlName="fileType"
                   [ngClass]="{
                     isInvalid:
-                      signForm.get('fileType')?.invalid &&
-                      signForm.get('fileType')?.touched
+                      formControls['fileType'].invalid &&
+                      formControls['fileType'].touched
                   }"
-                  [(ngModel)]="selectedTypeDocuments"
                 >
+                  <option selected *ngIf="!type_documents" [value]="0">
+                    <span> N/A</span>
+                  </option>
+
                   <option *ngFor="let item of type_documents" [value]="item.id">
                     <span> {{ item.titre }}</span>
                   </option>
@@ -447,8 +476,8 @@
                     <span
                       class="error_message_content"
                       *ngIf="
-                        signForm.get('userFile')?.touched &&
-                        signForm.get('userFile')?.invalid
+                       
+                        formControls['userFile'].errors?.['required']
                       "
                       >Veuillez selectioner votre document!</span
                     >
@@ -485,8 +514,8 @@
                     <mat-icon style="transform: scale(0.7)"
                       >attach_file</mat-icon
                     >
-                    <span *ngIf="!signForm.get('userFile')?.value">
-                      Selectionner votre document</span
+                    <span *ngIf="!formControls['userFile'].value">
+                      Selectionner votre document.</span
                     >
                   </div>
                   <div *ngIf="files">

@@ -20,6 +20,8 @@ import { ObjectifsComponent } from './components/home/objectifs/objectifs.compon
 import { PresentationComponent } from './components/presentation/presentation.component';
 import { TokenInterceptor } from './core/_helpers/intercepteurs/token.interceptor';
 import { ProgressBarModule } from './shared/progress-bar/progress-bar.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -32,11 +34,13 @@ import { ProgressBarModule } from './shared/progress-bar/progress-bar.module';
     FooterComponent,
     ObjectifsComponent,
     PresentationComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
     AppbarModule,
     ProfilModule,
     MatIconModule,

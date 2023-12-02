@@ -4,6 +4,7 @@ import { EditUserModalComponent } from './edit-user-modal/edit-user-modal.compon
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { Subscription } from 'rxjs';
 import { UserInfos } from 'src/app/core/_models/user..models';
+import { ToastService } from 'src/app/core/_services/toast/toast.service';
 
 @Component({
   selector: 'app-profil',
@@ -15,7 +16,8 @@ export class ProfilComponent implements OnInit, OnDestroy {
   user!: UserInfos;
   constructor(
     public dialog: MatDialog,
-    private shareUserInfosService: ShareUserInfosService
+    private shareUserInfosService: ShareUserInfosService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -24,6 +26,9 @@ export class ProfilComponent implements OnInit, OnDestroy {
         if (value) this.user = value;
       },
     });
+  }
+  open() {
+    this.toastService.openError('message egeeg', ' xxx');
   }
 
   openEditModal() {

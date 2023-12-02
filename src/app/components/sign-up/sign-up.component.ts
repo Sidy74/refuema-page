@@ -18,9 +18,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   files: any;
   loadingSubscription$?: Subscription;
   isLoading: boolean = false;
-  selectedTypeDocuments!: TypeDocument;
   type_documents!: Array<TypeDocument>;
-  selectedTitre!: Titre;
   titres!: Array<Titre>;
 
   constructor(
@@ -28,6 +26,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     private registrationService: RegistrationService,
     private loadingService: LoadingService
   ) {}
+
   ngOnDestroy(): void {
     this.loadingSubscription$?.unsubscribe();
   }
@@ -45,15 +44,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
     //Get all titre
     this.registrationService.getTitre().subscribe((titres) => {
       this.titres = titres.titre;
-      this.selectedTitre = this.titres[0];
-      console.log(this.titres);
     });
 
     //Get all type document
     this.registrationService.getTypeDocument().subscribe((type_documents) => {
       this.type_documents = type_documents.type_de_document;
-      this.selectedTypeDocuments = this.type_documents[0];
-      console.log(this.type_documents);
     });
 
     this.signForm = this.fb.group({
