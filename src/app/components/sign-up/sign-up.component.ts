@@ -18,8 +18,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
   files: any;
   loadingSubscription$?: Subscription;
   isLoading: boolean = false;
-  type_documents!: Array<TypeDocument>;
-  titres!: Array<Titre>;
+  type_documents: Array<TypeDocument> = [];
+  titres: Array<Titre> = [];
 
   constructor(
     private fb: FormBuilder,

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       next: (value) => {
         this.isLoading = value;
       },
-      error(err) {
+      error(err: HttpErrorResponse) {
         console.log(err);
       },
     });
@@ -61,6 +61,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       },
       error: (err: HttpErrorResponse) => {
         this.erroStatus = err.status;
+        if (err.status == 401) {
+          this.toastService.openError(
+            this.formControl['mail'].value + ` n'est pas autoriser.`,
+            'X'
+          );
+        }
       },
     });
   }
