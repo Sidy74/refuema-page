@@ -3,16 +3,15 @@ import { CommonModule } from '@angular/common';
 import { SignUpComponent } from '../sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { ProgressBarModule } from "../../../shared/progress-bar/progress-bar.module";
-
-
+import { ProgressBarModule } from '../../../shared/progress-bar/progress-bar.module';
 
 @NgModule({
-    declarations: [SignUpComponent],
-    imports: [
-        MatIconModule,
-        CommonModule, ReactiveFormsModule,
-        ProgressBarModule
-    ]
+  declarations: [SignUpComponent],
+  imports: [
+    MatIconModule,
+    CommonModule,
+    ReactiveFormsModule,
+    ProgressBarModule,
+  ],
 })
-export class SignUpModule { }
+export class SignUpModule {}

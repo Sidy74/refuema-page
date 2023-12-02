@@ -9,21 +9,21 @@ import { RouterModule } from '@angular/router';
 import { AppbarAvatarComponent } from './appbar-avatar/appbar-avatar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { ProgressBarModule } from "../../shared/progress-bar/progress-bar.module";
+import { ProgressBarModule } from '../../shared/progress-bar/progress-bar.module';
 
 @NgModule({
-    declarations: [AppbarComponent, AppbarAvatarComponent],
-    exports: [AppbarComponent],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        CommonModule,
-        MatToolbarModule,
-        MatButtonModule,
-        RouterModule,
-        MatIconModule,
-        MatMenuModule,
-        ProgressBarModule
-    ]
+  declarations: [AppbarComponent, AppbarAvatarComponent],
+  exports: [AppbarComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    RouterModule,
+    MatIconModule,
+    MatMenuModule,
+    ProgressBarModule,
+  ],
 })
 export class AppbarModule {}

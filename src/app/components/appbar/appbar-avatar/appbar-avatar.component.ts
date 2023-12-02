@@ -1,6 +1,7 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { LoginService,} from 'src/app/core/_services/login.service';
+import { LoginService } from 'src/app/core/_services/login.service';
+import { ToastService } from 'src/app/core/_services/toast/toast.service';
 
 @Component({
   selector: 'app-appbar-avatar',
@@ -8,7 +9,10 @@ import { LoginService,} from 'src/app/core/_services/login.service';
   styleUrls: ['./appbar-avatar.component.css'],
 })
 export class AppbarAvatarComponent {
-  constructor(private userAuthService: LoginService) {}
+  constructor(
+    private userAuthService: LoginService,
+    private toastService: ToastService
+  ) {}
 
   @ViewChild(MatMenuTrigger)
   trigger!: MatMenuTrigger;
@@ -38,5 +42,6 @@ export class AppbarAvatarComponent {
   }
   logout() {
     this.userAuthService.logout();
+    this.toastService.openSuccess('Vous êtes deconnecter.', 'X');
   }
 }

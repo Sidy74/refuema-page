@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/core/_models/user..models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoadingService } from 'src/app/core/_services/loading.service';
+import { ToastService } from 'src/app/core/_services/toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private loginService: LoginService,
     private loadingService: LoadingService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {}
   ngOnDestroy(): void {
     this.loadingSubscription$?.unsubscribe();
@@ -54,6 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     formData.append('password', this.formControl['password'].value);
     this.loginService.login(formData).subscribe({
       next: () => {
+        this.toastService.openSuccess('Vous êtes connecter avec succès ', 'X');
         this.router.navigateByUrl('/');
       },
       error: (err: HttpErrorResponse) => {
