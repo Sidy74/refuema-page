@@ -52,12 +52,16 @@ export class SignUpComponent implements OnInit, OnDestroy {
         titres.titre.forEach((element: Titre) => {
           this.titres.push(element);
           //Loading false requêt is completed
-          this.formControls['titre'] = element;
+          this.formControls['titre'].patchValue(element.id);
           this.loadingService.isLoading.next(false);
         });
       },
       error: (err) => {
         console.log(err);
+        this.toastService.openError(
+          'Erreur de creation du formulaire, ressayer.',
+          'X'
+        );
         //Loading false requêt is completed
         this.loadingService.isLoading.next(false);
       },
@@ -68,7 +72,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
       next: (type_documents) => {
         type_documents.type_de_document.forEach((element: TypeDocument) => {
           this.type_documents.push(element);
-          this.formControls['fileType'] = element;
+          this.formControls['fileType'].patchValue(element.id);
           //Loading false requêt is completed
           this.loadingService.isLoading.next(false);
         });

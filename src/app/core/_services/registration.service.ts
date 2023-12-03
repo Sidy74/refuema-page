@@ -13,6 +13,10 @@ export class RegistrationService {
     private loadingService: LoadingService
   ) {}
   registre(newUser: FormData): Observable<any> {
+    newUser.forEach(element => {
+      console.log(element);
+      
+    });
     const url = environment.apiUrl + '/register';
     return this.http.post(url, newUser);
   }
