@@ -1,10 +1,13 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Titre } from 'src/app/core/_models/titre.model';
 import { TypeDocument } from 'src/app/core/_models/type-document.models';
 import { LoadingService } from 'src/app/core/_services/loading.service';
 import { RegistrationService } from 'src/app/core/_services/registration.service';
+import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { PasswordValidator } from 'src/app/core/_validator/password.validator';
 
 @Component({
@@ -24,7 +27,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private registrationService: RegistrationService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private toastService: ToastService,
+    private router: Router
   ) {}
 
   ngOnDestroy(): void {
@@ -42,13 +47,36 @@ export class SignUpComponent implements OnInit, OnDestroy {
     });
 
     //Get all titre
-    this.registrationService.getTitre().subscribe((titres) => {
-      this.titres = titres.titre;
+    this.registrationService.getTitre().subscribe({
+      next: (titres) => {
+        titres.titre.forEach((element: Titre) => {
+          this.titres.push(element);
+          //Loading false requêt is completed
+          this.formControls['titre'] = element;
+          this.loadingService.isLoading.next(false);
+        });
+      },
+      error: (err) => {
+        console.log(err);
+        //Loading false requêt is completed
+        this.loadingService.isLoading.next(false);
+      },
     });
 
     //Get all type document
-    this.registrationService.getTypeDocument().subscribe((type_documents) => {
-      this.type_documents = type_documents.type_de_document;
+    this.registrationService.getTypeDocument().subscribe({
+      next: (type_documents) => {
+        type_documents.type_de_document.forEach((element: TypeDocument) => {
+          this.type_documents.push(element);
+          this.formControls['fileType'] = element;
+          //Loading false requêt is completed
+          this.loadingService.isLoading.next(false);
+        });
+      },
+      error: (err) => {
+        //Loading false requêt is completed
+        this.loadingService.isLoading.next(false);
+      },
     });
 
     this.signForm = this.fb.group({
@@ -105,9 +133,17 @@ export class SignUpComponent implements OnInit, OnDestroy {
     // });
 
     this.registrationService.registre(formData).subscribe({
-      next(value) {},
-      error(err) {
-        console.log(err);
+      next: (value) => {
+        this.loadingService.isLoading.next(false);
+        this.toastService.openSuccess(
+          'Demande effectuée avec succès. Consulter votre boite mail.',
+          'X'
+        );
+        this.router.navigateByUrl('request-make');
+      },
+      error: (err: HttpErrorResponse) => {
+        this.loadingService.isLoading.next(false);
+        this.toastService.openError(err.error.message, 'X');
       },
     });
   }

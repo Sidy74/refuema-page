@@ -23,6 +23,7 @@ import { ProgressBarModule } from './shared/progress-bar/progress-bar.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { SharedModule } from './shared/shared.module';
+import { RequestMakeComponent } from './components/request-make/request-make.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SharedModule } from './shared/shared.module';
     FooterComponent,
     ObjectifsComponent,
     PresentationComponent,
+    RequestMakeComponent,
   ],
   imports: [
     BrowserModule,

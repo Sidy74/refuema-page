@@ -1,0 +1,11 @@
+.verified_icon {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  padding: 16px;
+}
+mat-icon {
+  font-size: 10rem;
+  color: #013b45;
+}

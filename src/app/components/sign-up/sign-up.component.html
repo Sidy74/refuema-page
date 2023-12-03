@@ -161,7 +161,7 @@
                           formControls['titre'].touched
                       }"
                     >
-                      <option selected *ngIf="!titres" [value]="0">
+                      <option selected *ngIf="titres.length === 0" [value]="0">
                         <span> N/A</span>
                       </option>
                       <option *ngFor="let item of titres" [value]="item.id">
@@ -449,7 +449,11 @@
                       formControls['fileType'].touched
                   }"
                 >
-                  <option selected *ngIf="!type_documents" [value]="0">
+                  <option
+                    selected
+                    *ngIf="type_documents.length === 0"
+                    [value]="0"
+                  >
                     <span> N/A</span>
                   </option>
 

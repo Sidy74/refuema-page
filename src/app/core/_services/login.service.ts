@@ -20,31 +20,7 @@ export class LoginService {
 
   login(user: FormData): any {
     let url = environment.apiUrl + '/login';
-    let x = this.http.post(url, user);
-    x.subscribe({
-      next: (value: any) => {
-        //Loading false requêt is completed
-        this.loadingService.isLoading.next(false);
-
-        this.userTokenService.login(value.token);
-        if (value.user) {
-          this.shareUserInfosService.setUserData(
-            new UserInfos(
-              value.user.prenom,
-              value.user.nom,
-              value.user.email,
-              value.user.telephone,
-              value.user.photo
-            )
-          );
-        }
-      },
-      error: (err: HttpErrorResponse) => {
-        //Loading false requêt is completed
-        this.loadingService.isLoading.next(false);
-      },
-    });
-    return x;
+    return this.http.post(url, user);
   }
 
   logout() {
