@@ -17,6 +17,11 @@ export class UserTokenService {
     localStorage.setItem(this.userTokenKey, token);
     return;
   }
+  getTokenInLocalStorage(): string | null {
+    const token = localStorage.getItem(this.userTokenKey);
+    if (token) return token;
+    return null;
+  }
 
   cleanTokenInLocalStorage(): void {
     localStorage.removeItem(this.userTokenKey);

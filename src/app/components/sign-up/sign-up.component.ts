@@ -23,6 +23,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   type_documents: Array<TypeDocument> = [];
   titres: Array<Titre> = [];
+  message = null;
 
   constructor(
     private fb: FormBuilder,
@@ -148,6 +149,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
       error: (err: HttpErrorResponse) => {
         this.loadingService.isLoading.next(false);
         this.toastService.openError(err.error.message, 'X');
+        this.message = err.error.message;
       },
     });
   }

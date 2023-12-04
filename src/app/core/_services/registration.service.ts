@@ -2,20 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegistrationService {
-  constructor(
-    private http: HttpClient,
-    private loadingService: LoadingService
-  ) {}
+  constructor(private http: HttpClient) {}
   registre(newUser: FormData): Observable<any> {
-    newUser.forEach(element => {
+    newUser.forEach((element) => {
       console.log(element);
-      
     });
     const url = environment.apiUrl + '/register';
     return this.http.post(url, newUser);

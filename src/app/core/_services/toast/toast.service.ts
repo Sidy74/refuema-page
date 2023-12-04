@@ -28,7 +28,6 @@ export class ToastService {
         icon: 'error',
         snackbar: this.snackBar,
       },
-      verticalPosition: 'top',
       panelClass: 'snackbar-error',
     });
   }
