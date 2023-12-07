@@ -4,6 +4,7 @@ import { EditUserModalComponent } from './edit-user-modal/edit-user-modal.compon
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { Subscription } from 'rxjs';
 import { UserInfos } from 'src/app/core/_models/user..models';
+import { UpdateUserPhotoService } from 'src/app/core/_services/update-user-photo.service/update-user-photo.service';
 
 @Component({
   selector: 'app-profil',
@@ -15,7 +16,8 @@ export class ProfilComponent implements OnInit, OnDestroy {
   user!: UserInfos;
   constructor(
     public dialog: MatDialog,
-    private shareUserInfosService: ShareUserInfosService
+    private shareUserInfosService: ShareUserInfosService,
+    private updateUserPhotoService: UpdateUserPhotoService
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +27,11 @@ export class ProfilComponent implements OnInit, OnDestroy {
       },
     });
   }
-
+  updateImage(image: any) {
+    const formData = new FormData();
+    formData.append('photo', image);
+    this.updateUserPhotoService.updatePhoto(image).subscribe();
+  }
   openEditModal() {
     const dialogRef = this.dialog.open(EditUserModalComponent, {
       data: {

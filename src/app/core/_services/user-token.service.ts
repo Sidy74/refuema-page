@@ -32,7 +32,6 @@ export class UserTokenService {
     this.currentUser.next(true);
     return;
   }
-
   logout() {
     let token = localStorage.getItem(this.userTokenKey);
     if (token) {
