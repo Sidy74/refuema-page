@@ -1,8 +1,13 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Titre } from 'src/app/core/_models/titre.model';
 import { TypeDocument } from 'src/app/core/_models/type-document.models';
+import { LoadingService } from 'src/app/core/_services/loading.service';
 import { RegistrationService } from 'src/app/core/_services/registration.service';
+import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { PasswordValidator } from 'src/app/core/_validator/password.validator';
 
 @Component({
@@ -10,34 +15,73 @@ import { PasswordValidator } from 'src/app/core/_validator/password.validator';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
   signForm!: FormGroup;
   formControls: any;
   files: any;
-  
-  selectedTypeDocuments!: TypeDocument ;
-  type_documents!: Array<TypeDocument>;
-  selectedTitre!: Titre;
-  titres!: Array<Titre>;
+  loadingSubscription$?: Subscription;
+  isLoading: boolean = false;
+  type_documents: Array<TypeDocument> = [];
+  titres: Array<Titre> = [];
+  message = null;
 
   constructor(
     private fb: FormBuilder,
-    private registrationService: RegistrationService
+    private registrationService: RegistrationService,
+    private loadingService: LoadingService,
+    private toastService: ToastService,
+    private router: Router
   ) {}
- 
+
+  ngOnDestroy(): void {
+    this.loadingSubscription$?.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.registrationService.getTitre().subscribe((titres) => {
-      this.titres = titres.titre;
-      this.selectedTitre = this.titres[0]
-      console.log(this.titres);
-      
+    this.loadingSubscription$ = this.loadingService.isLoading$.subscribe({
+      next: (value) => {
+        this.isLoading = value;
+      },
+      error(err) {
+        console.log(err);
+      },
     });
-    this.registrationService.getTypeDocument().subscribe((type_documents) => {
-      this.type_documents = type_documents.type_de_document;
-      this.selectedTypeDocuments = this.type_documents[0]
-      console.log(this.type_documents);
-      
+
+    //Get all titre
+    this.registrationService.getTitre().subscribe({
+      next: (titres) => {
+        titres.titre.forEach((element: Titre) => {
+          this.titres.push(element);
+          //Loading false requêt is completed
+          this.formControls['titre'].patchValue(element.id);
+          this.loadingService.isLoading.next(false);
+        });
+      },
+      error: (err) => {
+        console.log(err);
+        this.toastService.openError(
+          'Erreur de creation du formulaire, ressayer.',
+          'X'
+        );
+        //Loading false requêt is completed
+        this.loadingService.isLoading.next(false);
+      },
+    });
+
+    //Get all type document
+    this.registrationService.getTypeDocument().subscribe({
+      next: (type_documents) => {
+        type_documents.type_de_document.forEach((element: TypeDocument) => {
+          this.type_documents.push(element);
+          this.formControls['fileType'].patchValue(element.id);
+          //Loading false requêt is completed
+          this.loadingService.isLoading.next(false);
+        });
+      },
+      error: (err) => {
+        //Loading false requêt is completed
+        this.loadingService.isLoading.next(false);
+      },
     });
 
     this.signForm = this.fb.group({
@@ -69,8 +113,6 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(event: any) {
-    
-    
     const formData = new FormData();
     if (this.signForm) {
     }
@@ -85,29 +127,29 @@ export class SignUpComponent implements OnInit {
     for (const iterator of this.files) {
       formData.append('document[]', iterator.name);
     }
-    
-    
+
     formData.append('titre', this.formControls['titre'].value);
-   
+
     formData.append('type', this.formControls['fileType'].value);
     formData.append('specialite', this.formControls['specialite'].value);
 
-    // console.log(
-    //   formData.forEach((element) => {
-    //     console.log(element);
-    //   })
-    // );
-    formData.forEach(element => {
-      console.log(element);
-      
-    });
-    
+    // formData.forEach((element) => {
+    //   console.log(element);
+    // });
+
     this.registrationService.registre(formData).subscribe({
-      next(value) {
-        console.log(value);
+      next: (value) => {
+        this.loadingService.isLoading.next(false);
+        this.toastService.openSuccess(
+          'Demande effectuée avec succès. Consulter votre boite mail.',
+          'X'
+        );
+        this.router.navigateByUrl('request-make');
       },
-      error(err) {
-        console.log(err);
+      error: (err: HttpErrorResponse) => {
+        this.loadingService.isLoading.next(false);
+        this.toastService.openError(err.error.message, 'X');
+        this.message = err.error.message;
       },
     });
   }

@@ -19,6 +19,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ObjectifsComponent } from './components/home/objectifs/objectifs.component';
 import { PresentationComponent } from './components/presentation/presentation.component';
 import { TokenInterceptor } from './core/_helpers/intercepteurs/token.interceptor';
+import { ProgressBarModule } from './shared/progress-bar/progress-bar.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from './shared/snackbar/snackbar.component';
+import { SharedModule } from './shared/shared.module';
+import { RequestMakeComponent } from './components/request-make/request-make.component';
 
 @NgModule({
   declarations: [
@@ -31,17 +36,21 @@ import { TokenInterceptor } from './core/_helpers/intercepteurs/token.intercepto
     FooterComponent,
     ObjectifsComponent,
     PresentationComponent,
+    RequestMakeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
     AppbarModule,
     ProfilModule,
     MatIconModule,
     LoginModule,
     SignUpModule,
     CardModule,
+    SharedModule,
+    ProgressBarModule,
     HttpClientModule,
   ],
   providers: [

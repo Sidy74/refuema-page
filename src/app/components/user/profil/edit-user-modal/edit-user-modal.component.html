@@ -8,27 +8,48 @@
     <form class="example-form">
       <mat-form-field class="example-full-width">
         <mat-label>Nom (disabled)</mat-label>
-        <input matInput disabled value="Coulibaly" />
+        <input
+          matInput
+          disabled
+          value="{{ data.user ? data.user.lastName : 'N/A' }}"
+        />
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Prénom (disabled)</mat-label>
-        <input matInput disabled value="Fatoumata Mohamed Ag" />
+        <input
+          matInput
+          disabled
+          value="{{ data.user ? data.user.firstName : 'N/A' }}"
+        />
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Téléphone (disabled)</mat-label>
-        <input matInput disabled value="60 24 44 02" />
+        <input
+          matInput
+          disabled
+          value="{{ data.user ? data.user.phone : 'N/A' }}"
+        />
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Email (disabled)</mat-label>
-        <input matInput disabled value="user@gmail.ml" />
+        <input
+          matInput
+          disabled
+          value="{{ data.user ? data.user.mail : 'N/A' }}"
+        />
       </mat-form-field>
     </form>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button class="m-2" id="btn-print " mat-button mat-dialog-close>
+    <button class="btn m-2" id="btn-print " mat-button mat-dialog-close>
       Retour
     </button>
-    <button class="m-2" mat-button [mat-dialog-close]="true" cdkFocusInitial>
+    <button
+      class="btn m-2"
+      mat-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+    >
       Modifier
     </button>
   </mat-dialog-actions>

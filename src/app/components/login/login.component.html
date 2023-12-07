@@ -38,39 +38,37 @@
 
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
+            <!-- Loading Component -->
+            <app-progress-bar *ngIf="isLoading"></app-progress-bar>
             <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
               <div class="error_message">
                 <div
                   *ngIf="
-                    loginForm.controls['mail'].invalid &&
-                    (loginForm.controls['mail'].dirty ||
-                      loginForm.controls['mail'].touched)
+                    erroStatus == 401 && (loginForm.dirty || loginForm.touched)
                   "
                 >
-                  <span
-                    class="error_message_content"
-                    *ngIf="loginForm.controls['mail'].errors?.['required']"
-                    >*Email ou mot de passe recorrecte !</span
-                  >
+                  <span class="error_message_content" style="font-size: medium"
+                    >*Email ou mot de passe incorrecte
+                  </span>
                 </div>
               </div>
+              <!-- Email -->
               <div class="form-outline mb-4">
                 <div class="error_message">
                   <div
                     *ngIf="
-                      loginForm.controls['mail'].invalid &&
-                      (loginForm.controls['mail'].dirty ||
-                        loginForm.controls['mail'].touched)
+                      formControl['mail'].invalid &&
+                      (formControl['mail'].dirty || formControl['mail'].touched)
                     "
                   >
                     <span
                       class="error_message_content"
-                      *ngIf="loginForm.controls['mail'].errors?.['required']"
+                      *ngIf="formControl['mail'].errors?.['required']"
                       >*Veuillez saisir votre email!</span
                     >
                     <span
                       class="error_message_content"
-                      *ngIf="loginForm.controls['mail'].errors?.['email']"
+                      *ngIf="formControl['mail'].errors?.['email']"
                       >*Veuillez saisir le bon format d'email!</span
                     >
                   </div>
@@ -88,7 +86,7 @@
                 />
                 <label class="form-label" for="form_email">Email</label>
               </div>
-
+              <!--Password -->
               <div class="form-outline mb-4">
                 <div class="error_message">
                   <div
@@ -127,7 +125,7 @@
               </div>
 
               <!-- Checkbox -->
-              <div class="form-check d-flex justify-content-center mb-4">
+              <!-- <div class="form-check d-flex justify-content-center mb-4">
                 <input
                   class="form-check-input me-2"
                   type="checkbox"
@@ -138,16 +136,17 @@
                 <label class="form-check-label" for="form2Example33">
                   Se souvenez de moi ?
                 </label>
-              </div>
+              </div> -->
               <!-- Submit button -->
               <button
                 id="btn-submit"
                 type="submit"
-                [disabled]="!loginForm.valid"
+                [disabled]="loginForm.invalid || isLoading"
                 class="btn btn-primary btn-block mb-4"
               >
                 Connexion
               </button>
+              {{ user.phone }}
             </form>
           </div>
         </div>

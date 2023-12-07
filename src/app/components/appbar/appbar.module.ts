@@ -9,9 +9,11 @@ import { RouterModule } from '@angular/router';
 import { AppbarAvatarComponent } from './appbar-avatar/appbar-avatar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { ProgressBarModule } from '../../shared/progress-bar/progress-bar.module';
 
 @NgModule({
   declarations: [AppbarComponent, AppbarAvatarComponent],
+  exports: [AppbarComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -21,7 +23,7 @@ import { BrowserModule } from '@angular/platform-browser';
     RouterModule,
     MatIconModule,
     MatMenuModule,
+    ProgressBarModule,
   ],
-  exports: [AppbarComponent],
 })
 export class AppbarModule {}

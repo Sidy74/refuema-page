@@ -9,17 +9,19 @@ import { Observable } from 'rxjs';
 export class RegistrationService {
   constructor(private http: HttpClient) {}
   registre(newUser: FormData): Observable<any> {
-    let url = environment.apiUrl + '/register';
-
-    return this.http.post(url, newUser,);
+    newUser.forEach((element) => {
+      console.log(element);
+    });
+    const url = environment.apiUrl + '/register';
+    return this.http.post(url, newUser);
   }
 
   getTitre(): Observable<any> {
-    let url = environment.apiUrl + '/titre';
+    const url = environment.apiUrl + '/titre';
     return this.http.get(url);
   }
   getTypeDocument(): Observable<any> {
-    let url = environment.apiUrl + '/type_documnent';
+    const url = environment.apiUrl + '/type_documnent';
     return this.http.get(url);
   }
 }

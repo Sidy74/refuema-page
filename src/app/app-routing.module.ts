@@ -6,15 +6,17 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ProfilComponent } from './components/user/profil/profil.component';
 import { CardComponent } from './components/user/card/card.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
-import { authGuard } from './core/_helpers/auth.guard';
+import { authGuard } from './core/_helpers/_guards/auth.guard';
 import { UserComponent } from './components/user/user.component';
 import { PresentationComponent } from './components/presentation/presentation.component';
+import { RequestMakeComponent } from './components/request-make/request-make.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'presentation', component: PresentationComponent },
+  { path: 'request-make', component: RequestMakeComponent },
   // { path: '**', component: PageNotFoundComponent },
   {
     path: 'user',

@@ -22,7 +22,12 @@
       <a href="#" routerLink="/item4" routerLinkActive="active-link">
         <span>Articles</span>
       </a>
-      <a  href="#" routerLink="/item4" *ngIf="isAuthentified" routerLinkActive="active-link">
+      <a
+        href="#"
+        routerLink="/item4"
+        *ngIf="isAuthentified"
+        routerLinkActive="active-link"
+      >
         <span>Créer un article</span>
       </a>
       <a href="#" routerLink="/contact-us" routerLinkActive="active-link">
@@ -35,7 +40,7 @@
         <a
           routerLink="/login"
           routerLinkActive="active-link"
-          (click)="this.userAuthService.logout()"
+          (click)="logout()"
         >
           <span>Se connecter</span>
         </a>

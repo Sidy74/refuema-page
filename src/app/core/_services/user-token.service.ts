@@ -1,24 +1,49 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserTokenService {
+  userTokenKey: string = 'userToken';
+  //Subject & Observable for user (token)change
+  private currentUser: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    this.hasToken()
+  );
+  currentUser$: Observable<boolean> = this.currentUser.asObservable();
+
   constructor() {}
   saveTokenInLocalStorage(token: string): void {
-    localStorage.setItem('userToken', token);
+    localStorage.setItem(this.userTokenKey, token);
     return;
   }
-  saveTokenInSessionStorage(token: string): void {
-    sessionStorage.setItem('userToken', token);
-    return;
+  getTokenInLocalStorage(): string | null {
+    const token = localStorage.getItem(this.userTokenKey);
+    if (token) return token;
+    return null;
   }
+
   cleanTokenInLocalStorage(): void {
-    localStorage.removeItem('userToken');
+    localStorage.removeItem(this.userTokenKey);
     return;
   }
-  isLogged(): boolean {
-    const token = localStorage.getItem('userToken');
-    return !!token;
+  login(token: string): void {
+    this.saveTokenInLocalStorage(token);
+    this.currentUser.next(true);
+    return;
+  }
+  logout() {
+    let token = localStorage.getItem(this.userTokenKey);
+    if (token) {
+      this.cleanTokenInLocalStorage();
+      this.currentUser.next(false);
+    }
+  }
+  hasToken(): boolean {
+    return !!localStorage.getItem(this.userTokenKey);
+  }
+
+  isLogged(): Observable<boolean> {
+    return this.currentUser$;
   }
 }
