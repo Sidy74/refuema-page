@@ -81,6 +81,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
       error: (err) => {
         //Loading false requêt is completed
         this.loadingService.isLoading.next(false);
+        this.toastService.openError(
+          'Erreur de recuperation des documents',
+          'X'
+        );
       },
     });
 
