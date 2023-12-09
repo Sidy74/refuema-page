@@ -5,6 +5,7 @@ import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.s
 import { Subscription } from 'rxjs';
 import { UserInfos } from 'src/app/core/_models/user..models';
 import { UpdateUserPhotoService } from 'src/app/core/_services/update-user-photo.service/update-user-photo.service';
+import { PhotoModalComponent } from './photo-modal/photo-modal.component';
 
 @Component({
   selector: 'app-profil',
@@ -14,6 +15,7 @@ import { UpdateUserPhotoService } from 'src/app/core/_services/update-user-photo
 export class ProfilComponent implements OnInit, OnDestroy {
   userDataSubscription?: Subscription;
   user!: UserInfos;
+  userImage: any;
   constructor(
     public dialog: MatDialog,
     private shareUserInfosService: ShareUserInfosService,
@@ -27,10 +29,14 @@ export class ProfilComponent implements OnInit, OnDestroy {
       },
     });
   }
-  updateImage(image: any) {
-    const formData = new FormData();
-    formData.append('photo', image);
-    this.updateUserPhotoService.updatePhoto(image).subscribe();
+  updateImage() {
+    const dialogRef = this.dialog.open(PhotoModalComponent, {
+      data: { image: this.userImage },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
   }
   openEditModal() {
     const dialogRef = this.dialog.open(EditUserModalComponent, {
@@ -40,6 +46,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+      console.log(this.userImage);
     });
   }
   ngOnDestroy(): void {
