@@ -5,7 +5,7 @@
   </div>
 
   <mat-dialog-content class="mat-typography">
-    <form class="example-form">
+    <form class="example-form" onsubmit="modifier()">
       <mat-form-field class="example-full-width">
         <mat-label>Nom (disabled)</mat-label>
         <input
@@ -41,11 +41,9 @@
     </form>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button class="btn m-2" id="btn-print " mat-button mat-dialog-close>
-      Retour
-    </button>
+    <button id="btn-danger" mat-button mat-dialog-close>Retour</button>
     <button
-      class="btn m-2"
+      id="btn-primary"
       mat-button
       [mat-dialog-close]="true"
       cdkFocusInitial

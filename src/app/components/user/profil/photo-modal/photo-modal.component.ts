@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserImageData } from 'src/app/core/_interfaces/userImage';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
-import { UpdateUserPhotoService } from 'src/app/core/_services/update-user-photo.service/update-user-photo.service';
+import { UserService } from 'src/app/core/_services/user/user.service';
 
 @Component({
   selector: 'app-photo-modal',
@@ -18,7 +18,7 @@ export class PhotoModalComponent implements OnInit {
   isLoadImage: boolean = true;
   constructor(
     private shareUserInfosService: ShareUserInfosService,
-    private updateUserPhotoService: UpdateUserPhotoService,
+    private userService: UserService,
     public dialogRef: MatDialogRef<PhotoModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UserImageData
   ) {}
@@ -43,7 +43,7 @@ export class PhotoModalComponent implements OnInit {
       let formData = new FormData();
       console.log(this.new_image.name);
       formData.append('photo', this.new_image.name);
-      this.updateUserPhotoService.updatePhoto(formData).subscribe({
+      this.userService.updatePhoto(formData).subscribe({
         next: (value) => {
           this.shareUserInfosService.setUserPhoto(value.photo.photo);
         },
