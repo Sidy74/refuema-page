@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+#kredjo need
+angular.json
+
 # Compiled output
 /dist
 /tmp
