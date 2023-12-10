@@ -8,9 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class UpdateUserPhotoService {
   constructor(private http: HttpClient) {}
+
   updatePhoto(image: FormData): Observable<any> {
-    const headers = { Authorization: 'Bearer my-token' };
     let url = environment.apiUrl + '/update/photo';
-    return this.http.post(url, image, { headers });
+    image.forEach((element) => {
+      console.log(element);
+    });
+
+    return this.http.post(url, image);
   }
 }

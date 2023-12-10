@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserModalComponent } from './edit-user-modal/edit-user-modal.component';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
-import { Subscription } from 'rxjs';
+import { Subscription, generate } from 'rxjs';
 import { UserInfos } from 'src/app/core/_models/user..models';
-import { UpdateUserPhotoService } from 'src/app/core/_services/update-user-photo.service/update-user-photo.service';
 import { PhotoModalComponent } from './photo-modal/photo-modal.component';
+import { ImageService } from 'src/app/image.service';
 
 @Component({
   selector: 'app-profil',
@@ -14,26 +14,37 @@ import { PhotoModalComponent } from './photo-modal/photo-modal.component';
 })
 export class ProfilComponent implements OnInit, OnDestroy {
   userDataSubscription?: Subscription;
+  userPhotoSubscription?: Subscription;
   user!: UserInfos;
-  userImage: any;
+  user_image: any;
   constructor(
     public dialog: MatDialog,
-    private shareUserInfosService: ShareUserInfosService,
-    private updateUserPhotoService: UpdateUserPhotoService
+    private imageService: ImageService,
+    private shareUserInfosService: ShareUserInfosService
   ) {}
 
   ngOnInit(): void {
     this.shareUserInfosService.getUserData().subscribe({
       next: (value) => {
-        if (value) this.user = value;
+        if (value) {
+          this.user = value;
+        }
+      },
+    });
+
+    this.shareUserInfosService.getUserImage().subscribe({
+      next: (value) => {
+        console.log(value);
+        if (value) this.user_image = this.imageService.getImageUrl(value);
+        else console.log('no photo in storage');
+      },
+      error(err) {
+        console.log(err);
       },
     });
   }
   updateImage() {
-    const dialogRef = this.dialog.open(PhotoModalComponent, {
-      data: { image: this.userImage },
-    });
-
+    const dialogRef = this.dialog.open(PhotoModalComponent);
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
@@ -44,12 +55,9 @@ export class ProfilComponent implements OnInit, OnDestroy {
         user: this.user,
       },
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-      console.log(this.userImage);
-    });
   }
   ngOnDestroy(): void {
     this.userDataSubscription?.unsubscribe();
+    this.userPhotoSubscription?.unsubscribe();
   }
 }

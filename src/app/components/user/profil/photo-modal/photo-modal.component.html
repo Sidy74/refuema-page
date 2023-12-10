@@ -2,9 +2,9 @@
   <div class="col">
     <input
       type="file"
-      [(ngModel)]="data.image"
       (change)="loadImage($event)"
       id="image-input"
+      [formControl]="user_image"
     />
     <label for="image-input" id="image-label">
       <div class="image">
@@ -28,7 +28,6 @@
         (click)="update()"
         [mat-dialog-close]="true"
         [disabled]="isLoadImage"
-        
       >
         Modifier
       </button>
