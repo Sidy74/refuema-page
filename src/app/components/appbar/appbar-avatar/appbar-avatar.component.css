@@ -44,16 +44,24 @@
   position: relative;
   padding: 0px 5px;
 }
-::ng-deep .mat-menu-item:hover{
+::ng-deep .mat-menu-item:hover {
   background-color: #01766e13 !important;
-} 
-#mat-menu-item-text{
+}
+#mat-menu-item-text {
   font-size: small;
   color: #01766e;
 }
-#mat-menu-item-icon{
+#mat-menu-item-icon {
   padding: 5px 0px;
   font-size: medium;
   color: #01766e;
   margin-right: 0px;
+}
+
+@media screen and (max-width: 600px) {
+  #image-container,
+  #profil-image {
+    width: 40px !important;
+    height: 40px !important;
+  }
 }
