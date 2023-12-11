@@ -6,7 +6,7 @@
       </a>
     </div>
     <div class="spacer"></div>
-    <div id="menuItems" class="#navbar-center">
+    <div id="menuItems" class="navbar-center">
       <a
         href="#"
         routerLink="/presentation"
@@ -32,6 +32,10 @@
       </a>
       <a href="#" routerLink="/contact-us" routerLinkActive="active-link">
         <span>Contactez-nous</span>
+      </a>
+      <a href="javascript:void(0);" class="icon" (click)="clickMenuHamburger()">
+        <span *ngIf="!isOpen"> &#9776;</span>
+        <span *ngIf="isOpen"> &#x2718;</span>
       </a>
     </div>
     <div class="spacer"></div>

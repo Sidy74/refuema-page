@@ -1,9 +1,4 @@
-import {
-  Component,
-  HostListener,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/core/_services/login.service';
 
@@ -15,7 +10,8 @@ import { LoginService } from 'src/app/core/_services/login.service';
 export class AppbarComponent implements OnInit, OnDestroy {
   loginSubscription?: Subscription;
   isAuthentified!: boolean;
-  ErroStatus !: string;
+  ErroStatus!: string;
+  isOpen: boolean = false;
   constructor(private loginService: LoginService) {
     this.loginSubscription = this.loginService.isLogged().subscribe({
       next: (value) => {
@@ -49,7 +45,16 @@ export class AppbarComponent implements OnInit, OnDestroy {
       document.getElementById('toolbar')!.style.opacity = '1';
     }
   }
-
+  clickMenuHamburger() {
+    var x = document.getElementById('menuItems');
+    if (x?.className === 'navbar-center') {
+      this.isOpen = true;
+      x.className += ' responsive';
+    } else {
+      x!.className = 'navbar-center';
+      this.isOpen = false;
+    }
+  }
   ngOnDestroy(): void {
     this.loginSubscription?.unsubscribe();
   }
