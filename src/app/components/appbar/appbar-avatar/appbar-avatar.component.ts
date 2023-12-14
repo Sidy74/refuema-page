@@ -1,7 +1,14 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  HostListener,
+  ViewChild,
+} from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { ImageService } from 'src/app/core/_services/images/image.service';
 import { LoadingService } from 'src/app/core/_services/loading.service';
 import { LoginService } from 'src/app/core/_services/login.service';
+import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 
 @Component({
@@ -9,14 +16,28 @@ import { ToastService } from 'src/app/core/_services/toast/toast.service';
   templateUrl: './appbar-avatar.component.html',
   styleUrls: ['./appbar-avatar.component.css'],
 })
-export class AppbarAvatarComponent implements OnInit {
+export class AppbarAvatarComponent implements AfterContentInit {
+  imageUrl!: string;
+
   constructor(
     private userAuthService: LoginService,
     private toastService: ToastService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private shareUserInfosService: ShareUserInfosService,
+    private imageService: ImageService
   ) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngAfterContentInit(): void {
+    this.getImage();
+  }
+
+  getImage() {
+    this.shareUserInfosService.getUserImage().subscribe({
+      next: (value) => {
+        if (!value) console.log('Image not found ,url is null');
+        this.imageUrl = this.imageService.getImageUrl(value);
+      },
+      error: (err) => console.log(err),
+    });
   }
 
   @ViewChild(MatMenuTrigger)

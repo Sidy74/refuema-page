@@ -21,22 +21,27 @@ export class ShareUserInfosService {
   userPhotoKey: string = '%usr%photo';
 
   constructor() {}
+
   setUserData(user: User) {
     if (user) {
       this.currentUserInfos.next(user);
       localStorage.setItem(this.userInfosKey, JSON.stringify(user));
-      localStorage.setItem(this.userPhotoKey, JSON.stringify(user.photo));
+
+      // localStorage.setItem(this.userPhotoKey, JSON.stringify(user.photo));
     }
   }
+
   setUserPhoto(image: string) {
     localStorage.setItem(this.userPhotoKey, image);
   }
+
   deleteUserData() {
     this.currentUserInfos.next(null);
     localStorage.removeItem(this.userInfosKey);
   }
+
   getUserImage(): Observable<string | null> {
-    let photoString = localStorage.getItem(this.userPhotoKey);
+    const photoString = localStorage.getItem(this.userPhotoKey);
     if (!!photoString) {
       this.currentUserPhoto.next(photoString);
     }

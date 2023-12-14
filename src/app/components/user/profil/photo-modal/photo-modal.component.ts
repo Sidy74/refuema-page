@@ -1,10 +1,4 @@
-import {
-  AfterContentInit,
-  Component,
-  Inject,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { AfterContentInit, Component, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { UserImageData } from 'src/app/core/_interfaces/userImage';
@@ -17,12 +11,12 @@ import { UserService } from 'src/app/core/_services/user/user.service';
   templateUrl: './photo-modal.component.html',
   styleUrls: ['./photo-modal.component.css'],
 })
-export class PhotoModalComponent implements OnDestroy {
+export class PhotoModalComponent implements OnDestroy, AfterContentInit {
   loadingSubscription$?: Subscription;
   isLoading: boolean = false;
   new_image!: File;
 
-  image: string | ArrayBuffer | null = null;
+  imageUrl: string | ArrayBuffer | null = null;
   isLoadImage: boolean = true;
   constructor(
     public loadingService: LoadingService,
@@ -31,20 +25,23 @@ export class PhotoModalComponent implements OnDestroy {
     public dialogRef: MatDialogRef<PhotoModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UserImageData
   ) {}
+  ngAfterContentInit(): void {
+    this.imageUrl = this.data.image;
+  }
+
   ngOnDestroy(): void {
     this.loadingSubscription$?.unsubscribe();
   }
 
   loadImage(event: any) {
     let listFiles = event.target.files as FileList;
-    if (listFiles.length >= 0) {
+    if (listFiles.length > 0) {
       const file = listFiles[0];
-      console.log(listFiles);
       this.new_image = file;
       this.isLoadImage = false;
       const reader = new FileReader();
-      reader.onload = (e) => (this.image = reader.result);
-      reader.readAsDataURL(file);
+      reader.onload = (e) => (this.imageUrl = reader.result);
+      if (file) reader.readAsDataURL(file);
     }
   }
   update(): void {

@@ -1,12 +1,14 @@
 <div class="profil_header">
-  
   <app-profil-avatar
     [imageUrl]="user_image"
     (imageUrlEvent)="updateImage()"
   ></app-profil-avatar>
 
   <div class="profil_text">
-    <p>{{ user.firstName }} {{ user.lastName }}</p>
+    <p>
+      <!-- {{ user.titre }} -->
+      {{ user.firstName }} {{ user.lastName }}
+    </p>
   </div>
   <div class="profil_edit" (click)="openEditModal()">
     <mat-icon>edit</mat-icon>

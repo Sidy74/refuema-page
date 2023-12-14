@@ -1,16 +1,24 @@
 export class User {
   mail!: string;
-  photo!: string;
   lastName!: string;
   firstName!: string;
   phone!: string;
+
+  constructor(
+    firstName: string,
+    lastName: string,
+    mail: string,
+    phone: string
+  ) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.mail = mail;
+    this.phone = phone;
+  }
 }
+
 export class UserInfos extends User {
-  // override mail!: string;
-  // override photo!: string;
-  // override lastName!: string;
-  // override firstName!: string;
-  // override phone!: string;
+  photo!: string;
   constructor(
     firstName: string,
     lastName: string,
@@ -18,11 +26,7 @@ export class UserInfos extends User {
     phone: string,
     photo: string
   ) {
-    super();
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.mail = mail;
-    this.phone = phone;
+    super(firstName, lastName, mail, phone);
     this.photo = photo;
   }
 }

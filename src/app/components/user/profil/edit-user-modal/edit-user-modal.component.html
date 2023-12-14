@@ -1,42 +1,40 @@
 <div class="ps-4 pe-4">
   <div class="" mat-dialog-title>
     <h4>Modifier informations utilisateur</h4>
+    <app-progress-bar
+      *ngIf="loadingService.isLoading$ | async as isLoading"
+    ></app-progress-bar>
     <hr />
   </div>
 
   <mat-dialog-content class="mat-typography">
-    <form class="example-form" onsubmit="modifier()">
+    <form class="example-form" [formGroup]="updateForm" onsubmit="updateUser()">
       <mat-form-field class="example-full-width">
-        <mat-label>Nom (disabled)</mat-label>
-        <input
-          matInput
-          disabled
-          value="{{ data.user ? data.user.lastName : 'N/A' }}"
-        />
+        <mat-label>Nom</mat-label>
+        <input formControlName="lastName" matInput />
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <mat-label>Prénom (disabled)</mat-label>
-        <input
-          matInput
-          disabled
-          value="{{ data.user ? data.user.firstName : 'N/A' }}"
-        />
+        <mat-label>Prénom </mat-label>
+        <input formControlName="firstName" matInput />
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <mat-label>Téléphone (disabled)</mat-label>
-        <input
-          matInput
-          disabled
-          value="{{ data.user ? data.user.phone : 'N/A' }}"
-        />
+        <mat-label>Téléphone</mat-label>
+        <input formControlName="phone" matInput />
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <mat-label>Email (disabled)</mat-label>
-        <input
-          matInput
-          disabled
-          value="{{ data.user ? data.user.mail : 'N/A' }}"
-        />
+        <mat-label>Email (disactivé)</mat-label>
+        <input formControlName="mail" matInput />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Titre</mat-label>
+        <mat-select formControlName="titre">
+          <mat-option selected *ngIf="titres.length === 0" [value]="0">
+            <span> N/A</span>
+          </mat-option>
+          <mat-option *ngFor="let titre of titres" [value]="titre.id">{{
+            titre.titre
+          }}</mat-option>
+        </mat-select>
       </mat-form-field>
     </form>
   </mat-dialog-content>
@@ -44,9 +42,9 @@
     <button id="btn-danger" mat-button mat-dialog-close>Retour</button>
     <button
       id="btn-primary"
+      (click)="updateUser()"
       mat-button
-      [mat-dialog-close]="true"
-      cdkFocusInitial
+      [disabled]="this.updateForm.invalid || !this.updateForm.dirty"
     >
       Modifier
     </button>

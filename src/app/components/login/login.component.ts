@@ -16,7 +16,7 @@ import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.s
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  user: User = new User();
+  user!: User;
   loginForm!: FormGroup;
   formControl: any;
   loadingSubscription$?: Subscription;
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private loginService: LoginService,
-    private loadingService: LoadingService,
+    public loadingService: LoadingService,
     private fb: FormBuilder,
     private router: Router,
     private toastService: ToastService,
@@ -37,15 +37,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadingSubscription$ = this.loadingService.isLoading$.subscribe({
-      next: (value) => {
-        this.isLoading = value;
-      },
-      error(err: HttpErrorResponse) {
-        console.log(err);
-      },
-    });
-
     this.loginForm = this.fb.group({
       mail: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4)]],
@@ -62,14 +53,14 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.userTokenService.login(value.token);
         if (value.user) {
           this.shareUserInfosService.setUserData(
-            new UserInfos(
+            new User(
               value.user.prenom,
               value.user.nom,
               value.user.email,
-              value.user.telephone,
-              value.user.photo
+              value.user.telephone
             )
           );
+          this.shareUserInfosService.setUserPhoto(value.user.photo);
           this.toastService.openSuccess(
             'Vous êtes connecter avec succès ',
             'X'
@@ -78,8 +69,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       },
       error: (err: HttpErrorResponse) => {
-        //Loading false requêt is completed
-        this.loadingService.isLoading.next(false);
         this.erroStatus = err.status;
         if (err.status == 401) {
           this.toastService.openError(
@@ -87,6 +76,10 @@ export class LoginComponent implements OnInit, OnDestroy {
             'X'
           );
         }
+      },
+      complete: () => {
+        //Loading false requêt is completed
+        this.loadingService.isLoading.next(false);
       },
     });
   }
