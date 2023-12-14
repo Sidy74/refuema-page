@@ -9,18 +9,26 @@ import { MatButtonModule } from '@angular/material/button';
 import { PhotoModalComponent } from '../photo-modal/photo-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { ProfilAvatarComponent } from '../profil-avatar/profil-avatar.component';
+import { ProgressBarModule } from "../../../../shared/progress-bar/progress-bar.module";
 
 @NgModule({
-  declarations: [ProfilComponent, EditUserModalComponent, PhotoModalComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    BrowserModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-  ],
+    declarations: [
+        ProfilComponent,
+        EditUserModalComponent,
+        PhotoModalComponent,
+        ProfilAvatarComponent
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        BrowserModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatIconModule,
+        MatInputModule,
+        MatButtonModule,
+        ProgressBarModule
+    ]
 })
 export class ProfilModule {}

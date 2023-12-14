@@ -1,13 +1,10 @@
 <div class="profil_header">
-  <div class="profil_image">
-    <img
-      (click)="updateImage()"
-      id="img"
-      class="shadow-4-strong"
-      alt="avatar2"
-      [src]="user.photo ? user_image : 'assets/svgs/Mali.svg'"
-    />
-  </div>
+  
+  <app-profil-avatar
+    [imageUrl]="user_image"
+    (imageUrlEvent)="updateImage()"
+  ></app-profil-avatar>
+
   <div class="profil_text">
     <p>{{ user.firstName }} {{ user.lastName }}</p>
   </div>
