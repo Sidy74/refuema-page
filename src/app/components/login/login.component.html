@@ -38,8 +38,10 @@
 
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
-           <!-- Loading Component -->
-    <app-progress-bar *ngIf="this.loadingService.isLoading$ | async as isLoading"></app-progress-bar>
+            <!-- Loading Component -->
+            <app-progress-bar
+              *ngIf="this.loadingService.isLoading$ | async as isLoading"
+            ></app-progress-bar>
             <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
               <div class="error_message">
                 <div
@@ -146,7 +148,6 @@
               >
                 Connexion
               </button>
-              {{ user.phone }}
             </form>
           </div>
         </div>

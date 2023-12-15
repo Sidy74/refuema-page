@@ -114,12 +114,15 @@ a.active-link {
 }
 
 @media screen and (max-width: 600px) {
+  #navbar-right {
+    display: none;
+  }
   #toolbar #logo {
     padding-left: 8px;
     transition: 0.3s;
   }
   .fixed-div {
-     opacity: 0.86;
+    opacity: 0.86;
     box-shadow: 2px 2px 2px #01766e;
   }
   /* Hide  all a in menu-items */
@@ -157,5 +160,15 @@ a.active-link {
     text-decoration: none;
     font-weight: 500;
     font-size: smaller;
+  }
+
+  #close-icon{
+    display: flex;
+    color: #01766e;
+    align-content: stretch;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
   }
 }

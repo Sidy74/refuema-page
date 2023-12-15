@@ -43,14 +43,10 @@
           <span *ngIf="isOpen"> &#x2718;</span>
         </a>
       </div>
-      <div class="spacer"></div>
+      <div class="spacer" id="navbar-right"></div>
       <div id="navbar-right">
         <div *ngIf="!isAuthentified">
-          <a
-            routerLink="/login"
-            routerLinkActive="active-link"
-            (click)="logout()"
-          >
+          <a routerLink="/login" routerLinkActive="active-link">
             <span>Se connecter</span>
           </a>
           <a routerLink="/sign-up" routerLinkActive="active-link" id="sing_up">
@@ -105,6 +101,7 @@
               <span id="menu-items-mobile-span">Créer un article</span>
             </a>
           </li>
+
           <li id="menu-items-mobile-li">
             <a
               href="#"
@@ -115,12 +112,28 @@
               <span id="menu-items-mobile-span">Contactez-nous</span>
             </a>
           </li>
+
+          <span *ngIf="!isAuthentified">
+            <li class="mt-4" id="menu-items-mobile-li">
+              <a routerLink="/login" routerLinkActive="active-link">
+                <span id="menu-items-mobile-span">Se connecter</span>
+              </a>
+            </li>
+            <li class="mt-2" id="menu-items-mobile-li">
+              <a
+                routerLink="/sign-up"
+                routerLinkActive="active-link"
+                id="sing_up"
+              >
+                <span id="menu-items-mobile-span">S'inscrire</span>
+              </a>
+            </li>
+          </span>
         </ul>
-        <div
-          class="col-2 p-0 m-0"
-          id="close_icon"
-          style="display: flex; align-items: end; color: #01766e"
-        >
+        <div class="col-2 p-0 m-0" id="close-icon">
+          <div>
+          <app-appbar-avatar *ngIf="isAuthentified"></app-appbar-avatar>
+        </div>
           <span
             (click)="closeMenuHamburger()"
             *ngIf="isOpen"
