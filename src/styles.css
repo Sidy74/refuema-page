@@ -99,7 +99,7 @@ body {
 
 .error_message_content {
   color: #ff0015b7;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
   visibility: visible;
 }
 
@@ -110,7 +110,7 @@ body {
 
 .isInvalid {
   color: none;
-  transition: .1s;
+  transition: 0.1s;
   background-color: white;
   border-color: #ff00157e;
   outline: 0;
