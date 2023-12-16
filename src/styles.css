@@ -83,3 +83,39 @@ body {
   outline: 0;
   box-shadow: 0 0 0 0.25rem hsla(176, 98%, 23%, 0.1);
 }
+
+.example-full-width {
+  width: 100%;
+}
+
+.bg-glass {
+  background-color: hsla(0, 0%, 100%, 0.36) !important;
+  backdrop-filter: saturate(200%) blur(25px);
+}
+
+.custom-mat-form-field {
+  background-color: #ff213a;
+}
+
+.error_message_content {
+  color: #ff0015b7;
+  padding-bottom: 4px;
+  visibility: visible;
+}
+
+.error_message {
+  display: inline-block;
+  visibility: hidden;
+}
+
+.isInvalid {
+  color: none;
+  transition: .1s;
+  background-color: white;
+  border-color: #ff00157e;
+  outline: 0;
+  box-shadow: 0 0 0 0.15rem #ff00152a;
+}
+.form-label {
+  font-weight: 400;
+}

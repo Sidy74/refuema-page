@@ -1,14 +1,11 @@
 .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-.example-full-width {
-    width: 100%;
-  }
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
 
-  ::ng-deep .edit_user_modal mat-dialog-container {
-    border-radius: 8px !important;
-    background-color: #133e37 !important;
-    color: #133e37 !important;
-  }
+::ng-deep .edit_user_modal mat-dialog-container {
+  border-radius: 8px !important;
+  background-color: #133e37 !important;
+  color: #133e37 !important;
+}

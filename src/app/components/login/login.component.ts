@@ -53,11 +53,14 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.userTokenService.login(value.token);
         if (value.user) {
           this.shareUserInfosService.setUserData(
-            new User(
+            new UserInfos(
               value.user.prenom,
               value.user.nom,
               value.user.email,
-              value.user.telephone
+              value.user.telephone,
+              value.user.photo,
+              value.user.specialite,
+              value.user.titre
             )
           );
           this.shareUserInfosService.setUserPhoto(value.user.photo);

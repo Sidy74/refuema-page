@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Titre } from 'src/app/core/_models/titre.model';
-import { User } from 'src/app/core/_models/user..models';
+import { User, UserInfos } from 'src/app/core/_models/user..models';
 import { LoadingService } from 'src/app/core/_services/loading.service';
 import { RegistrationService } from 'src/app/core/_services/registration.service';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
@@ -97,11 +97,14 @@ export class EditUserModalComponent implements OnInit {
       next: (value: any) => {
         if (value.user) {
           this.shareUserInfosService.setUserData(
-            new User(
+            new UserInfos(
               value.user.prenom,
               value.user.nom,
               value.user.email,
-              value.user.telephone
+              value.user.telephone,
+              value.user.photo,
+              value.user.specialite,
+              value.user.titre
             )
           );
         }

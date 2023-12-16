@@ -1,41 +1,153 @@
 <div class="ps-4 pe-4">
-  <div class="" mat-dialog-title>
-    <h4>Modifier informations utilisateur</h4>
+  <div mat-dialog-title>
+    Modifier informations utilisateur
     <app-progress-bar
       *ngIf="loadingService.isLoading$ | async as isLoading"
     ></app-progress-bar>
     <hr />
   </div>
 
-  <mat-dialog-content class="mat-typography">
+  <mat-dialog-content>
     <form class="example-form" [formGroup]="updateForm" onsubmit="updateUser()">
-      <mat-form-field class="example-full-width">
-        <mat-label>Nom</mat-label>
-        <input formControlName="lastName" matInput />
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label>Prénom </mat-label>
-        <input formControlName="firstName" matInput />
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label>Téléphone</mat-label>
-        <input formControlName="phone" matInput />
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label>Email (disactivé)</mat-label>
-        <input formControlName="mail" matInput />
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label>Titre</mat-label>
-        <mat-select formControlName="titre">
-          <mat-option selected *ngIf="titres.length === 0" [value]="0">
+      <!-- INPUT LASTNAME -->
+      <div class="form-outline mb-3">
+        <div class="error_message">
+          <div
+            *ngIf="
+              updateForm.controls['lastName'].invalid &&
+              (updateForm.controls['lastName'].dirty ||
+                updateForm.controls['lastName'].touched)
+            "
+          >
+            <span
+              class="error_message_content"
+              *ngIf="
+                updateForm.controls['lastName'].errors?.['required']       
+              "
+              >Veuillez saisir votre nom.</span
+            >
+            <span
+              class="error_message_content"
+              style="font-size: 13px"
+              *ngIf="
+              updateForm.controls['lastName'].errors?.['minlength']       
+            "
+              >Au minimum 3 caractères.
+            </span>
+          </div>
+        </div>
+        <input
+          formControlName="lastName"
+          class="form-control"
+          [ngClass]="{
+            isInvalid:
+              updateForm.controls['lastName'].invalid &&
+              updateForm.controls['lastName'].touched
+          }"
+        />
+        <label class="form-label" for="form_password">Nom</label>
+      </div>
+      <!-- INPUT FIRSTNAME -->
+      <div class="form-outline mb-3">
+        <div class="error_message">
+          <div
+            *ngIf="
+              updateForm.controls['firstName'].invalid &&
+              (updateForm.controls['firstName'].dirty ||
+                updateForm.controls['firstName'].touched)
+            "
+          >
+            <span
+              class="error_message_content"
+              *ngIf=" updateForm.controls['firstName'].errors?.['required']"
+              >Veuillez saisir votre prénom.</span
+            >
+            <span
+              class="error_message_content"
+              style="font-size: 13px"
+              *ngIf="
+             updateForm.controls['firstName'].errors?.['minlength']       
+          "
+              >Au minimum 3 caractères.
+            </span>
+          </div>
+        </div>
+        <input
+          [ngClass]="{
+            isInvalid:
+              updateForm.controls['firstName'].invalid &&
+              updateForm.controls['firstName'].touched
+          }"
+          type="text"
+          formControlName="firstName"
+          class="form-control"
+        />
+        <label class="form-label" for="form_password">Prénom</label>
+      </div>
+      <!-- INPUT PHONE -->
+      <div class="form-outline mb-3">
+        <div class="error_message">
+          <div
+            *ngIf="
+              updateForm.controls['phone'].invalid &&
+              (updateForm.controls['phone'].dirty ||
+                updateForm.controls['phone'].touched)
+            "
+          >
+            <span
+              class="error_message_content"
+              *ngIf="
+               updateForm.controls['phone'].errors?.['required'] 
+              "
+              >Veuillez saisir votre numero de telephone !</span
+            >
+            <span
+              class="error_message_content"
+              *ngIf="
+             updateForm.controls['phone'].errors?.['maxlength'] ||
+             updateForm.controls['phone'].errors?.['minlength']
+            "
+              >8 chiffres au maxmium!</span
+            >
+          </div>
+        </div>
+
+        <input
+          [ngClass]="{
+            isInvalid:
+              updateForm.controls['phone'].invalid &&
+              updateForm.controls['phone'].touched
+          }"
+          formControlName="phone"
+          class="form-control"
+          type="tel"
+        />
+        <label class="form-label" for="form_password">Téléphone</label>
+      </div>
+      <!-- INPUT SELECT TITRE -->
+      <div class="form-outline mb-1">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          type="select"
+          id="titre_form"
+          formControlName="titre"
+          [ngClass]="{
+            isInvalid:
+              updateForm.controls['titre'].invalid &&
+              updateForm.controls['titre'].touched
+          }"
+        >
+          <option selected *ngIf="titres.length === 0" [value]="0">
             <span> N/A</span>
-          </mat-option>
-          <mat-option *ngFor="let titre of titres" [value]="titre.id">{{
-            titre.titre
-          }}</mat-option>
-        </mat-select>
-      </mat-form-field>
+          </option>
+          <option *ngFor="let item of titres" [value]="item.id">
+            <span> {{ item.titre }}</span>
+          </option>
+        </select>
+
+        <label class="form-label" for="titre_form">Titre</label>
+      </div>
     </form>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

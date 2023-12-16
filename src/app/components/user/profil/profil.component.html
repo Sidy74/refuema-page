@@ -16,15 +16,40 @@
 </div>
 
 <div class="profil_body">
-  <p>Informations</p>
-  <hr />
-  <div>
-    Email :
-
-    <span>{{ user.mail }}</span>
+  <div class="section-informations">
+    <h2>Informations</h2>
+    <hr />
+    <div>
+      Email :
+      <span>{{ user.mail }}</span>
+    </div>
+    <div>
+      Numéro de téléphone :
+      <span>{{ user.phone }}</span>
+    </div>
   </div>
-  <div>
-    Numéro de téléphone :
-    <span>{{ user.phone }}</span>
+  <div class="section-password">
+    <h2>Mot de passe</h2>
+    <hr />
+    <div class="row">
+      <div class="col" id="password">
+        <input
+          type="password"
+          class="form-control my-2"
+          id="password"
+          [disabled]="true"
+          value="°°°°°°°°°°°°°°°°"
+        />
+        <button
+          class="btn form-control"
+          id="btn-primary"
+          (click)="openEditPassword()"
+          style="white-space: normal"
+        >
+          Modifier
+        </button>
+      </div>
+      <div class="col" id="col-is-mobile"></div>
+    </div>
   </div>
 </div>

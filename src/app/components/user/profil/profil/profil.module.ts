@@ -13,9 +13,10 @@ import { ProfilAvatarComponent } from '../profil-avatar/profil-avatar.component'
 import { ProgressBarModule } from '../../../../shared/progress-bar/progress-bar.module';
 import { ProfilAvatarModule } from '../profil-avatar/profil-avatar.module';
 import { MatSelectModule } from '@angular/material/select';
+import { EditUserPasswordComponent } from '../edit-user-password/edit-user-password.component';
 
 @NgModule({
-  declarations: [ProfilComponent, EditUserModalComponent, PhotoModalComponent],
+  declarations: [ProfilComponent, EditUserModalComponent, PhotoModalComponent,EditUserPasswordComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -22,7 +22,7 @@ export class ShareUserInfosService {
 
   constructor() {}
 
-  setUserData(user: User) {
+  setUserData(user: UserInfos) {
     if (user) {
       this.currentUserInfos.next(user);
       localStorage.setItem(this.userInfosKey, JSON.stringify(user));
