@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Titre } from 'src/app/core/_models/titre.model';
-import { User, UserInfos } from 'src/app/core/_models/user..models';
+import { UserInfos } from 'src/app/core/_models/user..models';
 import { LoadingService } from 'src/app/core/_services/loading.service';
 import { RegistrationService } from 'src/app/core/_services/registration.service';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
@@ -15,10 +15,12 @@ import { UserService } from 'src/app/core/_services/user/user.service';
   styleUrls: ['./edit-user-modal.component.css'],
 })
 export class EditUserModalComponent implements OnInit {
-  user!: User;
+  user!: UserInfos;
   isLoading: boolean = false;
   updateForm!: FormGroup;
   titres: Array<Titre> = [];
+  select: any;
+
   constructor(
     private fb: FormBuilder,
     public loadingService: LoadingService,
@@ -37,6 +39,9 @@ export class EditUserModalComponent implements OnInit {
         titres.titre.forEach((element: Titre) => {
           this.titres.push(element);
         });
+        this.updateForm.controls['titre'].patchValue(
+          this.titres.find((titre) => titre.titre === this.user.titre)?.id
+        );
       },
       error: (err) => {
         console.log(err);
@@ -53,9 +58,8 @@ export class EditUserModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.data.user;
-    console.log(this.user);
-
     this.getAllTitres();
+    console.log(this.user.titre);
 
     this.updateForm = this.fb.group({
       lastName: [
@@ -84,15 +88,19 @@ export class EditUserModalComponent implements OnInit {
         },
         [Validators.required, Validators.maxLength(8), Validators.minLength(8)],
       ],
-      titre: [null, [Validators.required]],
+      titre: ['', [Validators.required]],
+      specialite: [
+        {
+          value: this.user.specialite ? this.user.specialite : 'N/A',
+          disabled: false,
+        },
+        [Validators.required],
+      ],
     });
   }
 
   updateUser() {
-    console.log(this.user);
-
-    const formData = this.updateUserToFormData(this.user);
-
+    const formData = this.updateUserToFormData();
     this.userService.updateInformations(formData).subscribe({
       next: (value: any) => {
         if (value.user) {
@@ -116,7 +124,7 @@ export class EditUserModalComponent implements OnInit {
     });
   }
 
-  updateUserToFormData(user: User) {
+  updateUserToFormData() {
     const formData = new FormData();
     const formControls = this.updateForm.controls;
     formData.append('prenom', formControls['firstName'].value);
@@ -124,6 +132,7 @@ export class EditUserModalComponent implements OnInit {
     formData.append('email', formControls['mail'].value);
     formData.append('telephone', formControls['phone'].value);
     formData.append('titre', formControls['titre'].value);
+    formData.append('specialite', formControls['specialite'].value);
     return formData;
   }
 

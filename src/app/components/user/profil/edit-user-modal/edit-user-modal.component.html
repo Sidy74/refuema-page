@@ -10,7 +10,7 @@
   <mat-dialog-content>
     <form class="example-form" [formGroup]="updateForm" onsubmit="updateUser()">
       <!-- INPUT LASTNAME -->
-      <div class="form-outline mb-3">
+      <div class="form-outline mb-1">
         <div class="error_message">
           <div
             *ngIf="
@@ -48,7 +48,7 @@
         <label class="form-label" for="form_password">Nom</label>
       </div>
       <!-- INPUT FIRSTNAME -->
-      <div class="form-outline mb-3">
+      <div class="form-outline mb-1">
         <div class="error_message">
           <div
             *ngIf="
@@ -137,16 +137,53 @@
               updateForm.controls['titre'].invalid &&
               updateForm.controls['titre'].touched
           }"
-        >
-          <option selected *ngIf="titres.length === 0" [value]="0">
+        ><option selected *ngIf="titres.length === 0" [value]="0">
             <span> N/A</span>
           </option>
-          <option *ngFor="let item of titres" [value]="item.id">
+          
+          <option  selected *ngFor="let item of titres" [value]="item.id">
             <span> {{ item.titre }}</span>
           </option>
         </select>
 
         <label class="form-label" for="titre_form">Titre</label>
+      </div>
+      <!-- INPUT  SPECIALITE -->
+      <div class="form-outline mb-1">
+        <div class="error_message">
+          <div
+            *ngIf="
+              updateForm.controls['specialite'].invalid &&
+              (updateForm.controls['specialite'].dirty ||
+                updateForm.controls['specialite'].touched)
+            "
+          >
+            <span
+              class="error_message_content"
+              *ngIf=" updateForm.controls['specialite'].errors?.['required']"
+              >Veuillez saisir votre prénom.</span
+            >
+            <span
+              class="error_message_content"
+              style="font-size: 13px"
+              *ngIf="
+             updateForm.controls['specialite'].errors?.['minlength']       
+          "
+              >Au minimum 3 caractères.
+            </span>
+          </div>
+        </div>
+        <input
+          [ngClass]="{
+            isInvalid:
+              updateForm.controls['specialite'].invalid &&
+              updateForm.controls['specialite'].touched
+          }"
+          type="text"
+          formControlName="specialite"
+          class="form-control"
+        />
+        <label class="form-label" for="form_password">Spécialité</label>
       </div>
     </form>
   </mat-dialog-content>

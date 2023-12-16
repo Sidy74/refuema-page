@@ -7,9 +7,9 @@ import { User, UserInfos } from '../_models/user..models';
 })
 export class ShareUserInfosService {
   //Subject & Observable for user Informations change
-  private currentUserInfos: BehaviorSubject<User | null> =
-    new BehaviorSubject<User | null>(null);
-  currentUserInfos$: Observable<User | null> =
+  private currentUserInfos: BehaviorSubject<UserInfos | null> =
+    new BehaviorSubject<UserInfos | null>(null);
+  currentUserInfos$: Observable<UserInfos | null> =
     this.currentUserInfos.asObservable();
   userInfosKey: string = 'usr';
 
@@ -48,7 +48,7 @@ export class ShareUserInfosService {
     return this.currentUserPhoto$;
   }
 
-  getUserData(): Observable<User | null> {
+  getUserData(): Observable<UserInfos | null> {
     let userString = localStorage.getItem(this.userInfosKey);
     if (!!userString) {
       const x = JSON.parse(userString) as UserInfos;

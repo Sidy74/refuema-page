@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditUserModalComponent } from './edit-user-modal/edit-user-modal.component';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/core/_models/user..models';
+import { User, UserInfos } from 'src/app/core/_models/user..models';
 import { PhotoModalComponent } from './photo-modal/photo-modal.component';
 import { ImageService } from 'src/app/core/_services/images/image.service';
 import { UserService } from 'src/app/core/_services/user/user.service';
@@ -24,7 +24,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 export class ProfilComponent implements OnDestroy, OnInit {
   userDataSubscription?: Subscription;
-  user!: User;
+  user!: UserInfos;
 
   user_image: any =
     'https://c0.klipartz.com/pngpicture/613/636/gratis-png-iconos-de-la-computadora-perfil-de-usuario-avatar-masculino-avatar-thumbnail.png';
