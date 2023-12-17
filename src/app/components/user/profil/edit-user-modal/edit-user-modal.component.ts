@@ -49,6 +49,7 @@ export class EditUserModalComponent implements OnInit {
           'Erreur de creation du formulaire, ressayer.',
           'X'
         );
+        this.loadingService.isLoading.next(false);
       },
       complete: () =>
         //Loading false requêt is completed
@@ -116,10 +117,12 @@ export class EditUserModalComponent implements OnInit {
             )
           );
         }
+        this.toastService.openSuccess('Modifition effectue avec succès', '');
         this.closeDialog(true);
       },
-      error(err) {
+      error: (err) => {
         console.log(err);
+        this.toastService.openError('Erreur', '');
       },
     });
   }

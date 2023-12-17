@@ -22,4 +22,13 @@ export class UserService {
     let url = environment.apiUrl + '/user/password_reset';
     return this.http.post(url, passwords);
   }
+
+  resetPassword(email: FormData) {
+    email.forEach(element => {
+      console.log(element);
+      
+    });
+    let url = environment.apiUrl + '/reset-password';
+    return this.http.post(url, email);
+  }
 }

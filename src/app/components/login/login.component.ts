@@ -72,6 +72,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       },
       error: (err: HttpErrorResponse) => {
+        this.loadingService.isLoading.next(false);
         this.erroStatus = err.status;
         if (err.status == 401) {
           this.toastService.openError(
@@ -80,10 +81,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           );
         }
       },
-      complete: () => {
+      complete: () =>
         //Loading false requêt is completed
-        this.loadingService.isLoading.next(false);
-      },
+        this.loadingService.isLoading.next(false),
     });
   }
 }

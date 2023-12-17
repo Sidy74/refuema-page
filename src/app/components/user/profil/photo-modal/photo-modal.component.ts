@@ -53,8 +53,9 @@ export class PhotoModalComponent implements OnDestroy, AfterContentInit {
         next: (value) => {
           this.shareUserInfosService.setUserPhoto(value.photo.photo);
         },
-        error(err) {
+        error: (err) => {
           console.error('Erreur lors de la mise à jour de la photo :', err);
+          this.loadingService.isLoading.next(false);
         },
         complete: () => {
           //Loading false requêt is completed
