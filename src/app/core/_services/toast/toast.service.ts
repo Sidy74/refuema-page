@@ -16,6 +16,7 @@ export class ToastService {
         icon: 'done',
         snackbar: this.snackBar,
       },
+      verticalPosition: 'top',
       panelClass: 'snackbar-success',
     });
   }
@@ -28,6 +29,7 @@ export class ToastService {
         icon: 'error',
         snackbar: this.snackBar,
       },
+      verticalPosition: 'top',
       panelClass: 'snackbar-error',
     });
   }
@@ -40,6 +42,7 @@ export class ToastService {
         icon: 'warring',
         snackbar: this.snackBar,
       },
+      verticalPosition: 'top',
       panelClass: 'snackbar-warning',
     });
   }
@@ -52,6 +55,7 @@ export class ToastService {
         icon: 'done',
         snackbar: this.snackBar,
       },
+      verticalPosition: 'top',
       panelClass: 'snackbar-info',
     });
   }

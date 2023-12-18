@@ -37,20 +37,23 @@
         <div class="card bg-glass">
           <div class="card-body px-4 py-5 px-md-5">
             <!-- Loading Component -->
-            <app-progress-bar *ngIf="isLoading"></app-progress-bar>
+            <app-progress-bar
+              *ngIf="this.loadingService.isLoading$ | async as isLoading"
+            ></app-progress-bar>
             <form
               [formGroup]="signForm"
               (ngSubmit)="onSubmit($event)"
               novalidate
             >
-            <div class="error_message">
-              <span
-              *ngIf="message"
-              class="error_message_content"
-              style="font-size: 13px">
-            {{message}}
-            </span>
-            </div>
+              <div class="error_message">
+                <span
+                  *ngIf="message"
+                  class="error_message_content"
+                  style="font-size: 13px"
+                >
+                  {{ message }}
+                </span>
+              </div>
               <div class="row">
                 <div class="col-md-6 mb-2">
                   <div class="form-outline">

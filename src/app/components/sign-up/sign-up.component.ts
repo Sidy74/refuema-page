@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { PasswordValidator } from 'src/app/core/_validator/password.validator';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
-export class SignUpComponent implements OnInit, OnDestroy {
+export class SignUpComponent implements OnInit, OnDestroy, AfterContentInit {
   signForm!: FormGroup;
   formControls: any;
   files: any;
@@ -28,62 +28,17 @@ export class SignUpComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private registrationService: RegistrationService,
-    private loadingService: LoadingService,
+    public loadingService: LoadingService,
     private toastService: ToastService,
     private router: Router
   ) {}
 
-  ngOnDestroy(): void {
-    this.loadingSubscription$?.unsubscribe();
+  ngAfterContentInit(): void {
+    this.getAllTitres();
+    this.getAllTypeDocuements();
   }
 
   ngOnInit(): void {
-    this.loadingSubscription$ = this.loadingService.isLoading$.subscribe({
-      next: (value) => {
-        this.isLoading = value;
-      },
-      error(err) {
-        console.log(err);
-      },
-    });
-
-    //Get all titre
-    this.registrationService.getTitre().subscribe({
-      next: (titres) => {
-        titres.titre.forEach((element: Titre) => {
-          this.titres.push(element);
-          //Loading false requêt is completed
-          this.formControls['titre'].patchValue(element.id);
-          this.loadingService.isLoading.next(false);
-        });
-      },
-      error: (err) => {
-        console.log(err);
-        this.toastService.openError(
-          'Erreur de creation du formulaire, ressayer.',
-          'X'
-        );
-        //Loading false requêt is completed
-        this.loadingService.isLoading.next(false);
-      },
-    });
-
-    //Get all type document
-    this.registrationService.getTypeDocument().subscribe({
-      next: (type_documents) => {
-        type_documents.type_de_document.forEach((element: TypeDocument) => {
-          this.type_documents.push(element);
-          this.formControls['fileType'].patchValue(element.id);
-          //Loading false requêt is completed
-          this.loadingService.isLoading.next(false);
-        });
-      },
-      error: (err) => {
-        //Loading false requêt is completed
-        this.loadingService.isLoading.next(false);
-      },
-    });
-
     this.signForm = this.fb.group({
       lastName: [null, [Validators.required, Validators.minLength(3)]],
       firstName: [null, [Validators.required, Validators.minLength(3)]],
@@ -105,6 +60,52 @@ export class SignUpComponent implements OnInit, OnDestroy {
       userFile: ['', [Validators.required]],
     });
     this.formControls = this.signForm.controls;
+  }
+
+  ngOnDestroy(): void {
+    this.loadingSubscription$?.unsubscribe();
+  }
+  //Get all type document
+  getAllTypeDocuements() {
+    this.registrationService.getTypeDocument().subscribe({
+      next: (type_documents) => {
+        type_documents.type_de_document.forEach((element: TypeDocument) => {
+          this.type_documents.push(element);
+          this.formControls['fileType'].patchValue(element.id);
+        });
+      },
+      error: (err) => {
+        this.toastService.openError(
+          'Erreur de recupération des documents',
+          'X'
+        );
+      },
+      complete: () =>
+        //Loading false requêt is completed
+        this.loadingService.isLoading.next(false),
+    });
+  }
+
+  //Get all titre
+  getAllTitres() {
+    this.registrationService.getTitre().subscribe({
+      next: (titres) => {
+        titres.titre.forEach((element: Titre) => {
+          this.titres.push(element);
+          this.formControls['titre'].patchValue(element.id);
+        });
+      },
+      error: (err) => {
+        console.log(err);
+        this.toastService.openError(
+          'Erreur de creation du formulaire, ressayer.',
+          'X'
+        );
+      },
+      complete: () =>
+        //Loading false requêt is completed
+        this.loadingService.isLoading.next(false),
+    });
   }
 
   setFiles(event: any) {

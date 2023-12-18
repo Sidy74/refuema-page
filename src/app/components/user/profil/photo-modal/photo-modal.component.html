@@ -1,0 +1,37 @@
+<div class="photo-update-Modal">
+  <div class="mb-4">
+    <!-- Loading Component -->
+    <app-progress-bar
+      *ngIf="this.loadingService.isLoading$ | async as isLoading"
+    ></app-progress-bar>
+  </div>
+
+  <div class="col">
+    <input type="file" (change)="loadImage($event)" id="image-input" />
+    <label for="image-input" id="image-label">
+      <div class="image">
+        <img [src]="imageUrl" id="image" />
+      </div>
+
+      <div class="row">
+        <div class="col-1"><mat-icon>file_upload</mat-icon></div>
+        <div class="col-8">Télécharger l'image</div>
+      </div>
+    </label>
+  </div>
+  <div class="col">
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close id="btn-danger" (click)="onNoClick()">
+        Annuler
+      </button>
+      <button
+        id="btn-primary"
+        mat-button
+        (click)="update()"
+        [disabled]="isLoadImage"
+      >
+        Modifier
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

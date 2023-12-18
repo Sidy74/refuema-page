@@ -1,54 +1,148 @@
 <div id="navbar">
-  <mat-toolbar class="toolbar" id="toolbar">
-    <div class="#navbar-left">
-      <a routerLink="/" id="logo-route-link">
-        <img src="assets/svgs/Logo.svg" alt="" id="logo" />
-      </a>
-    </div>
-    <div class="spacer"></div>
-    <div id="menuItems" class="#navbar-center">
-      <a
-        href="#"
-        routerLink="/presentation"
-        routerLinkActive="active-link"
-        routerLinkActive="active-link"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <span>Présentation</span>
-      </a>
-      <a href="#" routerLink="/item3" routerLinkActive="active-link">
-        <span>Actualités</span>
-      </a>
-      <a href="#" routerLink="/item4" routerLinkActive="active-link">
-        <span>Articles</span>
-      </a>
-      <a
-        href="#"
-        routerLink="/item4"
-        *ngIf="isAuthentified"
-        routerLinkActive="active-link"
-      >
-        <span>Créer un article</span>
-      </a>
-      <a href="#" routerLink="/contact-us" routerLinkActive="active-link">
-        <span>Contactez-nous</span>
-      </a>
-    </div>
-    <div class="spacer"></div>
-    <div id="navbar-right">
-      <div *ngIf="!isAuthentified">
-        <a
-          routerLink="/login"
-          routerLinkActive="active-link"
-          (click)="logout()"
-        >
-          <span>Se connecter</span>
-        </a>
-        <a routerLink="/sign-up" routerLinkActive="active-link" id="sing_up">
-          <span>S'inscrire</span>
+  <div class="fixed-div" id="fixed-div">
+    <mat-toolbar class="toolbar" id="toolbar">
+      <div class="#navbar-left">
+        <a routerLink="/" id="logo-route-link">
+          <img src="assets/svgs/Logo.svg" alt="" id="logo" />
         </a>
       </div>
-      <app-appbar-avatar *ngIf="isAuthentified"></app-appbar-avatar>
+      <div class="spacer"></div>
+      <div id="menuItems" class="navbar-center">
+        <a
+          href="#"
+          routerLink="/presentation"
+          routerLinkActive="active-link"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span>Présentation</span>
+        </a>
+        <a href="#" routerLink="/item3" routerLinkActive="active-link">
+          <span>Actualités</span>
+        </a>
+        <a href="#" routerLink="/item4" routerLinkActive="active-link">
+          <span>Articles</span>
+        </a>
+        <a
+          href="#"
+          routerLink="/item4"
+          *ngIf="isAuthentified"
+          routerLinkActive="active-link"
+        >
+          <span>Créer un article</span>
+        </a>
+        <a href="#" routerLink="/contact-us" routerLinkActive="active-link">
+          <span>Contactez-nous</span>
+        </a>
+        <a
+          href="javascript:void(0);"
+          class="icon"
+          (click)="clickMenuHamburger()"
+        >
+          <span *ngIf="!isOpen"> &#9776;</span>
+          <span *ngIf="isOpen"> &#x2718;</span>
+        </a>
+      </div>
+      <div class="spacer" id="navbar-right"></div>
+      <div id="navbar-right">
+        <div *ngIf="!isAuthentified">
+          <a routerLink="/login" routerLinkActive="active-link">
+            <span>Se connecter</span>
+          </a>
+          <a routerLink="/sign-up" routerLinkActive="active-link" id="sing_up">
+            <span>S'inscrire</span>
+          </a>
+        </div>
+        <app-appbar-avatar *ngIf="isAuthentified"></app-appbar-avatar>
+      </div>
+    </mat-toolbar>
+    <!-- I put id foreach tag child for check if it is a child of menu-items-mobile So if it isn't a child , i close (isOpen = false) -->
+    <div id="menu-items-mobile" *ngIf="isOpen" class="navbar-center-mobile">
+      <div class="row">
+        <ul class="col" id="menu-items-mobile-ul">
+          <li id="menu-items-mobile-li">
+            <a
+              (click)="closeMenuHamburger()"
+              routerLink="/presentation"
+              routerLinkActive="active-link"
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              <span id="menu-items-mobile-span">Présentation</span>
+            </a>
+          </li>
+          <li id="menu-items-mobile-li">
+            <a
+              href="#"
+              (click)="closeMenuHamburger()"
+              routerLink="/item3"
+              routerLinkActive="active-link"
+            >
+              <span id="menu-items-mobile-span">Actualités</span>
+            </a>
+          </li>
+          <li id="menu-items-mobile-li">
+            <a
+              href="#"
+              (click)="closeMenuHamburger()"
+              routerLink="/item4"
+              routerLinkActive="active-link"
+            >
+              <span id="menu-items-mobile-span">Articles</span>
+            </a>
+          </li>
+          <li *ngIf="isAuthentified">
+            <a
+              (click)="closeMenuHamburger()"
+              href="#"
+              routerLink="/item4"
+              routerLinkActive="active-link"
+            >
+              <span id="menu-items-mobile-span">Créer un article</span>
+            </a>
+          </li>
+
+          <li id="menu-items-mobile-li">
+            <a
+              href="#"
+              (click)="closeMenuHamburger()"
+              routerLink="/contact-us"
+              routerLinkActive="active-link"
+            >
+              <span id="menu-items-mobile-span">Contactez-nous</span>
+            </a>
+          </li>
+
+          <span *ngIf="!isAuthentified">
+            <li class="mt-4" id="menu-items-mobile-li">
+              <a routerLink="/login" routerLinkActive="active-link">
+                <span id="menu-items-mobile-span">Se connecter</span>
+              </a>
+            </li>
+            <li class="mt-2" id="menu-items-mobile-li">
+              <a
+                routerLink="/sign-up"
+                routerLinkActive="active-link"
+                id="sing_up"
+              >
+                <span id="menu-items-mobile-span">S'inscrire</span>
+              </a>
+            </li>
+          </span>
+        </ul>
+        <div class="col-2 p-0 m-0" id="close-icon">
+          <div>
+          <app-appbar-avatar *ngIf="isAuthentified"></app-appbar-avatar>
+        </div>
+          <span
+            (click)="closeMenuHamburger()"
+            *ngIf="isOpen"
+            style="font-size: 48px"
+          >
+            &#x2718;</span
+          >
+        </div>
+      </div>
     </div>
-  </mat-toolbar>
+  </div>
 </div>

@@ -32,6 +32,32 @@ body {
 #btn-print:hover {
   background-color: #016678;
 }
+
+#btn-primary {
+  background-color: #013b45;
+  border: none;
+  color: white;
+  float: right !important;
+}
+#btn-primary:hover {
+  background-color: #016678;
+}
+#btn-primary:disabled,
+#btn-primary[disabled] {
+  background-color: rgb(122, 155, 161);
+}
+#btn-danger {
+  background-color: #ff213a;
+  border: none;
+  color: white;
+  float: right !important;
+}
+#btn-danger:hover {
+  background-color: #cf2727;
+
+  color: #000000;
+}
+
 .form-check-input:checked {
   background-color: #158104;
   border-color: #158104;

@@ -3,12 +3,18 @@
   background-color: #f2ede5;
   padding: 90px 10px;
   transition: 0.3s;
+  position: relative;
+  width: 100%;
+  z-index: 99;
+}
+.fixed-div {
+  overflow: hidden;
   position: fixed;
   width: 100%;
   top: 0;
+  background-color: #f2ede5;
   z-index: 99;
 }
-
 #toolbar a {
   border-width: 3px;
   color: #01766e;
@@ -49,7 +55,7 @@
   }
 }
 
-#toolbar #logo { 
+#toolbar #logo {
   padding: 8px;
   padding-left: 30px;
   transition: 0.3s;
@@ -100,4 +106,69 @@ a.active-link {
 
 #logo-route-link:hover {
   border-bottom: transparent !important ;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+#toolbar #menuItems .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  #navbar-right {
+    display: none;
+  }
+  #toolbar #logo {
+    padding-left: 8px;
+    transition: 0.3s;
+  }
+  .fixed-div {
+    opacity: 0.86;
+    box-shadow: 2px 2px 2px #01766e;
+  }
+  /* Hide  all a in menu-items */
+  #toolbar #menuItems a {
+    display: none;
+  }
+  #toolbar #menuItems a.icon {
+    float: right;
+    display: block;
+  }
+  #menu-items-mobile {
+    opacity: 0.86;
+    padding: 30px 10px;
+  }
+  #menu-items-mobile ul li {
+    padding: 8px;
+  }
+  ul {
+    list-style-type: none;
+  }
+  #menu-items-mobile ul li a {
+    border-width: 3px;
+    color: #01766e;
+    text-decoration: none;
+    padding: 8px;
+    text-align: center;
+    margin: 0px 4px;
+    font-weight: 400;
+    font-size: medium;
+  }
+  #menu-items-mobile a:hover {
+    color: #14b53a;
+    border-bottom: 2px solid #14b53a;
+    transition: border-bottom ease-in-out 0.1s;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: smaller;
+  }
+
+  #close-icon{
+    display: flex;
+    color: #01766e;
+    align-content: stretch;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+  }
 }

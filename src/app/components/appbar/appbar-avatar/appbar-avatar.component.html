@@ -1,6 +1,6 @@
 <div class="avatar-container" mat-button [matMenuTriggerFor]="profilMenu">
   <div id="image-container">
-    <img id="profil-image" src="assets/svgs/Mali.svg" />
+    <img id="profil-image" [src]="imageUrl" />
   </div>
   <mat-icon
     fontIcon="keyboard_arrow_down"
@@ -35,7 +35,7 @@
     <mat-icon id="mat-menu-item-icon">credit_card</mat-icon>
     <span id="mat-menu-item-text"> Ma carte</span>
   </button>
- 
+
   <button mat-menu-item class="mat-menu-item" (click)="logout()">
     <mat-icon id="mat-menu-item-icon">logout</mat-icon>
     <span id="mat-menu-item-text"> Déconnexion</span>

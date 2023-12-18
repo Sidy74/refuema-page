@@ -10,6 +10,7 @@ import { AppbarAvatarComponent } from './appbar-avatar/appbar-avatar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ProgressBarModule } from '../../shared/progress-bar/progress-bar.module';
+import { ProfilAvatarModule } from '../user/profil/profil-avatar/profil-avatar.module';
 
 @NgModule({
   declarations: [AppbarComponent, AppbarAvatarComponent],
@@ -24,6 +25,7 @@ import { ProgressBarModule } from '../../shared/progress-bar/progress-bar.module
     MatIconModule,
     MatMenuModule,
     ProgressBarModule,
+    ProfilAvatarModule,
   ],
 })
 export class AppbarModule {}

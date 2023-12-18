@@ -21,7 +21,6 @@ import { PresentationComponent } from './components/presentation/presentation.co
 import { TokenInterceptor } from './core/_helpers/intercepteurs/token.interceptor';
 import { ProgressBarModule } from './shared/progress-bar/progress-bar.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { SharedModule } from './shared/shared.module';
 import { RequestMakeComponent } from './components/request-make/request-make.component';
 

@@ -1,0 +1,15 @@
+.profil_image {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  border-radius: 50%;
+  border: 1px solid #016678;
+  overflow: hidden;
+  cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+  .profil_image {
+    width: 80px;
+    height: 80px;
+  }
+}
