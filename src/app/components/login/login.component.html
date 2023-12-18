@@ -55,7 +55,7 @@
                 </div>
               </div>
               <!-- Email -->
-              <div class="form-outline mb-4">
+              <div class="form-outline mb-3">
                 <div class="error_message">
                   <div
                     *ngIf="
@@ -89,7 +89,7 @@
                 <label class="form-label" for="form_email">Email</label>
               </div>
               <!--Password -->
-              <div class="form-outline mb-4">
+              <div class="form-outline mb-3">
                 <div class="error_message">
                   <div
                     *ngIf="
@@ -139,6 +139,14 @@
                   Se souvenez de moi ?
                 </label>
               </div> -->
+
+              <!-- LINK PASSWORD RESET -->
+              <div class="form-outline  d-flex justify-content-end mb-3">
+                <a routerLink="/passwordreset" routerLinkActive="active-link">
+                  <span> Réinitialiser le mot de passe ?</span>
+                </a>
+              </div>
+
               <!-- Submit button -->
               <button
                 id="btn-submit"

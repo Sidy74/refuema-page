@@ -10,6 +10,7 @@ import { authGuard } from './core/_helpers/_guards/auth.guard';
 import { UserComponent } from './components/user/user.component';
 import { PresentationComponent } from './components/presentation/presentation.component';
 import { RequestMakeComponent } from './components/request-make/request-make.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,9 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'presentation', component: PresentationComponent },
   { path: 'request-make', component: RequestMakeComponent },
-  // { path: '**', component: PageNotFoundComponent },
+  { path: 'passwordreset', component: PasswordResetComponent },
+  { path: 'contact-us', component: ContactUsComponent },
+
   {
     path: 'user',
     component: UserComponent,
@@ -27,8 +30,6 @@ const routes: Routes = [
       { path: 'card', component: CardComponent },
     ],
   },
-
-  { path: 'contact-us', component: ContactUsComponent },
 ];
 
 @NgModule({
