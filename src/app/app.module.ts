@@ -23,6 +23,7 @@ import { ProgressBarModule } from './shared/progress-bar/progress-bar.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SharedModule } from './shared/shared.module';
 import { RequestMakeComponent } from './components/request-make/request-make.component';
+import { PasswordResetModule } from './components/password-reset/password-reset.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { RequestMakeComponent } from './components/request-make/request-make.com
     SharedModule,
     ProgressBarModule,
     HttpClientModule,
+    PasswordResetModule,
   ],
   providers: [
     {
