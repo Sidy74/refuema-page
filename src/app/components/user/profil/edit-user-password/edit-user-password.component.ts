@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { LoadingService } from 'src/app/core/_services/loading.service';
+import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { UserService } from 'src/app/core/_services/user/user.service';
 import { PasswordValidator } from 'src/app/core/_validator/password.validator';

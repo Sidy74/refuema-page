@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { UserTokenService } from './user-token.service';
+import { UserTokenService } from '../user-token.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { ShareUserInfosService } from './share-user-infos.service';
+import { ShareUserInfosService } from '../share-user-infos.service';
 
 @Injectable({
   providedIn: 'root',

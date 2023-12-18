@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Titre } from 'src/app/core/_models/titre.model';
 import { TypeDocument } from 'src/app/core/_models/type-document.models';
-import { LoadingService } from 'src/app/core/_services/loading.service';
+import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { RegistrationService } from 'src/app/core/_services/registration.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { PasswordValidator } from 'src/app/core/_validator/password.validator';

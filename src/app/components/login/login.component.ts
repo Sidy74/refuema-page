@@ -1,14 +1,14 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/core/_services/login.service';
+import { LoginService } from 'src/app/core/_services/login/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserTokenService } from 'src/app/core/_services/user-token.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User, UserInfos } from 'src/app/core/_models/user..models';
 import { HttpErrorResponse } from '@angular/common/http';
-import { LoadingService } from 'src/app/core/_services/loading.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
+import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 
 @Component({
   selector: 'app-login',

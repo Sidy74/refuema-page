@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Titre } from 'src/app/core/_models/titre.model';
 import { UserInfos } from 'src/app/core/_models/user..models';
-import { LoadingService } from 'src/app/core/_services/loading.service';
+import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { RegistrationService } from 'src/app/core/_services/registration.service';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
