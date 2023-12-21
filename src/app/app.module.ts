@@ -24,6 +24,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SharedModule } from './shared/shared.module';
 import { RequestMakeComponent } from './components/request-make/request-make.component';
 import { PasswordResetModule } from './components/password-reset/password-reset.module';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,10 @@ import { PasswordResetModule } from './components/password-reset/password-reset.
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
     },
     { provide: LOCALE_ID, useValue: 'fr' },
   ],

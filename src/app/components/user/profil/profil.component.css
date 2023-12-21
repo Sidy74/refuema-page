@@ -34,16 +34,8 @@
   .profil_text {
     font-size: medium;
   }
-}
-
-@media screen and (max-width: 564px) {
-  .profil_text {
-    font-size: medium;
-  }
-}
-@media screen and (max-width: 280px) {
-  .profil_text {
-    font-size: smaller;
+  #col-is-mobile {
+    display: none;
   }
 }
 
@@ -52,4 +44,17 @@
   border-radius: 8px !important;
   position: relative;
   padding: 0px 5px;
+}
+
+.section-password,
+.section-informations {
+  margin-bottom: 32px;
+}
+
+#btn-primary {
+  float: none !important;
+}
+#password {
+  text-align: center;
+  font-size: x-large;
 }

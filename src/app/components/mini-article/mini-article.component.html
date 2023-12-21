@@ -1,49 +1,37 @@
 <div
-  class="card mb-3 border-bottom-2 rounded-0"
-  style="max-width: 48%"
+  class="card mb-3 mt-3 border-bottom-2 rounded-0"
   style="background-color: #f2ede5"
 >
   <div class="row g-0">
     <div class="col-md-4 p-4" style="background-color: #f2ede5">
       <img
-        src="assets/svgs/wave.svg"
+        src="assets/svgs/Mali.svg"
         class="img-fluid rounded-start"
         alt="..."
-        style="transform: skew(-1.5deg, -1.7deg)"
       />
+      <!-- style="transform: skew(-1.5deg, -1.7deg)" -->
     </div>
     <div class="col-md-8 p-4">
       <div class="card-body">
-        <h5 class="card-title" style="font-size: x-large">
-          Card title Card title Card title Card title Card titleCard title Card
-          title
-        </h5>
+        <h2 class="card-title">
+          RESEAU DES FEMMES ENSEIGNANTES ET ETUDIANTES DU MALI
+        </h2>
         <p class="card-text">
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer. Lorem
-          Ipsum "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
-          consectetur, adipisci velit..." "There is no one who loves pain
-          itself, who seeks after it and wants to have it, simply because it is
-          pain..." Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-          dictum ipsum ex, at condimentum erat consectetur id. Vivamus
-          scelerisque maximus tortor, porta efficitur tellus lacinia ac. Quisque
-          ac nibh ut ante pulvinar porttitor non eget diam. Cras dui sapien,
-          ultricies in ipsum cursus, sagittis mattis est. Maecenas maximus a
-          urna quis luctus. Mauris non tincidunt augue, vulputate venenatis
-          ante. Maecenas ultricies commodo eleifend. In quis arcu pulvinar,
-          semper magna eu, tincidunt nisi. Nunc vulputate elementum blandit.
-          Aenean bibendum metus vitae tellus molestie dictum. Mauris felis
-          massa, tincidunt et cursus et, pulvinar in erat. Maecenas vel lectus
-          condimentum, imperdiet elit non, ullamcorper elit. Suspendisse sed
-          iaculis lacus, sit amet sagittis ante. Morbi porta malesuada orci
-          mollis porttitor. Ut vel ex maximus, pulvinar mi et, scelerisque odio.
-          Vestibulum ut erat quis nulla consectetur eleifend. Aliquam dapibus
-          tellus ut iaculis consequat. Praesent at dictum dolor. In venenatis at
-          nunc nec gravida. Mauris non diam malesuada, ultrices arcu ut,
+          {{ showMoreText ? cardBodyText : (cardBodyText | slice : 0 : 500) }}
+          {{ showMoreText ? "" : "..." }}
         </p>
+
         <p class="card-text">
           <small class="text-body-secondary">Il y à 2 jours</small>
-          <small class="btn btn-small btn-secondary" style="float: right; width: 12;">Il y à 2 jours</small>
+          <button
+            style="float: right; width: 12"
+            class="btn btn-sm"
+            id="btn-primary"
+            (click)="toggleText()"
+          >
+            <span *ngIf="!showMoreText">Plus(+)</span>
+            <span *ngIf="showMoreText">Moins(-)</span>
+          </button>
         </p>
       </div>
     </div>

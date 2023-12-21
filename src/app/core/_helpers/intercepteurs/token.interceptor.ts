@@ -6,8 +6,9 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoadingService } from '../../_services/loading.service';
+
 import { UserTokenService } from '../../_services/user-token.service';
+import { LoadingService } from '../../_services/loading/loading.service';
 
 const TOKEN_HEADER_KEY = 'Authorization';
 

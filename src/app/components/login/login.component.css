@@ -41,25 +41,6 @@
   background-color: hsla(0, 0%, 100%, 0.36) !important;
   backdrop-filter: saturate(200%) blur(25px);
 }
-.isInvalid {
-  color: none;
-  transition: 1.5s;
-  background-color: white;
-  border-color: #ff00157e;
-  outline: 0;
-  box-shadow: 0 0 0 0.15rem #ff00152a;
-}
-.form-label {
-  font-weight: 400;
-}
-.error_message_content {
-  color: #ff0015b7;
-  padding-bottom: 4px;
-}
-
-.error_message {
-  display: inline-block;
-}
 
 a {
   border-width: 3px;

@@ -9,7 +9,7 @@ export class ToastService {
   constructor(private snackBar: MatSnackBar) {}
   openSuccess(message: string, action: any) {
     this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 1000,
+      duration: 2000,
       data: {
         message: message,
         action: action,
@@ -22,7 +22,7 @@ export class ToastService {
   }
   openError(message: string, action: any) {
     this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 800,
+      duration: 2000,
       data: {
         message: message,
         action: action,
@@ -35,7 +35,7 @@ export class ToastService {
   }
   openWarning(message: string, action: any) {
     this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 1000,
+      duration: 2000,
       data: {
         message: message,
         action: action,
@@ -48,7 +48,7 @@ export class ToastService {
   }
   openInfo(message: string, action: any) {
     this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 1000,
+      duration: 2000,
       data: {
         message: message,
         action: action,

@@ -19,14 +19,20 @@ export class User {
 
 export class UserInfos extends User {
   photo!: string;
+  specialite!: string;
+  titre!: string;
   constructor(
     firstName: string,
     lastName: string,
     mail: string,
     phone: string,
-    photo: string
+    photo: string,
+    specialite: string,
+    titre: string
   ) {
     super(firstName, lastName, mail, phone);
     this.photo = photo;
+    this.specialite = specialite;
+    this.titre = titre;
   }
 }

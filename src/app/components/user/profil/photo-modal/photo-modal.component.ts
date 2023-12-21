@@ -2,7 +2,7 @@ import { AfterContentInit, Component, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { UserImageData } from 'src/app/core/_interfaces/userImage';
-import { LoadingService } from 'src/app/core/_services/loading.service';
+import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { UserService } from 'src/app/core/_services/user/user.service';
 
@@ -53,8 +53,9 @@ export class PhotoModalComponent implements OnDestroy, AfterContentInit {
         next: (value) => {
           this.shareUserInfosService.setUserPhoto(value.photo.photo);
         },
-        error(err) {
+        error: (err) => {
           console.error('Erreur lors de la mise à jour de la photo :', err);
+          this.loadingService.isLoading.next(false);
         },
         complete: () => {
           //Loading false requêt is completed
