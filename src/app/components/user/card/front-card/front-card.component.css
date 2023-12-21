@@ -1,0 +1,15 @@
+.card-image {
+    width: 90px;
+    height: 90px;
+    background-size: cover;
+    border-radius: 50%;
+    border: 1px solid #016678;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  @media screen and (max-width: 600px) {
+    .card-image{
+      width: 80px;
+      height: 80px;
+    }
+  }

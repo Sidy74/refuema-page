@@ -1,6 +1,6 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoginService } from 'src/app/core/_services/login.service';
+import { LoginService } from 'src/app/core/_services/login/login.service';
 
 @Component({
   selector: 'app-appbar',

@@ -6,8 +6,15 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./front-card.component.css'],
 })
 export class FrontCardComponent {
+  image: string =
+    'http://localhost:8000/uploads/images/me111-65840f8d4d3e0.jpg';
   @Input() cardRole: String = 'Membre';
-  @Input() cardIdentifiant: String = '123456789MSREUMA£#!sjh';
-  @Input() cardUserFistName: String = 'Fatoumata Mohamed Ag';
-  @Input() cardUserLastName: String = 'Coulibaly';
+  @Input() cardDateDebut!: string;
+  @Input() cardDateFin!: string;
+  @Input() cardTitre!: string;
+  @Input() cardMatricule!: string;
+  @Input() cardUserFistName!: string;
+  @Input() cardUserLastName!: string;
+  @Input() cardSpecialite!: string;
+  @Input() cardImage !:string;
 }
