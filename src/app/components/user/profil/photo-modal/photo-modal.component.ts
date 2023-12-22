@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { UserImageData } from 'src/app/core/_interfaces/userImage';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
+import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { UserService } from 'src/app/core/_services/user/user.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class PhotoModalComponent implements OnDestroy, AfterContentInit {
   isLoadImage: boolean = true;
   constructor(
     public loadingService: LoadingService,
+    private toastService: ToastService,
     private shareUserInfosService: ShareUserInfosService,
     private userService: UserService,
     public dialogRef: MatDialogRef<PhotoModalComponent>,
@@ -52,10 +54,15 @@ export class PhotoModalComponent implements OnDestroy, AfterContentInit {
       this.userService.updatePhoto(formData).subscribe({
         next: (value) => {
           this.shareUserInfosService.setUserPhoto(value.photo.photo);
+          this.toastService.openSuccess('votre image est mit à jour ', 'X');
         },
         error: (err) => {
           console.error('Erreur lors de la mise à jour de la photo :', err);
           this.loadingService.isLoading.next(false);
+          this.toastService.openError(
+            'Erreur de mise à jour de votre photo',
+            'X'
+          );
         },
         complete: () => {
           //Loading false requêt is completed

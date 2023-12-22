@@ -1,0 +1,63 @@
+<svg width="483" height="306" viewBox="0 0 483 306" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="FrontCard">
+<g id="Group">
+<path id="Vector" d="M481.911 28.8349L482.04 276.35C482.054 292.264 469.139 305.185 453.218 305.2L28.9805 305.43C26.3342 305.43 23.7597 305.07 21.3291 304.394C9.11844 301.056 0.143836 289.89 0.129454 276.609L1.20137e-05 29.0938C-0.0143704 13.1799 12.8866 0.24438 28.8223 0.24438L453.074 0.0141602C458.755 0.0141602 464.091 1.66886 468.549 4.54662C476.589 9.64024 481.911 18.6044 481.911 28.8349Z" fill="url(#paint0_linear_104_18)"/>
+<path id="Vector_2" opacity="0.53" d="M334.131 305.272L28.9803 305.43C26.3339 305.43 23.7595 305.07 21.3289 304.394L156.696 168.823C160.737 164.765 165.67 162.147 170.863 161.039C180.154 158.938 190.322 161.528 197.571 168.809L334.131 305.272Z" fill="url(#paint1_linear_104_18)"/>
+<path id="Vector_3" opacity="0.53" d="M140 124C111.997 189.98 0.115068 242.825 0.115068 242.825L1.20004e-05 29.1082C-0.0143704 13.1799 12.901 0.258761 28.8079 0.244372L62.8222 0.22998H151.5C162.805 11.4964 158.965 79.3146 140 124Z" fill="url(#paint2_linear_104_18)"/>
+<path id="Vector_4" opacity="0.53" d="M271 0L239.86 54.8051C231.397 69.7158 217.646 69.7348 209.183 54.8431L178 0.09485L271 0Z" fill="url(#paint3_linear_104_18)"/>
+<path id="Vector_5" opacity="0.53" d="M481.911 28.8351L482.026 249.89C474.274 250.192 466.406 247.4 460.481 241.458L284.944 66.03C273.639 54.7492 273.625 36.4036 284.915 25.1084L309.912 0.0719427L453.06 0C458.741 0 464.077 1.65471 468.535 4.53246C476.589 9.64047 481.911 18.6047 481.911 28.8351Z" fill="url(#paint4_linear_104_18)"/>
+<g id="Group_2">
+<g id="matricule">
+<g id="UMBREE 31091991">
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0.1em"><tspan x="180.114" y="169.227">UMBR</tspan><tspan x="276.935" y="169.227">E 31091991</tspan></text>
+<text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="24" font-weight="bold" letter-spacing="0.06em"><tspan x="260.8" y="169.227">E</tspan></text>
+</g>
+</g>
+<g id="specialite">
+<text id="Ing&#195;&#169;nieur Maintenance R&#195;&#169;seau infomratique Mali" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="16" font-weight="bold" letter-spacing="0.1em"><tspan x="211.567" y="60.3182">Ing&#xe9;nieur Maintenance </tspan><tspan x="201.037" y="79.3182">R&#xe9;seau infomratique Mali</tspan></text>
+</g>
+<g id="date">
+<text id="08/2023-08/2024" fill="white" xml:space="preserve" style="white-space: pre" font-family="Istok Web" font-size="16" font-weight="bold" letter-spacing="0.1em"><tspan x="286.128" y="248.086">08/2023-08/2024</tspan></text>
+</g>
+<g id="label titulaire">
+<text id="Titulaire de la carte" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inria Sans" font-size="16" letter-spacing="0em"><tspan x="41" y="200.024">Titulaire de la carte</tspan></text>
+</g>
+<g id="label date">
+<text id="P&#195;&#169;riode de Validit&#195;&#169;" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inria Sans" font-size="16" letter-spacing="0em"><tspan x="286" y="224.024">P&#xe9;riode de Validit&#xe9;</tspan></text>
+</g>
+<g id="nom group">
+<g id="Group_3">
+<text id="Titre" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inria Sans" font-size="20" font-weight="bold" letter-spacing="0em"><tspan x="41" y="225.53">DR </tspan></text>
+<text id="Nom" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inria Sans" font-size="20" font-weight="bold" letter-spacing="0em"><tspan x="76" y="225.53">Coulibaly </tspan></text>
+<text id="Prenom" fill="white" xml:space="preserve" style="white-space: pre" font-family="Inria Sans" font-size="20" font-weight="bold" letter-spacing="0em"><tspan x="41" y="252.53">Fatoumata Mohamed Ag</tspan></text>
+</g>
+</g>
+</g>
+<g id="Image">
+<rect x="41" y="45" width="90" height="90" fill="white"/>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_104_18" x1="52.8318" y1="341.204" x2="429.379" y2="-35.5889" gradientUnits="userSpaceOnUse">
+<stop stop-color="#00252E"/>
+<stop offset="1" stop-color="#83F8A6"/>
+</linearGradient>
+<linearGradient id="paint1_linear_104_18" x1="21.2943" y1="232.927" x2="334.091" y2="232.756" gradientUnits="userSpaceOnUse">
+<stop stop-color="#02CAFD"/>
+<stop offset="1" stop-color="#83F8A6"/>
+</linearGradient>
+<linearGradient id="paint2_linear_104_18" x1="-56.3052" y1="186.44" x2="96.3271" y2="33.7088" gradientUnits="userSpaceOnUse">
+<stop stop-color="#02CAFD"/>
+<stop offset="1" stop-color="#83F8A6"/>
+</linearGradient>
+<linearGradient id="paint3_linear_104_18" x1="201.26" y1="40.9373" x2="271.521" y2="0.915675" gradientUnits="userSpaceOnUse">
+<stop stop-color="#02CAFD"/>
+<stop offset="1" stop-color="#83F8A6"/>
+</linearGradient>
+<linearGradient id="paint4_linear_104_18" x1="750.435" y1="292.615" x2="212.587" y2="-25.1892" gradientUnits="userSpaceOnUse">
+<stop stop-color="#02CAFD"/>
+<stop offset="1" stop-color="#83F8A6"/>
+</linearGradient>
+</defs>
+</svg>
