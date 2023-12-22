@@ -60,7 +60,6 @@ export class EditUserModalComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.data.user;
     this.getAllTitres();
-    console.log(this.user.titre);
 
     this.updateForm = this.fb.group({
       lastName: [
@@ -95,7 +94,7 @@ export class EditUserModalComponent implements OnInit {
           value: this.user.specialite ? this.user.specialite : 'N/A',
           disabled: false,
         },
-        [Validators.required],
+        [Validators.required,Validators.minLength(3)],
       ],
     });
   }

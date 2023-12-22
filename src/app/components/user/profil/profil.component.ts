@@ -15,6 +15,7 @@ import { ImageService } from 'src/app/core/_services/images/image.service';
 import { UserService } from 'src/app/core/_services/user/user.service';
 import { EditUserPasswordComponent } from './edit-user-password/edit-user-password.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { EditUserMailModalComponent } from './edit-user-mail-modal/edit-user-mail-modal.component';
 
 @Component({
   selector: 'app-profil',
@@ -76,6 +77,14 @@ export class ProfilComponent implements OnDestroy, OnInit {
     });
   }
 
+  openEditMail() {
+    const isMobile = this.breakpointObserver.isMatched('(max-width: 599px)');
+    const dialogRef = this.dialog.open(EditUserMailModalComponent, {
+      width: isMobile ? '90vw' : '500px',
+    });
+    dialogRef.afterClosed().subscribe(() => {});
+  }
+
   openEditPassword() {
     const isMobile = this.breakpointObserver.isMatched('(max-width: 599px)');
     const dialogRef = this.dialog.open(EditUserPasswordComponent, {
@@ -95,7 +104,6 @@ export class ProfilComponent implements OnDestroy, OnInit {
       if (result) {
         this.changeDetectorRef.detectChanges();
       }
-      console.log('\n after close ');
     });
   }
   ngOnDestroy(): void {
