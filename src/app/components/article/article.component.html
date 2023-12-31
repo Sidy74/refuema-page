@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col">
+    <app-mini-article
+      *ngFor="let item of allArticles"
+      [cardTitle]="item.title"
+      [cardMedia]="item.media[0]"
+      [cardBodyText]="item.description"
+      
+    ></app-mini-article>
+  </div>
+  <div
+    class="col-3"
+    *ngIf="!isMobileScreen()"
+    style="background-color: black"
+  ></div>
+</div>

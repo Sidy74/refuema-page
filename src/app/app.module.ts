@@ -25,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
 import { RequestMakeComponent } from './components/request-make/request-make.component';
 import { PasswordResetModule } from './components/password-reset/password-reset.module';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { ArticleComponent } from './components/article/article.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     ObjectifsComponent,
     PresentationComponent,
     RequestMakeComponent,
+    ArticleComponent,
   ],
   imports: [
     BrowserModule,
