@@ -1,9 +1,11 @@
+<div class="page-hearder">
+  <div class="section-title">Ma carte</div>
+</div>
 <div *ngIf="isgeneradedCard" class="container">
-  <div>
-    <span id="section-title"> Section carte membre</span>
+  <div class="mb-4 mt-4">
     <button
       id="btn-print"
-      class="btn btn-primary btn-block mb-4"
+      class="btn btn-primary btn-block"
       printSectionId="print-section"
       [useExistingCss]="false"
       [previewOnly]="false"
@@ -13,6 +15,7 @@
       Imprimer
     </button>
   </div>
+ 
   <div id="print-section">
     <div class="card">
       <div class="frontcard">
@@ -38,10 +41,10 @@
   </button> -->
 </div>
 
-<div *ngIf="!isgeneradedCard" class="container">
+<div *ngIf="isgeneradedCard" class="container">
   <div class="d-flex justify-content-center p-2">
     <h3>
-      Vous n'avez pas encore de carte membre ? Générer votre carte membre.
+      Vous n'avez pas encore de carte membre ? Voir votre carte membre.
     </h3>
   </div>
   <div class="d-flex justify-content-center p-2">

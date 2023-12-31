@@ -25,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
 import { RequestMakeComponent } from './components/request-make/request-make.component';
 import { PasswordResetModule } from './components/password-reset/password-reset.module';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { CvComponent } from './components/user/cv/cv.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     ObjectifsComponent,
     PresentationComponent,
     RequestMakeComponent,
+    CvComponent,
   ],
   imports: [
     BrowserModule,

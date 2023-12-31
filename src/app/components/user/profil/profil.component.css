@@ -1,12 +1,4 @@
-.profil_header {
-  display: flex;
-  overflow: hidden;
-  width: 100%;
-  background-color: #013b45;
-  padding: 40px;
-  padding-right: 10px;
-  align-self: center;
-
+.page-hearder {
   & .profil_text {
     padding: auto;
     font-family: "Cairo";
@@ -46,7 +38,8 @@
   padding: 0px 5px;
 }
 
-.section-password,.section-mail,
+.section-password,
+.section-mail,
 .section-informations {
   margin-bottom: 32px;
 }
@@ -54,7 +47,8 @@
 #btn-primary {
   float: none !important;
 }
-#password ,#mail{
+#password,
+#mail {
   text-align: center;
   font-size: x-large;
 }
