@@ -11,6 +11,8 @@ import { UserComponent } from './components/user/user.component';
 import { PresentationComponent } from './components/presentation/presentation.component';
 import { RequestMakeComponent } from './components/request-make/request-make.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { CvComponent } from './components/user/cv/cv.component';
+import { ArticleComponent } from './components/article/article.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +22,7 @@ const routes: Routes = [
   { path: 'request-make', component: RequestMakeComponent },
   { path: 'passwordreset', component: PasswordResetComponent },
   { path: 'contact-us', component: ContactUsComponent },
+  { path: 'articles', component:  ArticleComponent },
 
   {
     path: 'user',
@@ -28,6 +31,7 @@ const routes: Routes = [
     children: [
       { path: 'profil', component: ProfilComponent },
       { path: 'card', component: CardComponent },
+      { path: 'cv', component: CvComponent },
     ],
   },
 ];

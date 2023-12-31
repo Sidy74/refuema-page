@@ -15,9 +15,11 @@ import { ProfilAvatarModule } from '../profil-avatar/profil-avatar.module';
 import { MatSelectModule } from '@angular/material/select';
 import { EditUserPasswordComponent } from '../edit-user-password/edit-user-password.component';
 import { EditUserMailModalComponent } from '../edit-user-mail-modal/edit-user-mail-modal.component';
+import { CvComponent } from '../../cv/cv.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [ProfilComponent, EditUserModalComponent, PhotoModalComponent,EditUserPasswordComponent,EditUserMailModalComponent],
+  declarations: [ProfilComponent, EditUserModalComponent, PhotoModalComponent,EditUserPasswordComponent,EditUserMailModalComponent,CvComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -29,7 +31,7 @@ import { EditUserMailModalComponent } from '../edit-user-mail-modal/edit-user-ma
     MatButtonModule,
     ProgressBarModule,
     ProfilAvatarModule,
-    MatSelectModule,
+    MatSelectModule,MatProgressSpinnerModule
   ],
 })
 export class ProfilModule {}
