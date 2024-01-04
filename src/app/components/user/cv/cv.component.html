@@ -5,7 +5,7 @@
   <div class="section-title">Mon CV (SOON)</div>
 </div>
 <!-- NO CV SECTION -->
-<div class="noCV">
+<div class="noCV" *ngIf="!haveCV">
   <div class="d-flex justify-content-center p-2">
     Vous n'avez pas encore de CV ? Ajouter votre CV.
   </div>
@@ -14,14 +14,25 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="haveCV ">
+  <div class="pt-4 ">
+    <button
+      class="btn"
+      id="btn-primary"
+      style="width: 100%;"
+      (click)="changeMode()"
+      *ngIf="!editMode"
+    >
+      Modifier mon cv
+    </button>
+  </div>
   <div
-    class="col-6"
-    style="overflow-y: scroll"
+    *ngIf="editMode"
+    class="col"
+    style="overflow-y: scroll; max-height: 800px; position: relative"
     [style.display]="isFullScreen ? 'none' : 'block'"
   >
     <!-- CV FORM SECTION -->
-
     <div class="wrapper mt-lg-5">
       <div class="accordion" id="accordionExample">
         <form [formGroup]="cvForm">
@@ -49,23 +60,21 @@
                 <div class="row mb-4">
                   <!-- Lastname -->
                   <div class="col-md-6">
-                    <label for="profile-title" class="form-label"> Nom </label>
+                    <label for="lastName" class="form-label"> Nom </label>
                     <input
                       formControlName="lastName"
                       type="text"
-                      id="profile-title"
+                      id="lastName"
                       class="form-control"
                     />
                   </div>
                   <!-- Firstname -->
                   <div class="col-md-6">
-                    <label for="profile-title" class="form-label">
-                      Prénom
-                    </label>
+                    <label for="firstName" class="form-label"> Prénom </label>
                     <input
                       formControlName="firstName"
                       type="text"
-                      id="profile-title"
+                      id="firstName"
                       class="form-control"
                     />
                   </div>
@@ -73,38 +82,35 @@
                 <div class="row mb-4">
                   <!-- mail -->
                   <div class="col-md-6">
-                    <label for="profile-title" class="form-label">
-                      email
-                    </label>
+                    <label for="mail" class="form-label"> email </label>
                     <input
                       formControlName="mail"
                       type="text"
-                      id="profile-title"
+                      id="mail"
                       class="form-control"
                     />
                   </div>
                   <!-- phone -->
                   <div class="col-md-6">
-                    <label for="profile-title" class="form-label">
-                      Téléphone
-                    </label>
+                    <label for="phone" class="form-label"> Téléphone </label>
                     <input
                       formControlName="phone"
                       type="text"
-                      id="profile-title"
+                      id="phone"
                       class="form-control"
+                      autocomplete="on"
                     />
                   </div>
                 </div>
                 <!-- spécialité -->
                 <div class="col-md-6">
-                  <label for="profile-title" class="form-label">
+                  <label for="specialite" class="form-label">
                     Spécialité
                   </label>
                   <input
                     formControlName="specialite"
                     type="text"
-                    id="profile-title"
+                    id="specialite"
                     class="form-control"
                   />
                 </div>
@@ -142,11 +148,13 @@
                   />
                 </div>
                 <div class="mb-4">
-                  <label for="profile" class="form-label">Description</label>
+                  <label for="description" class="form-label"
+                    >Description</label
+                  >
                   <textarea
                     formControlName="description"
                     class="form-control"
-                    id="profile-content"
+                    id="description"
                     placeholder="Description de votre profile"
                     required
                     rows="5"
@@ -178,7 +186,7 @@
             >
               <div class="accordion-body">
                 <div class="mb-4">
-                  <button (click)="ajouterExperience()" class="btn">
+                  <button (click)="addExperience()" class="btn">
                     Ajouter une expérience
                   </button>
                 </div>
@@ -248,7 +256,7 @@
                           <div class="row mb-4">
                             <div class="col-md-6">
                               <input
-                              formControlName="mois"
+                                formControlName="mois"
                                 type="text"
                                 id="profile-title"
                                 class="form-control"
@@ -256,7 +264,7 @@
                             </div>
                             <div class="col-md-6">
                               <input
-                              formControlName="annee"
+                                formControlName="annee"
                                 type="text"
                                 id="profile-title"
                                 class="form-control"
@@ -269,7 +277,7 @@
                           <div class="row mb-4">
                             <div class="col-md-6">
                               <input
-                              formControlName="mois"
+                                formControlName="mois"
                                 type="text"
                                 id="profile-title"
                                 class="form-control"
@@ -278,7 +286,7 @@
 
                             <div class="col-md-6">
                               <input
-                              formControlName="annee"
+                                formControlName="annee"
                                 type="text"
                                 id="profile-title"
                                 class="form-control"
@@ -306,7 +314,6 @@
               </div>
             </div>
           </div>
-
           <!-- Projets accordion -->
           <div class="accordion-item">
             <h2 class="accordion-header" id="heading4">
@@ -329,7 +336,7 @@
             >
               <div class="accordion-body">
                 <div class="mb-4">
-                  <button (click)="ajouterProjet()" class="btn">
+                  <button (click)="addProject()" class="btn">
                     Ajouter un projet
                   </button>
                 </div>
@@ -340,6 +347,11 @@
                   >
                     <div *ngIf="project as currentProject">
                       <div class="mb-4">
+                        <span (click)="deleteProject(i)">
+                          <mat-icon style="float: right; cursor: pointer"
+                            >delete</mat-icon
+                          >
+                        </span>
                         <label for="titre{{ i }}" class="form-label">
                           Titre
                         </label>
@@ -347,16 +359,28 @@
                           type="text"
                           id="titre{{ i }}"
                           class="form-control"
-                          formControlName="titre"
+                          formControlName="title"
                         />
                       </div>
                       <div class="mb-4">
-                        <label for="profile" class="form-label"
+                        <label for="link{{ i }}" class="form-label">
+                          Lien
+                        </label>
+                        <input
+                          type="text"
+                          id="link{{ i }}"
+                          class="form-control"
+                          formControlName="link"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label for="project-content{{ i }}" class="form-label"
                           >Description</label
                         >
                         <textarea
+                          formControlName="description"
                           class="form-control"
-                          id="profile-content"
+                          id="project-content{{ i }}"
                           placeholder="Description de votre expérience"
                           required
                           rows="5"
@@ -391,27 +415,283 @@
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body">
-                <div class="row mb-4">
-                  <div class="col-md-6">
-                    <label for="profile-title" class="form-label">
-                      Titre
-                    </label>
-                    <input type="text" class="form-control" />
+                <div class="mb-4">
+                  <button (click)="addCompetence()" class="btn">
+                    Ajouter une compétence
+                  </button>
+                </div>
+                <div formArrayName="competences">
+                  <div
+                    *ngFor="
+                      let competence of competences.controls;
+                      let i = index
+                    "
+                    [formGroupName]="i"
+                  >
+                    <div *ngIf="competence as currentCompetence">
+                      <span (click)="deleteCompetence(i)">
+                        <mat-icon style="float: right; cursor: pointer"
+                          >delete</mat-icon
+                        >
+                      </span>
+
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <label for="profile-title" class="form-label">
+                            Titre
+                          </label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="title"
+                          />
+                        </div>
+                        <div class="col-md-6">
+                          <label for="profile-title" class="form-label">
+                            Niveau
+                          </label>
+                          <mat-slider
+                            [step]="25"
+                            showTickMarks
+                            discrete
+                            [displayWith]="formatLabel"
+                            [min]="0"
+                            [max]="100"
+                          >
+                            <input matSliderThumb formControlName="level" />
+                          </mat-slider>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <label for="profile-title" class="form-label">
-                      Niveau
-                    </label>
-                    <mat-slider
-                      min="25"
-                      max="100"
-                      step="25"
-                      showTickMarks
-                      discrete
-                      [displayWith]="formatLabel"
-                    >
-                      <input matSliderThumb />
-                    </mat-slider>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Formations accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading6">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#formations'"
+                aria-expanded="false"
+                aria-controls="collapse6"
+              >
+                Formations
+              </div>
+            </h2>
+            <div
+              id="formations"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading6"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="mb-4">
+                  <button (click)="addFormation()" class="btn">
+                    Ajouter une formations
+                  </button>
+                </div>
+                <div formArrayName="formations">
+                  <div
+                    *ngFor="let formation of formations.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div *ngIf="formation as currentFormation">
+                      <div class="mb-4">
+                        <span (click)="deleteFormation(i)">
+                          <mat-icon style="float: right; cursor: pointer"
+                            >delete</mat-icon
+                          >
+                        </span>
+                        <label for="title{{ i }}" class="form-label">
+                          Titre (Diplôme)
+                        </label>
+                        <input
+                          formControlName="name"
+                          type="text"
+                          id="title{{ i }}"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label for="etablissement{{ i }}" class="form-label">
+                          Établissement
+                        </label>
+                        <input
+                          formControlName="etablissement"
+                          type="text"
+                          id="etablissement{{ i }}"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="row mb-4" formGroupName="periode">
+                        <div class="col-md-6">
+                          <label for="startDate{{ i }}" class="form-label">
+                            Année de début
+                          </label>
+                          <input
+                            formControlName="startDate"
+                            type="text"
+                            id="startDate{{ i }}"
+                            class="form-control"
+                          />
+                        </div>
+
+                        <div class="col-md-6">
+                          <label for="endDate{{ i }}" class="form-label">
+                            Année de fin
+                          </label>
+                          <input
+                            formControlName="endDate"
+                            type="text"
+                            id="endDate{{ i }}"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Langues accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading7">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#langues'"
+                aria-expanded="false"
+                aria-controls="collapse7"
+              >
+                Langues
+              </div>
+            </h2>
+            <div
+              id="langues"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading7"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="mb-4">
+                  <button (click)="addLangue()" class="btn">
+                    Ajouter une langue
+                  </button>
+                </div>
+                <div formArrayName="langues">
+                  <div
+                    *ngFor="let langue of langues.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div *ngIf="langue as currentLangue">
+                      <div class="mb-4">
+                        <span (click)="deleteLangue(i)">
+                          <mat-icon style="float: right; cursor: pointer"
+                            >delete</mat-icon
+                          >
+                        </span>
+                        <label for="langue{{ i }}" class="form-label">
+                          Langue
+                        </label>
+                        <input
+                          formControlName="langue"
+                          type="text"
+                          id="langue{{ i }}"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <label for="profile-title" class="form-label">
+                            Niveau
+                          </label>
+                          <mat-slider
+                            [step]="25"
+                            showTickMarks
+                            discrete
+                            [displayWith]="formatLabel"
+                            [min]="0"
+                            [max]="100"
+                          >
+                            <input matSliderThumb formControlName="level" />
+                          </mat-slider>
+                        </div>
+                        <div
+                          class="col-md-6 p-2"
+                          [ngSwitch]="
+                            this.cvFormControls['langues'].controls[i].value
+                              .level
+                          "
+                        >
+                          <span *ngSwitchCase="0">Niveau Zéro ?</span>
+                          <span *ngSwitchCase="25">Debutant</span>
+                          <span *ngSwitchCase="50">Intermédiaire</span>
+                          <span *ngSwitchCase="75">Avancé</span>
+                          <span *ngSwitchCase="100">Professionelle</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Hobbies accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading8">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#hobbies'"
+                aria-expanded="false"
+                aria-controls="collapse8"
+              >
+                hobbies
+              </div>
+            </h2>
+            <div
+              id="hobbies"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading8"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="mb-4">
+                  <button (click)="addHobbie()" class="btn">
+                    Ajouter un centre d'intérêt
+                  </button>
+                </div>
+                <div formArrayName="hobbies">
+                  <div
+                    *ngFor="let hobbie of hobbies.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div *ngIf="hobbie as currentHobbies">
+                      <div class="mb-4">
+                        <span (click)="deleteHobbie(i)">
+                          <mat-icon style="float: right; cursor: pointer"
+                            >delete</mat-icon
+                          >
+                        </span>
+                        <label for="interest {{ i }}" class="form-label">
+                          Titre
+                        </label>
+                        <input
+                          type="text"
+                          id="interest{{ i }}"
+                          class="form-control"
+                          formControlName="interest"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -422,7 +702,11 @@
     </div>
   </div>
   <div class="col">
-    <div class="wrapper mt-lg-5">
+    <div class="wrapper mt-lg-2">
+      <div class="action p-2">
+        <button class="btn btn-danger" (click)="cancelEditCV()"  *ngIf="editMode">Annuler</button>
+        <button class="btn" id="btn-primary" *ngIf="editMode">Valider</button>
+      </div>
       <!-- CV VIEW SECTION -->
       <app-cv-view
         *ngIf="haveCV"
@@ -447,8 +731,14 @@
           cvFormControls['profileForm'].controls['description'].value
         "
         [cvExperiences]="cvFormControls['experiences'].value"
+        [cvProjets]="cvFormControls['projects'].value"
+        [cvCompetences]="cvFormControls['competences'].value"
+        [cvFormations]="cvFormControls['formations'].value"
+        [cvLangues]="cvFormControls['langues'].value"
+        [cvHobbies]="cvFormControls['hobbies'].value"
       ></app-cv-view>
       <div
+      *ngIf="editMode"
         class=""
         (click)="fullScreen()"
         style="float: right; cursor: pointer"

@@ -11,7 +11,9 @@ import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.s
   styleUrls: ['./cv.component.css'],
 })
 export class CvComponent implements AfterContentInit {
-  haveCV: boolean = true;
+  
+  haveCV: boolean = false;
+  editMode: boolean = false;
   isFullScreen = false;
   isLoading = false;
   userInfos!: UserInfos;
@@ -49,15 +51,19 @@ export class CvComponent implements AfterContentInit {
       }),
       experiences: this.fb.array([]),
       projects: this.fb.array([]),
+      competences: this.fb.array([]),
+      formations: this.fb.array([]),
+      langues: this.fb.array([]),
+      hobbies: this.fb.array([]),
     });
     this.cvFormControls = this.cvForm.controls;
   }
 
+  // Expériences methodes
   get experiences(): FormArray {
     return this.cvForm.get('experiences') as FormArray;
   }
-
-  ajouterExperience() {
+  addExperience() {
     const nouvelleExperience = this.fb.group({
       title: [''],
       employer: [''],
@@ -77,16 +83,81 @@ export class CvComponent implements AfterContentInit {
   deleteExperience(index: number) {
     this.experiences.removeAt(index);
   }
-
+  // Projects methodes
   get projects(): FormArray {
     return this.cvForm.get('projects') as FormArray;
   }
-
-  ajouterProjet() {
-    const nouveauProjet = this.fb.group({});
+  addProject() {
+    const nouveauProjet = this.fb.group({
+      title: [],
+      description: [],
+      link: [],
+    });
     this.projects.push(nouveauProjet);
-    console.log(this.cvForm.controls['experiences'].value);
   }
+  deleteProject(index: number) {
+    this.projects.removeAt(index);
+  }
+  // Compétences methodes
+  get competences() {
+    return this.cvForm.get('competences') as FormArray;
+  }
+  addCompetence() {
+    const newCompetence = this.fb.group({
+      title: [],
+      level: [],
+    });
+    this.competences.push(newCompetence);
+  }
+  deleteCompetence(index: number) {
+    this.competences.removeAt(index);
+  }
+  // Formation methodes
+  get formations() {
+    return this.cvForm.get('formations') as FormArray;
+  }
+  addFormation() {
+    const newFormation = this.fb.group({
+      name: [],
+      etablissement: [],
+      periode: this.fb.group({
+        startDate: [''],
+        endDate: [''],
+      }),
+    });
+    this.formations.push(newFormation);
+  }
+  deleteFormation(index: number) {
+    this.formations.removeAt(index);
+  }
+  // Hobbies methodes
+  get hobbies() {
+    return this.cvForm.get('hobbies') as FormArray;
+  }
+  addHobbie() {
+    const newHobbie = this.fb.group({
+      interest: [],
+    });
+    this.hobbies.push(newHobbie);
+  }
+  deleteHobbie(index: number) {
+    this.hobbies.removeAt(index);
+  }
+  // Langues methodes
+  get langues() {
+    return this.cvForm.get('langues') as FormArray;
+  }
+  addLangue() {
+    const newLangue = this.fb.group({
+      langue: [],
+      level: [0, []],
+    });
+    this.langues.push(newLangue);
+  }
+  deleteLangue(index: number) {
+    this.langues.removeAt(index);
+  }
+
   ngAfterContentInit(): void {
     this.shareUserInfosService.getUserImage().subscribe({
       next: (value) => {
@@ -96,6 +167,7 @@ export class CvComponent implements AfterContentInit {
     this.shareUserInfosService.getUserData().subscribe({
       next: (value) => {
         if (value) this.userInfos = value;
+        this.setUserValue();
       },
       error(err) {
         console.log(err);
@@ -105,17 +177,37 @@ export class CvComponent implements AfterContentInit {
   setUserInfosInForm(userInfos: UserInfos) {}
 
   addCV() {
-    console.log('click');
-  }
-  fullScreen() {
-    this.isFullScreen = !this.isFullScreen;
+    this.haveCV = true;
+    this.editMode = true;
   }
 
+  cancelEditCV() {
+    this.editMode = false;
+  }
+  setUserCvValue() {}
+  setUserValue() {
+    this.cvForm.patchValue({
+      informationForm: {
+        lastName: this.userInfos.lastName,
+        firstName: this.userInfos.firstName,
+        mail: this.userInfos.mail,
+        phone: this.userInfos.phone,
+        specialite: this.userInfos.specialite,
+      },
+    });
+  }
+
+  changeMode() {
+    this.editMode = true;
+  }
   formatLabel(value: number): string {
     if (value >= 1000) {
       return Math.round(value / 1000) + 'k';
     }
-
     return `${value}`;
+  }
+
+  fullScreen() {
+    this.isFullScreen = !this.isFullScreen;
   }
 }
