@@ -364,7 +364,7 @@
           <div
             xmlns="http://www.w3.org/1999/xhtml"
             class="card-image"
-            [style.backgroundImage]="'url(' + cardImage + ')'"
+            [ngStyle]="{ 'background-image': 'url(' + cardImage + ')' }"
           ></div>
         </foreignObject>
       </g>

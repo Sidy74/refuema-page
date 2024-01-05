@@ -4,6 +4,8 @@ import { UserInfos } from 'src/app/core/_models/user..models';
 import { CvService } from 'src/app/core/_services/cv/cv.service';
 import { ImageService } from 'src/app/core/_services/images/image.service';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
+import { ToastService } from 'src/app/core/_services/toast/toast.service';
+import { years } from 'src/app/shared/_utils/years';
 
 @Component({
   selector: 'app-cv',
@@ -11,7 +13,7 @@ import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.s
   styleUrls: ['./cv.component.css'],
 })
 export class CvComponent implements AfterContentInit {
-  
+  years = years;
   haveCV: boolean = false;
   editMode: boolean = false;
   isFullScreen = false;
@@ -64,21 +66,25 @@ export class CvComponent implements AfterContentInit {
     return this.cvForm.get('experiences') as FormArray;
   }
   addExperience() {
-    const nouvelleExperience = this.fb.group({
-      title: [''],
-      employer: [''],
-      lieu: [''],
-      startDate: this.fb.group({
-        mois: [''],
-        annee: [''],
-      }),
-      endDate: this.fb.group({
-        mois: [''],
-        annee: [''],
-      }),
-      description: [''],
-    });
-    this.experiences.push(nouvelleExperience);
+    if (this.cvFormControls['experiences'].value.length == 3) {
+      console.log('max length');
+    } else {
+      const nouvelleExperience = this.fb.group({
+        title: [''],
+        employer: [''],
+        lieu: [''],
+        startDate: this.fb.group({
+          mois: [''],
+          annee: [''],
+        }),
+        endDate: this.fb.group({
+          mois: [''],
+          annee: [''],
+        }),
+        description: [''],
+      });
+      this.experiences.push(nouvelleExperience);
+    }
   }
   deleteExperience(index: number) {
     this.experiences.removeAt(index);

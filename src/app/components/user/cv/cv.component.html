@@ -14,12 +14,12 @@
   </div>
 </div>
 
-<div class="row" *ngIf="haveCV ">
-  <div class="pt-4 ">
+<div class="row" *ngIf="haveCV">
+  <div class="pt-4">
     <button
       class="btn"
       id="btn-primary"
-      style="width: 100%;"
+      style="width: 100%"
       (click)="changeMode()"
       *ngIf="!editMode"
     >
@@ -29,7 +29,7 @@
   <div
     *ngIf="editMode"
     class="col"
-    style="overflow-y: scroll; max-height: 800px; position: relative"
+    id="form-col"
     [style.display]="isFullScreen ? 'none' : 'block'"
   >
     <!-- CV FORM SECTION -->
@@ -184,9 +184,16 @@
               aria-labelledby="heading3"
               data-bs-parent="#accordionExample"
             >
+              <span class="item-number">
+                {{ cvFormControls["experiences"].value.length }}/3</span
+              >
               <div class="accordion-body">
                 <div class="mb-4">
-                  <button (click)="addExperience()" class="btn">
+                  <button
+                    (click)="addExperience()"
+                    class="btn"
+                    *ngIf="this.cvFormControls['experiences'].value.length < 3"
+                  >
                     Ajouter une expérience
                   </button>
                 </div>
@@ -202,13 +209,7 @@
                   >
                     <div
                       *ngIf="experience as currentExperience"
-                      style="
-                        border-radius: 8px;
-                        border-color: gray;
-                        border-width: 1px;
-                        border-style: solid;
-                        padding: 12px;
-                      "
+                      class="array-item"
                     >
                       <div class="mb-4">
                         <span (click)="deleteExperience(i)">
@@ -334,9 +335,16 @@
               aria-labelledby="heading4"
               data-bs-parent="#accordionExample"
             >
+              <span class="item-number">
+                {{ cvFormControls["projects"].value.length }}/5</span
+              >
               <div class="accordion-body">
                 <div class="mb-4">
-                  <button (click)="addProject()" class="btn">
+                  <button
+                    (click)="addProject()"
+                    class="btn"
+                    *ngIf="this.cvFormControls['projects'].value.length < 5"
+                  >
                     Ajouter un projet
                   </button>
                 </div>
@@ -345,7 +353,7 @@
                     *ngFor="let project of projects.controls; let i = index"
                     [formGroupName]="i"
                   >
-                    <div *ngIf="project as currentProject">
+                    <div *ngIf="project as currentProject" class="array-item">
                       <div class="mb-4">
                         <span (click)="deleteProject(i)">
                           <mat-icon style="float: right; cursor: pointer"
@@ -414,6 +422,9 @@
               aria-labelledby="heading5"
               data-bs-parent="#accordionExample"
             >
+              <span class="item-number">
+                {{ cvFormControls["competences"].value.length }}/3</span
+              >
               <div class="accordion-body">
                 <div class="mb-4">
                   <button (click)="addCompetence()" class="btn">
@@ -428,7 +439,10 @@
                     "
                     [formGroupName]="i"
                   >
-                    <div *ngIf="competence as currentCompetence">
+                    <div
+                      *ngIf="competence as currentCompetence"
+                      class="array-item"
+                    >
                       <span (click)="deleteCompetence(i)">
                         <mat-icon style="float: right; cursor: pointer"
                           >delete</mat-icon
@@ -488,9 +502,16 @@
               aria-labelledby="heading6"
               data-bs-parent="#accordionExample"
             >
+              <span class="item-number">
+                {{ cvFormControls["formations"].value.length }}/3</span
+              >
               <div class="accordion-body">
                 <div class="mb-4">
-                  <button (click)="addFormation()" class="btn">
+                  <button
+                    (click)="addFormation()"
+                    class="btn"
+                    *ngIf="this.cvFormControls['formations'].value.length < 3"
+                  >
                     Ajouter une formations
                   </button>
                 </div>
@@ -499,7 +520,10 @@
                     *ngFor="let formation of formations.controls; let i = index"
                     [formGroupName]="i"
                   >
-                    <div *ngIf="formation as currentFormation">
+                    <div
+                      *ngIf="formation as currentFormation"
+                      class="array-item"
+                    >
                       <div class="mb-4">
                         <span (click)="deleteFormation(i)">
                           <mat-icon style="float: right; cursor: pointer"
@@ -533,24 +557,35 @@
                           <label for="startDate{{ i }}" class="form-label">
                             Année de début
                           </label>
-                          <input
-                            formControlName="startDate"
-                            type="text"
+
+                          <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            type="select"
                             id="startDate{{ i }}"
-                            class="form-control"
-                          />
+                            formControlName="startDate"
+                          >
+                            <option *ngFor="let item of years" [value]="item">
+                              <span> {{ item }}</span>
+                            </option>
+                          </select>
                         </div>
 
                         <div class="col-md-6">
                           <label for="endDate{{ i }}" class="form-label">
                             Année de fin
                           </label>
-                          <input
-                            formControlName="endDate"
-                            type="text"
+                          <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            type="select"
                             id="endDate{{ i }}"
-                            class="form-control"
-                          />
+                            formControlName="endDate"
+                          >
+                            <option *ngFor="let item of years" [value]="item">
+                              <span> {{ item }}</span>
+                            </option>
+                          </select>
                         </div>
                       </div>
                     </div>
@@ -579,9 +614,12 @@
               aria-labelledby="heading7"
               data-bs-parent="#accordionExample"
             >
+            <span class="item-number">
+              {{ cvFormControls["langues"].value.length }}/3</span
+            >
               <div class="accordion-body">
                 <div class="mb-4">
-                  <button (click)="addLangue()" class="btn">
+                  <button (click)="addLangue()" class="btn" *ngIf="cvFormControls['langues'].value.length<3">
                     Ajouter une langue
                   </button>
                 </div>
@@ -590,7 +628,7 @@
                     *ngFor="let langue of langues.controls; let i = index"
                     [formGroupName]="i"
                   >
-                    <div *ngIf="langue as currentLangue">
+                    <div *ngIf="langue as currentLangue" class="array-item">
                       <div class="mb-4">
                         <span (click)="deleteLangue(i)">
                           <mat-icon style="float: right; cursor: pointer"
@@ -654,7 +692,7 @@
                 aria-expanded="false"
                 aria-controls="collapse8"
               >
-                hobbies
+                Centres d'intérêt
               </div>
             </h2>
             <div
@@ -663,9 +701,16 @@
               aria-labelledby="heading8"
               data-bs-parent="#accordionExample"
             >
+              <span class="item-number">
+                {{ cvFormControls["hobbies"].value.length }}/3</span
+              >
               <div class="accordion-body">
                 <div class="mb-4">
-                  <button (click)="addHobbie()" class="btn">
+                  <button
+                    (click)="addHobbie()"
+                    class="btn"
+                    *ngIf="this.cvFormControls['hobbies'].value.length < 3"
+                  >
                     Ajouter un centre d'intérêt
                   </button>
                 </div>
@@ -674,7 +719,7 @@
                     *ngFor="let hobbie of hobbies.controls; let i = index"
                     [formGroupName]="i"
                   >
-                    <div *ngIf="hobbie as currentHobbies">
+                    <div *ngIf="hobbie as currentHobbies" class="array-item">
                       <div class="mb-4">
                         <span (click)="deleteHobbie(i)">
                           <mat-icon style="float: right; cursor: pointer"
@@ -704,7 +749,13 @@
   <div class="col">
     <div class="wrapper mt-lg-2">
       <div class="action p-2">
-        <button class="btn btn-danger" (click)="cancelEditCV()"  *ngIf="editMode">Annuler</button>
+        <button
+          class="btn btn-danger"
+          (click)="cancelEditCV()"
+          *ngIf="editMode"
+        >
+          Annuler
+        </button>
         <button class="btn" id="btn-primary" *ngIf="editMode">Valider</button>
       </div>
       <!-- CV VIEW SECTION -->
@@ -738,7 +789,7 @@
         [cvHobbies]="cvFormControls['hobbies'].value"
       ></app-cv-view>
       <div
-      *ngIf="editMode"
+        *ngIf="editMode"
         class=""
         (click)="fullScreen()"
         style="float: right; cursor: pointer"

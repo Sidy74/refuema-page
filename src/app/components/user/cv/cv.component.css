@@ -1,11 +1,30 @@
-.accordion-button{
-    color: black;
-    text-align: center;
+.accordion-button {
+  color: black;
+  text-align: center;
 }
 .collapse:not(.show) {
-    display: none;
+  display: none;
 }
 
 .collapse .show {
-    display: block;
+  display: block;
+}
+
+.item-number {
+  float: right;
+  padding: 12px;
+}
+
+#form-col {
+  overflow-y: scroll;
+  max-height: 1000px;
+  position: relative;
+}
+.array-item {
+  border-radius: 8px;
+  border-color: gray;
+  border-width: 1px;
+  border-style: solid;
+  margin: 2px;
+  padding: 12px;
 }
