@@ -756,7 +756,7 @@
         >
           Annuler
         </button>
-        <button class="btn" id="btn-primary" *ngIf="editMode">Valider</button>
+        <button class="btn" id="btn-primary" *ngIf="editMode" (click)="addCV()" >Valider</button>
       </div>
       <!-- CV VIEW SECTION -->
       <app-cv-view

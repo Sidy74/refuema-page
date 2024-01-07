@@ -181,12 +181,6 @@ export class CvComponent implements AfterContentInit {
     });
   }
   setUserInfosInForm(userInfos: UserInfos) {}
-
-  addCV() {
-    this.haveCV = true;
-    this.editMode = true;
-  }
-
   cancelEditCV() {
     this.editMode = false;
   }
@@ -215,5 +209,25 @@ export class CvComponent implements AfterContentInit {
 
   fullScreen() {
     this.isFullScreen = !this.isFullScreen;
+  }
+  cvToFormData() {
+    let formData = new FormData();
+
+    console.log();
+
+    formData.append(
+      'description',
+      this.cvFormControls['profileForm'].controls['description'].value
+    );
+
+    console.log([...[formData]]);
+
+    return FormData;
+  }
+
+  addCV() {
+    this.haveCV = true;
+    this.editMode = true;
+    this.cvToFormData();
   }
 }
