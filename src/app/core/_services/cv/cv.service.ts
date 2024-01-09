@@ -11,4 +11,8 @@ export class CvService {
     let url = environment.apiUrl + '/cv/get';
     return this.http.get(url);
   }
+  addCV(cvData: FormData) {
+    let url = environment.apiUrl + '/add/cv';
+    return this.http.post(url, cvData);
+  }
 }
