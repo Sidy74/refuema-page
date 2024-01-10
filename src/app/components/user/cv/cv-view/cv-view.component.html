@@ -6,26 +6,28 @@
         {{ cvInformationTitle }} {{ cvInformationLastName }}
         {{ cvInformationFirstName }}
       </h3>
-      <h3 class="tagline">{{ cvInformationSpecialite }}</h3>
+      <!-- <h3 class="tagline">{{ cvInformationSpecialite }}</h3> -->
     </div>
     <!--//profile-container-->
 
     <div class="contact-container container-block">
       <ul class="list-unstyled contact-list">
         <li class="email">
-          <mat-icon>alternate_email</mat-icon
+          <mat-icon class="icon-display">alternate_email</mat-icon
           ><a href="mailto: yourname@email.com">{{ cvInformationMail }}</a>
         </li>
         <li class="phone" *ngIf="cvInformationPhone">
-          <mat-icon>phone_iphone</mat-icon>
+          <mat-icon class="icon-display">phone_iphone</mat-icon>
           <span class="p-1">
             <a [href]="cvInformationPhone">{{ cvInformationPhone }}</a></span
           >
         </li>
-        <!-- <li class="linkedin">
-                <i class="fa-brands fa-linkedin-in"></i
-                ><a href="#" target="_blank">linkedin.com/in/alandoe</a>
-              </li> -->
+        <span *ngIf="cvLinks.length > 0">
+          <li class="linkedin" *ngFor="let link of cvLinks">
+            <mat-icon class="icon-display">link</mat-icon>
+            ><a [href]="link.link" target="_blank"> {{ link.name }}</a>
+          </li></span
+        >
       </ul>
     </div>
     <!--Formations Section -->
@@ -38,7 +40,11 @@
         <h4 class="degree">{{ formation.name }}</h4>
         <h5 class="meta">{{ formation.etablissement }}</h5>
         <div class="time">
-          {{ formation.periode.startDate }} - {{ formation.periode.endDate }}
+          {{
+            formation.periode.startDate | customDate : "MOIS_ANNEE_UNIQUEMENT"
+          }}
+          -
+          {{ formation.periode.endDate | customDate : "MOIS_ANNEE_UNIQUEMENT" }}
         </div>
       </div>
     </div>
@@ -109,8 +115,8 @@
           <div class="upper-row">
             <h3 class="job-title">{{ item.title }}</h3>
             <div class="time">
-              {{ item.startDate.mois }} {{ item.startDate.annee }} -
-              {{ item.endDate.mois }} {{ item.endDate.annee }}
+              {{ item.startDate | customDate : "MOIS_ANNEE_UNIQUEMENT" }}-
+              {{ item.endDate | customDate : "MOIS_ANNEE_UNIQUEMENT" }}
             </div>
           </div>
           <!--//upper-row-->
@@ -121,7 +127,7 @@
         <!--//meta-->
         <div class="details">
           <p>
-            {{ item.decription }}
+            {{ item.description }}
           </p>
         </div>
         <!--//details-->
@@ -156,7 +162,7 @@
       </h2>
       <div class="skillset">
         <div class="item" *ngFor="let item of cvCompetences">
-          <h3 class="level-title">{{ item.title }}</h3>
+          <h3 class="level-title">{{ item.name }}</h3>
           <div class="progress level-bar">
             <div
               class="progress-bar theme-progress-bar"

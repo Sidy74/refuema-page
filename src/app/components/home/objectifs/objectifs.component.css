@@ -1,7 +1,9 @@
 .objectif {
   height: 100vh;
   padding: 30px;
-  background-color: white;
+  background-color: rgb(241, 245, 248);
+  border-radius: 18px;
+ 
 }
 @media screen and (max-width: 600px) {
   .objectif {
@@ -12,7 +14,7 @@
 
 .container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 12px;
 }
 
@@ -23,4 +25,8 @@
 
 .text {
   flex: 1;
+}
+
+li{
+  padding: 6px;
 }

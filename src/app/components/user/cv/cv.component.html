@@ -102,18 +102,6 @@
                     />
                   </div>
                 </div>
-                <!-- spécialité -->
-                <div class="col-md-6">
-                  <label for="specialite" class="form-label">
-                    Spécialité
-                  </label>
-                  <input
-                    formControlName="specialite"
-                    type="text"
-                    id="specialite"
-                    class="form-control"
-                  />
-                </div>
               </div>
             </div>
           </div>
@@ -164,6 +152,80 @@
               </div>
             </div>
           </div>
+          <!-- Liens reseau accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading10">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#links'"
+                aria-expanded="false"
+                aria-controls="collapse10"
+              >
+                Liens Réseau
+              </div>
+            </h2>
+            <div
+              id="links"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading10"
+              data-bs-parent="#accordionExample"
+            >
+              <span class="item-number">
+                {{ cvFormControls["links"].value.length }}/3</span
+              >
+              <div class="accordion-body">
+                <div class="mb-4">
+                  <button
+                    (click)="addLinks()"
+                    class="btn"
+                    *ngIf="this.cvFormControls['links'].value.length < 3"
+                  >
+                    Ajouter une expérience
+                  </button>
+                </div>
+                <!-- Afficher les expériences existantes -->
+                <div formArrayName="links">
+                  <div
+                    *ngFor="let link of links.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div *ngIf="link as currentLink" class="array-item">
+                      <div class="mb-4">
+                        <span (click)="deleteLink(i)">
+                          <mat-icon style="float: right; cursor: pointer"
+                            >delete</mat-icon
+                          >
+                        </span>
+                        <label for="name{{ i }}" class="form-label">
+                          Nom
+                        </label>
+                        <input
+                          type="text"
+                          id="name{{ i }}"
+                          class="form-control"
+                          formControlName="name"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label for="link{{ i }}" class="form-label">
+                          Lien
+                        </label>
+                        <input
+                          type="text"
+                          id="link{{ i }}"
+                          class="form-control"
+                          formControlName="link"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Expériences accordion -->
           <div class="accordion-item">
             <h2 class="accordion-header" id="heading3">
@@ -198,7 +260,6 @@
                   </button>
                 </div>
                 <!-- Afficher les expériences existantes -->
-
                 <div formArrayName="experiences">
                   <div
                     *ngFor="
@@ -251,51 +312,56 @@
                           />
                         </div>
                       </div>
+
                       <div class="row mb-4">
-                        <div class="col-md-6" formGroupName="startDate">
-                          Date de début
-                          <div class="row mb-4">
-                            <div class="col-md-6">
-                              <input
-                                formControlName="mois"
-                                type="text"
-                                id="profile-title"
-                                class="form-control"
-                              />
-                            </div>
-                            <div class="col-md-6">
-                              <input
-                                formControlName="annee"
-                                type="text"
-                                id="profile-title"
-                                class="form-control"
-                              />
-                            </div>
+                        <!-- Date de début -->
+                        <div class="col-md-6">
+                          <label for="startDate{{ i }}" class="form-label"
+                            >Date de début</label
+                          >
+                          <div class="input-group">
+                            <input
+                              matInput
+                              [matDatepicker]="startDatePicker"
+                              placeholder="Mois"
+                              formControlName="startDate"
+                              class="form-control custom-height-input"
+                              id="startDate{{ i }}"
+                              readonly
+                            />
+                            <span class="input-group-text custom-height-input">
+                              <mat-datepicker-toggle
+                                [for]="startDatePicker"
+                              ></mat-datepicker-toggle>
+                            </span>
+                            <mat-datepicker #startDatePicker></mat-datepicker>
                           </div>
                         </div>
-                        <div class="col-md-6" formGroupName="endDate">
-                          Date de fin
-                          <div class="row mb-4">
-                            <div class="col-md-6">
-                              <input
-                                formControlName="mois"
-                                type="text"
-                                id="profile-title"
-                                class="form-control"
-                              />
-                            </div>
 
-                            <div class="col-md-6">
-                              <input
-                                formControlName="annee"
-                                type="text"
-                                id="profile-title"
-                                class="form-control"
-                              />
-                            </div>
+                        <!-- Date de fin -->
+                        <div class="col-md-6">
+                          <label for="endDate{{ i }}" class="form-label"
+                            >Date de fin</label
+                          >
+                          <div class="input-group">
+                            <input
+                              matInput
+                              [matDatepicker]="endDatePicker"
+                              formControlName="endDate"
+                              class="form-control custom-height-input"
+                              id="endDate{{ i }}"
+                              readonly
+                            />
+                            <span class="input-group-text custom-height-input">
+                              <mat-datepicker-toggle
+                                [for]="endDatePicker"
+                              ></mat-datepicker-toggle>
+                            </span>
+                            <mat-datepicker #endDatePicker></mat-datepicker>
                           </div>
                         </div>
                       </div>
+
                       <div class="mb-4">
                         <label for="description{{ i }}" class="form-label"
                           >Description</label
@@ -361,9 +427,10 @@
                           >
                         </span>
                         <label for="titre{{ i }}" class="form-label">
-                          Titre
+                          Titre(SOON)
                         </label>
                         <input
+                          readonly
                           type="text"
                           id="titre{{ i }}"
                           class="form-control"
@@ -372,9 +439,10 @@
                       </div>
                       <div class="mb-4">
                         <label for="link{{ i }}" class="form-label">
-                          Lien
+                          Lien(SOON)
                         </label>
                         <input
+                          readonly
                           type="text"
                           id="link{{ i }}"
                           class="form-control"
@@ -383,13 +451,14 @@
                       </div>
                       <div class="mb-4">
                         <label for="project-content{{ i }}" class="form-label"
-                          >Description</label
-                        >
+                          >Description (SOON)
+                        </label>
                         <textarea
+                          readonly
                           formControlName="description"
                           class="form-control"
                           id="project-content{{ i }}"
-                          placeholder="Description de votre expérience"
+                          placeholder="Description de votre projet"
                           required
                           rows="5"
                           style="height: 100%"
@@ -399,7 +468,6 @@
                   </div>
                 </div>
               </div>
-              <!-- Add your content for "Projets" here -->
             </div>
           </div>
           <!-- Compétences accordion -->
@@ -457,7 +525,7 @@
                           <input
                             type="text"
                             class="form-control"
-                            formControlName="title"
+                            formControlName="name"
                           />
                         </div>
                         <div class="col-md-6">
@@ -544,6 +612,7 @@
                         <label for="etablissement{{ i }}" class="form-label">
                           Établissement
                         </label>
+
                         <input
                           formControlName="etablissement"
                           type="text"
@@ -553,39 +622,51 @@
                       </div>
 
                       <div class="row mb-4" formGroupName="periode">
+                        <!-- Date de début -->
                         <div class="col-md-6">
-                          <label for="startDate{{ i }}" class="form-label">
-                            Année de début
-                          </label>
-
-                          <select
-                            class="form-select"
-                            aria-label="Default select example"
-                            type="select"
-                            id="startDate{{ i }}"
-                            formControlName="startDate"
+                          <label for="startDate{{ i }}" class="form-label"
+                            >Date de début</label
                           >
-                            <option *ngFor="let item of years" [value]="item">
-                              <span> {{ item }}</span>
-                            </option>
-                          </select>
+                          <div class="input-group">
+                            <input
+                              matInput
+                              [matDatepicker]="startDatePicker"
+                              placeholder="Mois"
+                              formControlName="startDate"
+                              class="form-control custom-height-input"
+                              id="startDate{{ i }}"
+                              readonly
+                            />
+                            <span class="input-group-text custom-height-input">
+                              <mat-datepicker-toggle
+                                [for]="startDatePicker"
+                              ></mat-datepicker-toggle>
+                            </span>
+                            <mat-datepicker #startDatePicker></mat-datepicker>
+                          </div>
                         </div>
 
+                        <!-- Date de fin -->
                         <div class="col-md-6">
-                          <label for="endDate{{ i }}" class="form-label">
-                            Année de fin
-                          </label>
-                          <select
-                            class="form-select"
-                            aria-label="Default select example"
-                            type="select"
-                            id="endDate{{ i }}"
-                            formControlName="endDate"
+                          <label for="endDate{{ i }}" class="form-label"
+                            >Date de fin</label
                           >
-                            <option *ngFor="let item of years" [value]="item">
-                              <span> {{ item }}</span>
-                            </option>
-                          </select>
+                          <div class="input-group">
+                            <input
+                              matInput
+                              [matDatepicker]="endDatePicker"
+                              formControlName="endDate"
+                              class="form-control custom-height-input"
+                              id="endDate{{ i }}"
+                              readonly
+                            />
+                            <span class="input-group-text custom-height-input">
+                              <mat-datepicker-toggle
+                                [for]="endDatePicker"
+                              ></mat-datepicker-toggle>
+                            </span>
+                            <mat-datepicker #endDatePicker></mat-datepicker>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -614,12 +695,16 @@
               aria-labelledby="heading7"
               data-bs-parent="#accordionExample"
             >
-            <span class="item-number">
-              {{ cvFormControls["langues"].value.length }}/3</span
-            >
+              <span class="item-number">
+                {{ cvFormControls["langues"].value.length }}/3</span
+              >
               <div class="accordion-body">
                 <div class="mb-4">
-                  <button (click)="addLangue()" class="btn" *ngIf="cvFormControls['langues'].value.length<3">
+                  <button
+                    (click)="addLangue()"
+                    class="btn"
+                    *ngIf="cvFormControls['langues'].value.length < 3"
+                  >
                     Ajouter une langue
                   </button>
                 </div>
@@ -756,7 +841,17 @@
         >
           Annuler
         </button>
-        <button class="btn" id="btn-primary" *ngIf="editMode" (click)="addCV()" >Valider</button>
+        <button class="btn" id="btn-primary" *ngIf="editMode && !haveCV" (click)="addCV()">
+          Valider
+        </button>
+        <button
+          class="btn"
+          id="btn-primary"
+          *ngIf="editMode && haveCV"
+          (click)="updateCV()"
+        >
+          Modifier
+        </button>
       </div>
       <!-- CV VIEW SECTION -->
       <app-cv-view
@@ -787,6 +882,7 @@
         [cvFormations]="cvFormControls['formations'].value"
         [cvLangues]="cvFormControls['langues'].value"
         [cvHobbies]="cvFormControls['hobbies'].value"
+        [cvLinks]="cvFormControls['links'].value"
       ></app-cv-view>
       <div
         *ngIf="editMode"
