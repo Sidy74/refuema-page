@@ -5,9 +5,21 @@ import { CvComponent } from '../cv.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { CustomDatePipe } from 'src/app/core/_pipes/custom-date/custom-date.pipe';
 
 @NgModule({
-  declarations: [CvViewComponent, CvComponent],
-  imports: [CommonModule, MatIconModule, ReactiveFormsModule, MatSliderModule],
+  declarations: [CvViewComponent, CvComponent, CustomDatePipe],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatSliderModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
+  exports: [],
+  providers: [CustomDatePipe],
 })
 export class CvModule {}

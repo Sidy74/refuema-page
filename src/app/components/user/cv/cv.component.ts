@@ -1,6 +1,15 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { AfterContentInit, Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  Form,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { elementAt } from 'rxjs';
 import { UserInfos } from 'src/app/core/_models/user..models';
+import { CustomDatePipe } from 'src/app/core/_pipes/custom-date/custom-date.pipe';
 import { CvService } from 'src/app/core/_services/cv/cv.service';
 import { ImageService } from 'src/app/core/_services/images/image.service';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
@@ -22,12 +31,16 @@ export class CvComponent implements AfterContentInit {
   userImage!: string;
   cvForm!: FormGroup;
   cvFormControls: any;
+  startDatePicker: any;
+  currentCvId!: number;
 
   constructor(
     private fb: FormBuilder,
     private cvService: CvService,
     private shareUserInfosService: ShareUserInfosService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private customDatePipe: CustomDatePipe,
+    private toastService: ToastService
   ) {
     this.cvForm = this.fb.group({
       informationForm: this.fb.group({
@@ -57,14 +70,75 @@ export class CvComponent implements AfterContentInit {
       formations: this.fb.array([]),
       langues: this.fb.array([]),
       hobbies: this.fb.array([]),
+      links: this.fb.array([]),
     });
     this.cvFormControls = this.cvForm.controls;
+  }
+  ngAfterContentInit(): void {
+    this.shareUserInfosService.getUserImage().subscribe({
+      next: (value) => {
+        this.userImage = this.imageService.getImageUrl(value);
+      },
+    });
+    this.shareUserInfosService.getUserData().subscribe({
+      next: (value) => {
+        if (value) this.userInfos = value;
+        this.setUserValue();
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
+    this.cvService.getCV().subscribe({
+      next: (value: any) => {
+        console.log(value);
+        this.haveCV = !this.haveCV;
+        if (value.cv.description) {
+          this.cvFormControls['profileForm'].controls['description'].patchValue(
+            value.cv.description
+          );
+        }
+        if (value.cv.id) {
+          this.currentCvId = value.cv.id;
+        }
+        if (value && value.cv && value.cv.experiences) {
+          this.experiences = value.cv.experiences;
+        }
+        if (value && value.cv && value.cv.competences) {
+          this.competences = value.cv.competences;
+        }
+        if (value.cv.langues) {
+          this.langues = value.cv.langues;
+        }
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
   }
 
   // Expériences methodes
   get experiences(): FormArray {
     return this.cvForm.get('experiences') as FormArray;
   }
+  set experiences(value: any) {
+    // Effacez les contrôles existants
+    this.experiences.clear();
+
+    // Itérez sur les données reçues et ajoutez de nouvelles instances de FormGroup à la FormArray
+    value.forEach((experienceData: any) => {
+      const nouvelleExperience = this.fb.group({
+        title: [experienceData.nom || ''],
+        employer: [experienceData.employeur || ''],
+        lieu: [experienceData.lieu || ''],
+        startDate: [experienceData.debut || ''],
+        endDate: [experienceData.fin || ''],
+        description: [experienceData.description || ''],
+      });
+      this.experiences.push(nouvelleExperience);
+    });
+  }
+
   addExperience() {
     if (this.cvFormControls['experiences'].value.length == 3) {
       console.log('max length');
@@ -73,14 +147,8 @@ export class CvComponent implements AfterContentInit {
         title: [''],
         employer: [''],
         lieu: [''],
-        startDate: this.fb.group({
-          mois: [''],
-          annee: [''],
-        }),
-        endDate: this.fb.group({
-          mois: [''],
-          annee: [''],
-        }),
+        startDate: [''],
+        endDate: [''],
         description: [''],
       });
       this.experiences.push(nouvelleExperience);
@@ -89,6 +157,26 @@ export class CvComponent implements AfterContentInit {
   deleteExperience(index: number) {
     this.experiences.removeAt(index);
   }
+
+  // Reseau liens Methodes
+  get links(): FormArray {
+    return this.cvForm.get('links') as FormArray;
+  }
+  addLinks() {
+    if (this.cvFormControls['links'].value.length == 3) {
+      console.log('max length');
+    } else {
+      const newLink = this.fb.group({
+        name: [''],
+        link: [''],
+      });
+      this.links.push(newLink);
+    }
+  }
+  deleteLink(index: number) {
+    this.links.removeAt(index);
+  }
+
   // Projects methodes
   get projects(): FormArray {
     return this.cvForm.get('projects') as FormArray;
@@ -108,9 +196,21 @@ export class CvComponent implements AfterContentInit {
   get competences() {
     return this.cvForm.get('competences') as FormArray;
   }
+  set competences(value: any) {
+    this.competences.clear();
+    value.forEach((competenceData: any) => {
+      const nouvelleCompetence = this.fb.group({
+        name: [competenceData.nom || ''],
+        description: [competenceData.description || 'N/A'],
+        level: [competenceData.niveau || ''],
+      });
+      this.competences.push(nouvelleCompetence);
+    });
+  }
   addCompetence() {
     const newCompetence = this.fb.group({
-      title: [],
+      name: [],
+      description: ['N/A'],
       level: [],
     });
     this.competences.push(newCompetence);
@@ -140,6 +240,15 @@ export class CvComponent implements AfterContentInit {
   get hobbies() {
     return this.cvForm.get('hobbies') as FormArray;
   }
+  set hobbies(value: any) {
+    this.hobbies.clear();
+    value.forEach((hobbieData: any) => {
+      const nouvelleHobbie = this.fb.group({
+        name: [hobbieData.nom || ''],
+      });
+      this.hobbies.push(nouvelleHobbie);
+    });
+  }
   addHobbie() {
     const newHobbie = this.fb.group({
       interest: [],
@@ -153,6 +262,16 @@ export class CvComponent implements AfterContentInit {
   get langues() {
     return this.cvForm.get('langues') as FormArray;
   }
+  set langues(value: any) {
+    this.langues.clear();
+    value.forEach((langueData: any) => {
+      const nouvelleLangue = this.fb.group({
+        langue: [langueData.nom || ''],
+        level: [langueData.langue || ''],
+      });
+      this.langues.push(nouvelleLangue);
+    });
+  }
   addLangue() {
     const newLangue = this.fb.group({
       langue: [],
@@ -164,27 +283,10 @@ export class CvComponent implements AfterContentInit {
     this.langues.removeAt(index);
   }
 
-  ngAfterContentInit(): void {
-    this.shareUserInfosService.getUserImage().subscribe({
-      next: (value) => {
-        this.userImage = this.imageService.getImageUrl(value);
-      },
-    });
-    this.shareUserInfosService.getUserData().subscribe({
-      next: (value) => {
-        if (value) this.userInfos = value;
-        this.setUserValue();
-      },
-      error(err) {
-        console.log(err);
-      },
-    });
-  }
   setUserInfosInForm(userInfos: UserInfos) {}
   cancelEditCV() {
     this.editMode = false;
   }
-  setUserCvValue() {}
   setUserValue() {
     this.cvForm.patchValue({
       informationForm: {
@@ -192,7 +294,9 @@ export class CvComponent implements AfterContentInit {
         firstName: this.userInfos.firstName,
         mail: this.userInfos.mail,
         phone: this.userInfos.phone,
-        specialite: this.userInfos.specialite,
+      },
+      profileForm: {
+        title: this.userInfos.specialite,
       },
     });
   }
@@ -213,21 +317,118 @@ export class CvComponent implements AfterContentInit {
   cvToFormData() {
     let formData = new FormData();
 
-    console.log();
+    formData.append('description', 'description');
+    // formamtions
+    if (this.formations.length > 0) {
+      this.formations.controls.forEach((element, index) => {
+        formData.append(`formation_nom[${index}]`, element.value.name);
+        // Problemes Two dates
+        formData.append(
+          `formation_beginAt[${index}]`,
+          element.value.periode.startDate
+            ? this.customDatePipe.transform(
+                element.value.periode.startDate,
+                'JOUR_MOIS_ANNEE_UNIQUEMENT'
+              )
+            : '00/00/0000'
+        );
+        formData.append(
+          `formation_finishAt[${index}]`,
+          element.value.periode.endDate
+            ? this.customDatePipe.transform(
+                element.value.periode.endDate,
+                'JOUR_MOIS_ANNEE_UNIQUEMENT'
+              )
+            : '00/00/0000'
+        );
+        formData.append(`formation_description[${index}]`, 'N/A');
+        formData.append(
+          `formation_etablissement[${index}]`,
+          element.value.etablissement
+        );
+      });
+    }
+    // competence
+    if (this.competences.length > 0) {
+      this.competences.controls.forEach((element: any, index: number) => {
+        formData.append(`competence_nom[${index}]`, element.value.name);
+        formData.append(`competence_description[${index}]`, 'N/A');
+        formData.append(`competence_niveau[${index}]`, element.value.level);
+      });
+    }
 
-    formData.append(
-      'description',
-      this.cvFormControls['profileForm'].controls['description'].value
-    );
+    //experience
+    if (this.experiences.length > 0) {
+      this.experiences.controls.forEach((element, index) => {
+        formData.append(`expe_titre[${index}]`, element.value.title);
+        formData.append(`expe_employeur[${index}]`, element.value.employer);
+        formData.append(`expe_lieu[${index}]`, element.value.lieu);
+        formData.append(
+          `expe_beginAt[${index}]`,
+          element.value.startDate
+            ? this.customDatePipe.transform(
+                element.value.startDate,
+                'JOUR_MOIS_ANNEE_UNIQUEMENT'
+              )
+            : '00/00/0000'
+        );
+        formData.append(
+          `expe_finishAt[${index}]`,
+          element.value.endDate
+            ? this.customDatePipe.transform(
+                element.value.endDate,
+                'JOUR_MOIS_ANNEE_UNIQUEMENT'
+              )
+            : '00/00/0000'
+        );
+        formData.append(
+          `expe_description[${index}]`,
+          element.value.description
+        );
+      });
+    }
 
-    console.log([...[formData]]);
+    //reseau
+    if (this.links.length > 0) {
+      this.links.controls.forEach((element, index) => {
+        formData.append(`reseau_nom[${index}]`, element.value.name);
+        formData.append(`reseau_lien[${index}]`, element.value.link);
+      });
+    }
 
-    return FormData;
+    //langue
+    if (this.langues.length > 0) {
+      this.langues.controls.forEach((element: any, index: number) => {
+        formData.append(`langue_nom[${index}]`, element.value.langue);
+        formData.append(`langue_niveau[${index}]`, element.value.level);
+      });
+    }
+    return formData;
   }
 
   addCV() {
-    this.haveCV = true;
-    this.editMode = true;
     this.cvToFormData();
+    this.cvService.addCV(this.cvToFormData()).subscribe({
+      next: (value) => {
+        this.toastService.openSuccess('Votre CV a bien été ajouté', 'X');
+        this.haveCV = !this.haveCV;
+        this.editMode = !this.editMode;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+        if (err.message.includes('Vous avez déjà créer un CV'))
+          this.toastService.openSuccess('Vous avez déjà créer un CV', 'X');
+      },
+    });
+  }
+  updateCV() {
+    this.cvService.updateCV(this.currentCvId, this.cvToFormData()).subscribe({
+      next(value) {
+        console.log(value);
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
   }
 }

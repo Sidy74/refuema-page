@@ -28,3 +28,8 @@
   margin: 2px;
   padding: 12px;
 }
+.custom-height-input {
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  height: 36px; /* Adjust the height as needed */
+}

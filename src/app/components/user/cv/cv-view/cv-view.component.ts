@@ -1,9 +1,4 @@
 import { Component, Input } from '@angular/core';
-import {
-  cvCompetence,
-  CvProjet,
-  CvExperience,
-} from 'src/app/core/_models/cv.model';
 
 @Component({
   selector: 'app-cv-view',
@@ -12,7 +7,6 @@ import {
 })
 export class CvViewComponent {
   @Input() cvUserImage: string = 'N/A';
-  @Input() cvProfilText: string = 'N/A';
   @Input() cvProfileDescription!: string;
   @Input() cvProfileTitle!: string;
   @Input() cvInformationFirstName!: string;
@@ -21,10 +15,11 @@ export class CvViewComponent {
   @Input() cvInformationMail!: string;
   @Input() cvInformationTitle!: string;
   @Input() cvInformationSpecialite!: string;
-  @Input() cvCompetences!: Array<cvCompetence>;
+  @Input() cvCompetences!: Array<any>;
   @Input() cvFormations!: Array<any>;
   @Input() cvProjets!: Array<any>;
   @Input() cvExperiences!: Array<any>;
-  @Input() cvLangues !:Array<any>
-  @Input() cvHobbies !: Array<any>;
+  @Input() cvLangues!: Array<any>;
+  @Input() cvHobbies!: Array<any>;
+  @Input() cvLinks!: Array<any>;
 }

@@ -1,4 +1,7 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +30,9 @@ import { PasswordResetModule } from './components/password-reset/password-reset.
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { ArticleComponent } from './components/article/article.component';
 import { MiniMiniCardComponent } from './components/mini-mini-card/mini-mini-card.component';
+import { DatePipe } from '@angular/common';
 
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
@@ -61,6 +66,7 @@ import { MiniMiniCardComponent } from './components/mini-mini-card/mini-mini-car
     PasswordResetModule,
   ],
   providers: [
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
