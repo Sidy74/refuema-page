@@ -2,441 +2,819 @@
     <input *ngIf="editMode" (blur)="disableEditMode(); updateContent()" /> -->
 
 <div class="page-hearder">
-  <div class="section-title">Mon CV (SOON) </div>
+  <div class="section-title">Mon CV (SOON)</div>
 </div>
-
-<div class="" *ngIf="haveCV">
+<!-- NO CV SECTION -->
+<div class="noCV" *ngIf="!haveCV">
   <div class="d-flex justify-content-center p-2">
     Vous n'avez pas encore de CV ? Ajouter votre CV.
   </div>
   <div class="d-flex justify-content-center p-2">
     <button class="btn" id="btn-primary" (click)="addCV()">Ajouter CV</button>
   </div>
+</div>
 
-  <div class="" *ngIf="haveCV">
+<div class="row" *ngIf="haveCV">
+  <div class="pt-4">
+    <button
+      class="btn"
+      id="btn-primary"
+      style="width: 100%"
+      (click)="changeMode()"
+      *ngIf="!editMode"
+    >
+      Modifier mon cv
+    </button>
+  </div>
+  <div
+    *ngIf="editMode"
+    class="col"
+    id="form-col"
+    [style.display]="isFullScreen ? 'none' : 'block'"
+  >
+    <!-- CV FORM SECTION -->
     <div class="wrapper mt-lg-5">
-      <!-- Loading Overlay -->
-      <div class="overlay" *ngIf="isLoading">
-        <div
-          class=""
-          style="
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            align-items: center;
-          "
+      <div class="accordion" id="accordionExample">
+        <form [formGroup]="cvForm">
+          <!-- Mes Informations accordion -->
+          <div class="accordion-item" formGroupName="informationForm">
+            <h2 class="accordion-header" id="heading2">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#information'"
+                aria-expanded="false"
+                aria-controls="collapse"
+              >
+                Informations personnelles
+              </div>
+            </h2>
+            <div
+              id="information"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading2"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="row mb-4">
+                  <!-- Lastname -->
+                  <div class="col-md-6">
+                    <label for="lastName" class="form-label"> Nom </label>
+                    <input
+                      formControlName="lastName"
+                      type="text"
+                      id="lastName"
+                      class="form-control"
+                    />
+                  </div>
+                  <!-- Firstname -->
+                  <div class="col-md-6">
+                    <label for="firstName" class="form-label"> Prénom </label>
+                    <input
+                      formControlName="firstName"
+                      type="text"
+                      id="firstName"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-4">
+                  <!-- mail -->
+                  <div class="col-md-6">
+                    <label for="mail" class="form-label"> email </label>
+                    <input
+                      formControlName="mail"
+                      type="text"
+                      id="mail"
+                      class="form-control"
+                    />
+                  </div>
+                  <!-- phone -->
+                  <div class="col-md-6">
+                    <label for="phone" class="form-label"> Téléphone </label>
+                    <input
+                      formControlName="phone"
+                      type="text"
+                      id="phone"
+                      class="form-control"
+                      autocomplete="on"
+                    />
+                  </div>
+                </div>
+                <!-- spécialité -->
+                <div class="col-md-6">
+                  <label for="specialite" class="form-label">
+                    Spécialité
+                  </label>
+                  <input
+                    formControlName="specialite"
+                    type="text"
+                    id="specialite"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Profile accordion -->
+          <div class="accordion-item" formGroupName="profileForm">
+            <h2 class="accordion-header" id="heading1">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#profile'"
+                aria-expanded="false"
+                aria-controls="collapse1"
+              >
+                Profile
+              </div>
+            </h2>
+            <div
+              id="profile"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading1"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="mb-4">
+                  <label for="profile-title" class="form-label"> Titre </label>
+                  <input
+                    formControlName="title"
+                    type="text"
+                    id="profile-title"
+                    class="form-control"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="description" class="form-label"
+                    >Description</label
+                  >
+                  <textarea
+                    formControlName="description"
+                    class="form-control"
+                    id="description"
+                    placeholder="Description de votre profile"
+                    required
+                    rows="5"
+                    style="height: 100%"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Expériences accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading3">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#experiences'"
+                aria-expanded="false"
+                aria-controls="collapse3"
+              >
+                Expériences
+              </div>
+            </h2>
+            <div
+              id="experiences"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading3"
+              data-bs-parent="#accordionExample"
+            >
+              <span class="item-number">
+                {{ cvFormControls["experiences"].value.length }}/3</span
+              >
+              <div class="accordion-body">
+                <div class="mb-4">
+                  <button
+                    (click)="addExperience()"
+                    class="btn"
+                    *ngIf="this.cvFormControls['experiences'].value.length < 3"
+                  >
+                    Ajouter une expérience
+                  </button>
+                </div>
+                <!-- Afficher les expériences existantes -->
+
+                <div formArrayName="experiences">
+                  <div
+                    *ngFor="
+                      let experience of experiences.controls;
+                      let i = index
+                    "
+                    [formGroupName]="i"
+                  >
+                    <div
+                      *ngIf="experience as currentExperience"
+                      class="array-item"
+                    >
+                      <div class="mb-4">
+                        <span (click)="deleteExperience(i)">
+                          <mat-icon style="float: right; cursor: pointer"
+                            >delete</mat-icon
+                          >
+                        </span>
+                        <label for="titre{{ i }}" class="form-label">
+                          Titre
+                        </label>
+                        <input
+                          type="text"
+                          id="titre{{ i }}"
+                          class="form-control"
+                          formControlName="title"
+                        />
+                      </div>
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <label for="employeur{{ i }}" class="form-label">
+                            Employeur
+                          </label>
+                          <input
+                            type="text"
+                            id="employeur{{ i }}"
+                            class="form-control"
+                            formControlName="employer"
+                          />
+                        </div>
+                        <div class="col-md-6">
+                          <label for="lieu{{ i }}" class="form-label">
+                            Lieu
+                          </label>
+                          <input
+                            type="text"
+                            id="lieu{{ i }}"
+                            class="form-control"
+                            formControlName="lieu"
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-4">
+                        <div class="col-md-6" formGroupName="startDate">
+                          Date de début
+                          <div class="row mb-4">
+                            <div class="col-md-6">
+                              <input
+                                formControlName="mois"
+                                type="text"
+                                id="profile-title"
+                                class="form-control"
+                              />
+                            </div>
+                            <div class="col-md-6">
+                              <input
+                                formControlName="annee"
+                                type="text"
+                                id="profile-title"
+                                class="form-control"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6" formGroupName="endDate">
+                          Date de fin
+                          <div class="row mb-4">
+                            <div class="col-md-6">
+                              <input
+                                formControlName="mois"
+                                type="text"
+                                id="profile-title"
+                                class="form-control"
+                              />
+                            </div>
+
+                            <div class="col-md-6">
+                              <input
+                                formControlName="annee"
+                                type="text"
+                                id="profile-title"
+                                class="form-control"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-4">
+                        <label for="description{{ i }}" class="form-label"
+                          >Description</label
+                        >
+                        <textarea
+                          id="description{{ i }}"
+                          class="form-control"
+                          formControlName="description"
+                          placeholder="Description de votre expérience"
+                          required
+                          rows="5"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Projets accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading4">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#projets'"
+                aria-expanded="false"
+                aria-controls="collapse4"
+              >
+                Projets
+              </div>
+            </h2>
+            <div
+              id="projets"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading4"
+              data-bs-parent="#accordionExample"
+            >
+              <span class="item-number">
+                {{ cvFormControls["projects"].value.length }}/5</span
+              >
+              <div class="accordion-body">
+                <div class="mb-4">
+                  <button
+                    (click)="addProject()"
+                    class="btn"
+                    *ngIf="this.cvFormControls['projects'].value.length < 5"
+                  >
+                    Ajouter un projet
+                  </button>
+                </div>
+                <div formArrayName="projects">
+                  <div
+                    *ngFor="let project of projects.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div *ngIf="project as currentProject" class="array-item">
+                      <div class="mb-4">
+                        <span (click)="deleteProject(i)">
+                          <mat-icon style="float: right; cursor: pointer"
+                            >delete</mat-icon
+                          >
+                        </span>
+                        <label for="titre{{ i }}" class="form-label">
+                          Titre
+                        </label>
+                        <input
+                          type="text"
+                          id="titre{{ i }}"
+                          class="form-control"
+                          formControlName="title"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label for="link{{ i }}" class="form-label">
+                          Lien
+                        </label>
+                        <input
+                          type="text"
+                          id="link{{ i }}"
+                          class="form-control"
+                          formControlName="link"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label for="project-content{{ i }}" class="form-label"
+                          >Description</label
+                        >
+                        <textarea
+                          formControlName="description"
+                          class="form-control"
+                          id="project-content{{ i }}"
+                          placeholder="Description de votre expérience"
+                          required
+                          rows="5"
+                          style="height: 100%"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Add your content for "Projets" here -->
+            </div>
+          </div>
+          <!-- Compétences accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading5">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#competences'"
+                aria-expanded="false"
+                aria-controls="collapse5"
+              >
+                Compétences
+              </div>
+            </h2>
+            <div
+              id="competences"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading5"
+              data-bs-parent="#accordionExample"
+            >
+              <span class="item-number">
+                {{ cvFormControls["competences"].value.length }}/3</span
+              >
+              <div class="accordion-body">
+                <div class="mb-4">
+                  <button (click)="addCompetence()" class="btn">
+                    Ajouter une compétence
+                  </button>
+                </div>
+                <div formArrayName="competences">
+                  <div
+                    *ngFor="
+                      let competence of competences.controls;
+                      let i = index
+                    "
+                    [formGroupName]="i"
+                  >
+                    <div
+                      *ngIf="competence as currentCompetence"
+                      class="array-item"
+                    >
+                      <span (click)="deleteCompetence(i)">
+                        <mat-icon style="float: right; cursor: pointer"
+                          >delete</mat-icon
+                        >
+                      </span>
+
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <label for="profile-title" class="form-label">
+                            Titre
+                          </label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="title"
+                          />
+                        </div>
+                        <div class="col-md-6">
+                          <label for="profile-title" class="form-label">
+                            Niveau
+                          </label>
+                          <mat-slider
+                            [step]="25"
+                            showTickMarks
+                            discrete
+                            [displayWith]="formatLabel"
+                            [min]="0"
+                            [max]="100"
+                          >
+                            <input matSliderThumb formControlName="level" />
+                          </mat-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Formations accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading6">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#formations'"
+                aria-expanded="false"
+                aria-controls="collapse6"
+              >
+                Formations
+              </div>
+            </h2>
+            <div
+              id="formations"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading6"
+              data-bs-parent="#accordionExample"
+            >
+              <span class="item-number">
+                {{ cvFormControls["formations"].value.length }}/3</span
+              >
+              <div class="accordion-body">
+                <div class="mb-4">
+                  <button
+                    (click)="addFormation()"
+                    class="btn"
+                    *ngIf="this.cvFormControls['formations'].value.length < 3"
+                  >
+                    Ajouter une formations
+                  </button>
+                </div>
+                <div formArrayName="formations">
+                  <div
+                    *ngFor="let formation of formations.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div
+                      *ngIf="formation as currentFormation"
+                      class="array-item"
+                    >
+                      <div class="mb-4">
+                        <span (click)="deleteFormation(i)">
+                          <mat-icon style="float: right; cursor: pointer"
+                            >delete</mat-icon
+                          >
+                        </span>
+                        <label for="title{{ i }}" class="form-label">
+                          Titre (Diplôme)
+                        </label>
+                        <input
+                          formControlName="name"
+                          type="text"
+                          id="title{{ i }}"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label for="etablissement{{ i }}" class="form-label">
+                          Établissement
+                        </label>
+                        <input
+                          formControlName="etablissement"
+                          type="text"
+                          id="etablissement{{ i }}"
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="row mb-4" formGroupName="periode">
+                        <div class="col-md-6">
+                          <label for="startDate{{ i }}" class="form-label">
+                            Année de début
+                          </label>
+
+                          <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            type="select"
+                            id="startDate{{ i }}"
+                            formControlName="startDate"
+                          >
+                            <option *ngFor="let item of years" [value]="item">
+                              <span> {{ item }}</span>
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="col-md-6">
+                          <label for="endDate{{ i }}" class="form-label">
+                            Année de fin
+                          </label>
+                          <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            type="select"
+                            id="endDate{{ i }}"
+                            formControlName="endDate"
+                          >
+                            <option *ngFor="let item of years" [value]="item">
+                              <span> {{ item }}</span>
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Langues accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading7">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#langues'"
+                aria-expanded="false"
+                aria-controls="collapse7"
+              >
+                Langues
+              </div>
+            </h2>
+            <div
+              id="langues"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading7"
+              data-bs-parent="#accordionExample"
+            >
+            <span class="item-number">
+              {{ cvFormControls["langues"].value.length }}/3</span
+            >
+              <div class="accordion-body">
+                <div class="mb-4">
+                  <button (click)="addLangue()" class="btn" *ngIf="cvFormControls['langues'].value.length<3">
+                    Ajouter une langue
+                  </button>
+                </div>
+                <div formArrayName="langues">
+                  <div
+                    *ngFor="let langue of langues.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div *ngIf="langue as currentLangue" class="array-item">
+                      <div class="mb-4">
+                        <span (click)="deleteLangue(i)">
+                          <mat-icon style="float: right; cursor: pointer"
+                            >delete</mat-icon
+                          >
+                        </span>
+                        <label for="langue{{ i }}" class="form-label">
+                          Langue
+                        </label>
+                        <input
+                          formControlName="langue"
+                          type="text"
+                          id="langue{{ i }}"
+                          class="form-control"
+                        />
+                      </div>
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <label for="profile-title" class="form-label">
+                            Niveau
+                          </label>
+                          <mat-slider
+                            [step]="25"
+                            showTickMarks
+                            discrete
+                            [displayWith]="formatLabel"
+                            [min]="0"
+                            [max]="100"
+                          >
+                            <input matSliderThumb formControlName="level" />
+                          </mat-slider>
+                        </div>
+                        <div
+                          class="col-md-6 p-2"
+                          [ngSwitch]="
+                            this.cvFormControls['langues'].controls[i].value
+                              .level
+                          "
+                        >
+                          <span *ngSwitchCase="0">Niveau Zéro ?</span>
+                          <span *ngSwitchCase="25">Debutant</span>
+                          <span *ngSwitchCase="50">Intermédiaire</span>
+                          <span *ngSwitchCase="75">Avancé</span>
+                          <span *ngSwitchCase="100">Professionelle</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Hobbies accordion -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading8">
+              <div
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#hobbies'"
+                aria-expanded="false"
+                aria-controls="collapse8"
+              >
+                Centres d'intérêt
+              </div>
+            </h2>
+            <div
+              id="hobbies"
+              class="accordion-collapse collapse"
+              aria-labelledby="heading8"
+              data-bs-parent="#accordionExample"
+            >
+              <span class="item-number">
+                {{ cvFormControls["hobbies"].value.length }}/3</span
+              >
+              <div class="accordion-body">
+                <div class="mb-4">
+                  <button
+                    (click)="addHobbie()"
+                    class="btn"
+                    *ngIf="this.cvFormControls['hobbies'].value.length < 3"
+                  >
+                    Ajouter un centre d'intérêt
+                  </button>
+                </div>
+                <div formArrayName="hobbies">
+                  <div
+                    *ngFor="let hobbie of hobbies.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div *ngIf="hobbie as currentHobbies" class="array-item">
+                      <div class="mb-4">
+                        <span (click)="deleteHobbie(i)">
+                          <mat-icon style="float: right; cursor: pointer"
+                            >delete</mat-icon
+                          >
+                        </span>
+                        <label for="interest {{ i }}" class="form-label">
+                          Titre
+                        </label>
+                        <input
+                          type="text"
+                          id="interest{{ i }}"
+                          class="form-control"
+                          formControlName="interest"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="wrapper mt-lg-2">
+      <div class="action p-2">
+        <button
+          class="btn btn-danger"
+          (click)="cancelEditCV()"
+          *ngIf="editMode"
         >
-          <mat-spinner></mat-spinner>
-          <mat-spinner></mat-spinner>
-          <mat-spinner></mat-spinner>
-          <mat-spinner></mat-spinner>
-        </div>
+          Annuler
+        </button>
+        <button class="btn" id="btn-primary" *ngIf="editMode" (click)="addCV()" >Valider</button>
       </div>
-
-      <div class="sidebar-wrapper">
-        <div class="profile-container">
-          <div class=""></div>
-          <img class="profile" src="../../../../assets/svgs/Mali.svg" alt="" />
-          <h1 class="name">Alan Doe</h1>
-          <h3 class="tagline">Full Stack Developer</h3>
-        </div>
-        <!--//profile-container-->
-
-        <div class="contact-container container-block">
-          <ul class="list-unstyled contact-list">
-            <li class="email">
-              <i class="fa-solid fa-envelope"></i
-              ><a href="mailto: yourname@email.com">alan.doe@website.com</a>
-            </li>
-            <li class="phone">
-              <i class="fa-solid fa-phone"></i
-              ><a href="tel:0123 456 789">0123 456 789</a>
-            </li>
-            <li class="website">
-              <i class="fa-solid fa-globe"></i
-              ><a
-                href="https://themes.3rdwavemedia.com/bootstrap-templates/resume/orbit-free-resume-cv-bootstrap-theme-for-developers/"
-                target="_blank"
-                >portfoliosite.com</a
-              >
-            </li>
-            <li class="linkedin">
-              <i class="fa-brands fa-linkedin-in"></i
-              ><a href="#" target="_blank">linkedin.com/in/alandoe</a>
-            </li>
-            <li class="github">
-              <i class="fa-brands fa-github"></i
-              ><a href="#" target="_blank">github.com/username</a>
-            </li>
-            <li class="twitter">
-              <i class="fa-brands fa-twitter"></i
-              ><a href="https://twitter.com/3rdwave_themes" target="_blank"
-                >@twittername</a
-              >
-            </li>
-          </ul>
-        </div>
-        <!--//contact-container-->
-        <div class="education-container container-block">
-          <h2 class="container-block-title">Education</h2>
-          <div class="item">
-            <h4 class="degree">MSc in Computer Science</h4>
-            <h5 class="meta">University of London</h5>
-            <div class="time">2016 - 2018</div>
-          </div>
-          <!--//item-->
-          <div class="item">
-            <h4 class="degree">BSc in Applied Mathematics</h4>
-            <h5 class="meta">Bristol University</h5>
-            <div class="time">2012 - 2016</div>
-          </div>
-          <!--//item-->
-        </div>
-        <!--//education-container-->
-
-        <div class="languages-container container-block">
-          <h2 class="container-block-title">Languages</h2>
-          <ul class="list-unstyled interests-list">
-            <li>English <span class="lang-desc">(Native)</span></li>
-            <li>French <span class="lang-desc">(Professional)</span></li>
-            <li>Spanish <span class="lang-desc">(Professional)</span></li>
-          </ul>
-        </div>
-        <!--//interests-->
-
-        <div class="interests-container container-block">
-          <h2 class="container-block-title">Interests</h2>
-          <ul class="list-unstyled interests-list">
-            <li>Climbing</li>
-            <li>Snowboarding</li>
-            <li>Cooking</li>
-          </ul>
-        </div>
-        <!--//interests-->
+      <!-- CV VIEW SECTION -->
+      <app-cv-view
+        *ngIf="haveCV"
+        [cvUserImage]="userImage"
+        [cvProfileTitle]="cvFormControls['profileForm'].controls['title'].value"
+        [cvInformationLastName]="
+          cvFormControls['informationForm'].controls['lastName'].value
+        "
+        [cvInformationFirstName]="
+          cvFormControls['informationForm'].controls['firstName'].value
+        "
+        [cvInformationMail]="
+          cvFormControls['informationForm'].controls['mail'].value
+        "
+        [cvInformationPhone]="
+          cvFormControls['informationForm'].controls['phone'].value
+        "
+        [cvInformationSpecialite]="
+          cvFormControls['informationForm'].controls['specialite'].value
+        "
+        [cvProfileDescription]="
+          cvFormControls['profileForm'].controls['description'].value
+        "
+        [cvExperiences]="cvFormControls['experiences'].value"
+        [cvProjets]="cvFormControls['projects'].value"
+        [cvCompetences]="cvFormControls['competences'].value"
+        [cvFormations]="cvFormControls['formations'].value"
+        [cvLangues]="cvFormControls['langues'].value"
+        [cvHobbies]="cvFormControls['hobbies'].value"
+      ></app-cv-view>
+      <div
+        *ngIf="editMode"
+        class=""
+        (click)="fullScreen()"
+        style="float: right; cursor: pointer"
+      >
+        <mat-icon style="font-size: 24px">fullscreen</mat-icon>
       </div>
-      <!--//sidebar-wrapper-->
-
-      <div class="main-wrapper">
-        <section class="section summary-section">
-          <h2 class="section-title">
-            <span class="icon-holder"><i class="fa-solid fa-user"></i></span
-            >Career Profile
-          </h2>
-          <div class="summary">
-            <p>
-              Summarise your career here lorem ipsum dolor sit amet,
-              consectetuer adipiscing elit. You can
-              <a
-                href="https://themes.3rdwavemedia.com/bootstrap-templates/resume/orbit-free-resume-cv-bootstrap-theme-for-developers/"
-                target="_blank"
-                >download this free resume/CV template here</a
-              >. Aenean commodo ligula eget dolor aenean massa. Cum sociis
-              natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu.
-            </p>
-          </div>
-          <!--//summary-->
-        </section>
-        <!--//section-->
-        <section class="section summary-section">
-          <h2 class="section-title">
-            <span class="icon-holder"><i class="fa-solid fa-user"></i></span
-            >Career Profile
-          </h2>
-          <div class="summary">
-            <p>
-              Summarise your career here lorem ipsum dolor sit amet,
-              consectetuer adipiscing elit. You can
-              <a
-                href="https://themes.3rdwavemedia.com/bootstrap-templates/resume/orbit-free-resume-cv-bootstrap-theme-for-developers/"
-                target="_blank"
-                >download this free resume/CV template here</a
-              >. Aenean commodo ligula eget dolor aenean massa. Cum sociis
-              natoque penatibus et magnis dis parturient montes, nascetur
-              ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu.
-            </p>
-          </div>
-          <!--//summary-->
-        </section>
-        <!--//section-->
-
-        <section class="section experiences-section">
-          <h2 class="section-title">
-            <span class="icon-holder"
-              ><i class="fa-solid fa-briefcase"></i></span
-            >Experiences
-          </h2>
-
-          <div class="item">
-            <div class="meta">
-              <div class="upper-row">
-                <h3 class="job-title">Lead Developer</h3>
-                <div class="time">2023 - Present</div>
-              </div>
-              <!--//upper-row-->
-              <div class="company">Startup Hubs, San Francisco</div>
-            </div>
-            <!--//meta-->
-            <div class="details">
-              <p>
-                Describe your role here lorem ipsum dolor sit amet, consectetuer
-                adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                Cum sociis natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                pellentesque eu, pretium quis, sem. Nulla consequat massa quis
-                enim. Donec pede justo.
-              </p>
-              <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo.
-              </p>
-            </div>
-            <!--//details-->
-          </div>
-          <!--//item-->
-
-          <div class="item">
-            <div class="meta">
-              <div class="upper-row">
-                <h3 class="job-title">Senior Software Engineer</h3>
-                <div class="time">2018 - 2023</div>
-              </div>
-              <!--//upper-row-->
-              <div class="company">Google, London</div>
-            </div>
-            <!--//meta-->
-            <div class="details">
-              <p>
-                Describe your role here lorem ipsum dolor sit amet, consectetuer
-                adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                Cum sociis natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                pellentesque eu, pretium quis, sem.
-              </p>
-            </div>
-            <!--//details-->
-          </div>
-          <!--//item-->
-
-          <div class="item">
-            <div class="meta">
-              <div class="upper-row">
-                <h3 class="job-title">UI Developer</h3>
-                <div class="time">2016 - 2018</div>
-              </div>
-              <!--//upper-row-->
-              <div class="company">Amazon, London</div>
-            </div>
-            <!--//meta-->
-            <div class="details">
-              <p>
-                Describe your role here lorem ipsum dolor sit amet, consectetuer
-                adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                Cum sociis natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                pellentesque eu, pretium quis, sem.
-              </p>
-            </div>
-            <!--//details-->
-          </div>
-          <!--//item-->
-        </section>
-        <!--//section-->
-
-        <section class="section projects-section">
-          <h2 class="section-title">
-            <span class="icon-holder"><i class="fa-solid fa-archive"></i></span
-            >Projects
-          </h2>
-          <div class="intro">
-            <p>
-              You can list your side projects or open source libraries in this
-              section. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum et ligula in nunc bibendum fringilla a eu lectus.
-            </p>
-          </div>
-          <!--//intro-->
-          <div class="item">
-            <span class="project-title"
-              ><a
-                href="https://themes.3rdwavemedia.com/bootstrap-templates/startup/coderpro-bootstrap-5-startup-template-for-software-projects/"
-                target="_blank"
-                >CoderPro</a
-              ></span
-            >
-            -
-            <span class="project-tagline"
-              >A responsive website template designed to help developers launch
-              their software projects.
-            </span>
-          </div>
-          <!--//item-->
-          <div class="item">
-            <span class="project-title"
-              ><a
-                href="https://themes.3rdwavemedia.com/bootstrap-templates/startup/launch-bootstrap-5-template-for-saas-businesses/"
-                target="_blank"
-                >Launch</a
-              ></span
-            >
-            -
-            <span class="project-tagline"
-              >A responsive website template designed to help startups promote
-              their products or services.</span
-            >
-          </div>
-          <!--//item-->
-          <div class="item">
-            <span class="project-title"
-              ><a
-                href="https://themes.3rdwavemedia.com/bootstrap-templates/resume/devcard-bootstrap-5-vcard-portfolio-template-for-software-developers/"
-                target="_blank"
-                >DevCard</a
-              ></span
-            >
-            -
-            <span class="project-tagline"
-              >A portfolio website template designed for software
-              developers.</span
-            >
-          </div>
-          <!--//item-->
-          <div class="item">
-            <span class="project-title"
-              ><a
-                href="https://themes.3rdwavemedia.com/bootstrap-templates/startup/bootstrap-template-for-mobile-apps-nova-pro/"
-                target="_blank"
-                >Nova Pro</a
-              ></span
-            >
-            -
-            <span class="project-tagline"
-              >A responsive Bootstrap theme designed to help app developers
-              promote their mobile apps</span
-            >
-          </div>
-          <!--//item-->
-          <div class="item">
-            <span class="project-title"
-              ><a
-                href="http://themes.3rdwavemedia.com/website-templates/responsive-bootstrap-theme-web-development-agencies-devstudio/"
-                target="_blank"
-                >DevStudio</a
-              ></span
-            >
-            -
-            <span class="project-tagline"
-              >A responsive website template designed to help web
-              developers/designers market their services.
-            </span>
-          </div>
-          <!--//item-->
-        </section>
-        <!--//section-->
-
-        <section class="skills-section section">
-          <h2 class="section-title">
-            <span class="icon-holder"><i class="fa-solid fa-rocket"></i></span
-            >Skills &amp; Proficiency
-          </h2>
-          <div class="skillset">
-            <div class="item">
-              <h3 class="level-title">Python &amp; Django</h3>
-              <div class="progress level-bar">
-                <div
-                  class="progress-bar theme-progress-bar"
-                  role="progressbar"
-                  style="width: 99%"
-                  aria-valuenow="99"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-            <!--//item-->
-
-            <div class="item">
-              <h3 class="level-title">Javascript</h3>
-              <div class="progress level-bar">
-                <div
-                  class="progress-bar theme-progress-bar"
-                  role="progressbar"
-                  style="width: 98%"
-                  aria-valuenow="98"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-            <!--//item-->
-
-            <div class="item">
-              <h3 class="level-title">React &amp; Angular</h3>
-              <div class="progress level-bar">
-                <div
-                  class="progress-bar theme-progress-bar"
-                  role="progressbar"
-                  style="width: 98%"
-                  aria-valuenow="98"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-            <!--//item-->
-
-            <div class="item">
-              <h3 class="level-title">HTML5 &amp; CSS</h3>
-              <div class="progress level-bar">
-                <div
-                  class="progress-bar theme-progress-bar"
-                  role="progressbar"
-                  style="width: 95%"
-                  aria-valuenow="95"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-            <!--//item-->
-
-            <div class="item">
-              <h3 class="level-title">Ruby on Rails</h3>
-              <div class="progress level-bar">
-                <div
-                  class="progress-bar theme-progress-bar"
-                  role="progressbar"
-                  style="width: 85%"
-                  aria-valuenow="85"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-            <!--//item-->
-
-            <div class="item">
-              <h3 class="level-title">Sketch &amp; Photoshop</h3>
-              <div class="progress level-bar">
-                <div
-                  class="progress-bar theme-progress-bar"
-                  role="progressbar"
-                  style="width: 60%"
-                  aria-valuenow="60"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-            </div>
-            <!--//item-->
-          </div>
-        </section>
-        <!--//skills-section-->
-      </div>
-      <!--//main-body-->
     </div>
   </div>
 </div>
+
+<!-- Loading Overlay -->
+<!-- <div class="overlay" *ngIf="isLoading">
+  <div
+    class=""
+    style="
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      align-items: center;
+    "
+  >
+     <mat-spinner></mat-spinner>
+    <mat-spinner></mat-spinner>
+    <mat-spinner></mat-spinner>
+    <mat-spinner></mat-spinner> 
+  </div>
+</div> -->

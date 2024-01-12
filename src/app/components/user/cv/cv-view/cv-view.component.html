@@ -1,0 +1,177 @@
+<div class="wrapper">
+  <div class="sidebar-wrapper">
+    <div class="profile-container">
+      <img class="profile" [src]="cvUserImage" alt="" />
+      <h3 class="name">
+        {{ cvInformationTitle }} {{ cvInformationLastName }}
+        {{ cvInformationFirstName }}
+      </h3>
+      <h3 class="tagline">{{ cvInformationSpecialite }}</h3>
+    </div>
+    <!--//profile-container-->
+
+    <div class="contact-container container-block">
+      <ul class="list-unstyled contact-list">
+        <li class="email">
+          <mat-icon>alternate_email</mat-icon
+          ><a href="mailto: yourname@email.com">{{ cvInformationMail }}</a>
+        </li>
+        <li class="phone" *ngIf="cvInformationPhone">
+          <mat-icon>phone_iphone</mat-icon>
+          <span class="p-1">
+            <a [href]="cvInformationPhone">{{ cvInformationPhone }}</a></span
+          >
+        </li>
+        <!-- <li class="linkedin">
+                <i class="fa-brands fa-linkedin-in"></i
+                ><a href="#" target="_blank">linkedin.com/in/alandoe</a>
+              </li> -->
+      </ul>
+    </div>
+    <!--Formations Section -->
+    <div
+      class="education-container container-block"
+      *ngIf="cvFormations.length > 0"
+    >
+      <h2 class="container-block-title">Formations</h2>
+      <div class="item" *ngFor="let formation of cvFormations">
+        <h4 class="degree">{{ formation.name }}</h4>
+        <h5 class="meta">{{ formation.etablissement }}</h5>
+        <div class="time">
+          {{ formation.periode.startDate }} - {{ formation.periode.endDate }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Langues Section -->
+    <div
+      class="languages-container container-block"
+      *ngIf="cvLangues.length > 0"
+    >
+      <h2 class="container-block-title">Langues</h2>
+      <ul class="list-unstyled interests-list">
+        <li *ngFor="let langue of cvLangues">
+          {{ langue.langue }}
+          <span class="lang-desc">
+            <span [ngSwitch]="langue.level">
+              <span *ngSwitchCase="0"></span>
+              <span *ngSwitchCase="25">(Débutant)</span>
+              <span *ngSwitchCase="50">(Intermédiaire)</span>
+              <span *ngSwitchCase="75">(Avancé)</span>
+              <span *ngSwitchCase="100">(Professionel)</span>
+            </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Centres d'intérêt Section -->
+    <div
+      class="interests-container container-block"
+      *ngIf="cvHobbies.length > 0"
+    >
+      <h2 class="container-block-title">Centres d'intérêt</h2>
+      <ul class="list-unstyled interests-list">
+        <li *ngFor="let hobbie of cvHobbies">{{ hobbie.interest }}</li>
+      </ul>
+    </div>
+    <!--//interests-->
+  </div>
+  <!--//sidebar-wrapper-->
+
+  <div class="main-wrapper">
+    <!-- Profile Section -->
+    <section class="section summary-section" *ngIf="cvProfileTitle">
+      <h2 class="section-title">
+        <span class="icon-holder"> <mat-icon>person</mat-icon> </span>
+        {{ cvProfileTitle }}
+      </h2>
+
+      <div class="summary">
+        {{ cvProfileDescription }}
+      </div>
+
+      <!--//summary-->
+    </section>
+    <!--//section-->
+    <!-- Experiences Section -->
+    <section
+      class="section experiences-section"
+      *ngIf="cvExperiences.length > 0"
+    >
+      <h2 class="section-title">
+        <span class="icon-holder"> <mat-icon>card_travel</mat-icon> </span
+        >Expériences
+      </h2>
+
+      <div class="item" *ngFor="let item of cvExperiences">
+        <div class="meta">
+          <div class="upper-row">
+            <h3 class="job-title">{{ item.title }}</h3>
+            <div class="time">
+              {{ item.startDate.mois }} {{ item.startDate.annee }} -
+              {{ item.endDate.mois }} {{ item.endDate.annee }}
+            </div>
+          </div>
+          <!--//upper-row-->
+          <div class="company" *ngIf="item.employer || item.lieu">
+            {{ item.employer }}, {{ item.lieu }}
+          </div>
+        </div>
+        <!--//meta-->
+        <div class="details">
+          <p>
+            {{ item.decription }}
+          </p>
+        </div>
+        <!--//details-->
+      </div>
+      <!--//item-->
+    </section>
+    <!--//section-->
+    <!-- Projects Section -->
+    <section class="section projects-section" *ngIf="cvProjets.length > 0">
+      <h2 class="section-title">
+        <span class="icon-holder"><i class="fa-solid fa-archive"></i></span
+        >Projects
+      </h2>
+
+      <div class="item" *ngFor="let item of cvProjets">
+        <span *ngIf="item.title">
+          <span class="project-title"
+            ><a [href]="item.link" target="_blank">{{ item.title }} </a></span
+          >
+          -
+          <span class="project-tagline">{{ item.description }} </span>
+        </span>
+      </div>
+      <!--//item-->
+    </section>
+    <!--//section-->
+    <!-- Competences Section -->
+    <section class="skills-section section" *ngIf="cvCompetences.length > 0">
+      <h2 class="section-title">
+        <span class="icon-holder"><i class="fa-solid fa-rocket"></i></span
+        >Compétences
+      </h2>
+      <div class="skillset">
+        <div class="item" *ngFor="let item of cvCompetences">
+          <h3 class="level-title">{{ item.title }}</h3>
+          <div class="progress level-bar">
+            <div
+              class="progress-bar theme-progress-bar"
+              role="progressbar"
+              [style.width.%]="item.level"
+              aria-valuenow="99"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </div>
+        <!--//item-->
+      </div>
+    </section>
+    <!--//skills-section-->
+  </div>
+</div>
+<!--//main-body-->

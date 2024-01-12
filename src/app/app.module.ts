@@ -26,6 +26,7 @@ import { RequestMakeComponent } from './components/request-make/request-make.com
 import { PasswordResetModule } from './components/password-reset/password-reset.module';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { ArticleComponent } from './components/article/article.component';
+import { MiniMiniCardComponent } from './components/mini-mini-card/mini-mini-card.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { ArticleComponent } from './components/article/article.component';
     PresentationComponent,
     RequestMakeComponent,
     ArticleComponent,
+    MiniMiniCardComponent,
   ],
   imports: [
     BrowserModule,

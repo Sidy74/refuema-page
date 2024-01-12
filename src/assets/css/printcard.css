@@ -1,8 +1,13 @@
+body {
+  background-color: white;
+  -webkit-print-color-adjust: exact;
+}
+
 .card {
   width: auto;
   height: 100%;
   /* overflow: hidden; */
-  background-color: #f2ede5;
+  background-color:white;
   padding: 10px 30px;
   margin-top: 10px;
   border: none;
@@ -33,4 +38,22 @@
   width: 100%;
   left: 0;
   top: 0;
+}
+
+.card-image {
+  max-width: 100%;
+
+  width: 90px;
+  height: 90px;
+  background-size: cover;
+  border-radius: 50%;
+  border: 1px solid #016678;
+  overflow: hidden;
+  cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+  .card-image {
+    width: 80px;
+    height: 80px;
+  }
 }

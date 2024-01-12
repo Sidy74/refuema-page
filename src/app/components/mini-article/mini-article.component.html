@@ -4,17 +4,13 @@
 >
   <div class="row g-0">
     <div class="col-md-4 p-4" style="background-color: #f2ede5">
-      <img
-        [src]="cardMedia"
-        class="img-fluid rounded-start"
-        alt="..."
-      />
+      <img [src]="cardMedia" class="img-fluid rounded-start" alt="..." />
       <!-- style="transform: skew(-1.5deg, -1.7deg)" -->
     </div>
     <div class="col-md-8 p-4">
       <div class="card-body">
         <h2 class="card-title">
-         {{cardTitle}}
+          {{ cardTitle }}
         </h2>
         <p class="card-text">
           {{ showMoreText ? cardBodyText : (cardBodyText | slice : 0 : 500) }}
@@ -22,15 +18,22 @@
         </p>
 
         <p class="card-text">
-          <small class="text-body-secondary">Il y à {{cardDate}} jours</small>
+          <small class="text-body-secondary">Il y à {{ cardDate }} jours</small>
+
           <button
             style="float: right; width: 12"
             class="btn btn-sm"
-            id="btn-primary"
             (click)="toggleText()"
           >
             <span *ngIf="!showMoreText">Plus(+)</span>
             <span *ngIf="showMoreText">Moins(-)</span>
+          </button>
+          <button
+            class="btn btn-sm"
+            id="btn-primary"
+            style="float: right; width: 12; margin-right: 12px"
+          >
+            Regarder
           </button>
         </p>
       </div>
