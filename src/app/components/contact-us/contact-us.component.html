@@ -1,1 +1,132 @@
-<p>contact-us works!</p>
+<div class="page-hearder">
+  <div class="section-title">Contact</div>
+</div>
+
+<!-- Map Container -->
+<div class="container m-4 p-4">
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d128669.26000345316!2d-7.567433758646647!3d11.428835241720147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xe4d99cc4b4c39af%3A0x48c503330f3e8661!2sBougouni%2C%20Mali!5e0!3m2!1sen!2suk!4v1705510359043!5m2!1sen!2suk"
+      width="100%"
+      height="600"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <div class="row">
+      <!-- Card 1 -->
+      <div class="col-md-6 mb-4">
+        <div class="card text-center h-100">
+          <div class="card-body">
+            <i class="bi bi-geo-alt" style="font-size: 2rem"></i>
+            <h5 class="card-title mt-3">Localisation</h5>
+            <p class="card-text">
+              <a href="map:https://maps.app.goo.gl/dVzbg3hinkJtgjW16">
+                dVzbg3hinkJtgjW16</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-md-6 mb-4">
+        <div class="card text-center h-100">
+          <div class="card-body">
+            <i class="bi bi-telephone" style="font-size: 2rem"></i>
+            <h5 class="card-title mt-3">Téléphone</h5>
+
+            <p class="card-text">
+              <a href="tel:+22376443301"> +223 76 44 33 01</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-md-6 mb-4">
+        <div class="card text-center h-100">
+          <div class="card-body">
+            <i class="bi bi-envelope" style="font-size: 2rem"></i>
+            <h5 class="card-title mt-3">Email</h5>
+            <p class="card-text">
+              <a href="mailto:info@example.com">mail@example.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-md-6 mb-4">
+        <div class="card text-center h-100">
+          <div class="card-body">
+            <i class="bi bi-clock" style="font-size: 2rem"></i>
+            <h5 class="card-title mt-3">Heures d'ouvertures</h5>
+            <p class="card-text">
+              <a href=""> 08h - 17h</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 mb-4">
+    <form action="">
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <label for="fullName" class="form-label"> Nom </label>
+          <input
+            type="text"
+            id="fullName"
+            class="form-control"
+            placeholder="votre nom complèt"
+            formControlName="fullName"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="mail" class="form-label"> Email </label>
+          <input
+            type="text"
+            id="mail"
+            placeholder="votre adresse email"
+            class="form-control"
+            formControlName="mail"
+          />
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="sujet" class="form-label"> Sujet </label>
+        <input
+          type="text"
+          id="sujet"
+          class="form-control"
+          formControlName="sujet"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="message" class="form-label">Message</label>
+        <textarea
+          id="message"
+          class="form-control"
+          formControlName="messge"
+          placeholder="Quel est votre message?"
+          required
+          rows="5"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        id="btn-submit"
+        class="btn btn-primary btn-block mb-4"
+      >
+        Envoyer
+      </button>
+    </form>
+  </div>
+</div>

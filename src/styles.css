@@ -2,7 +2,6 @@
 @import "assets/css/snackbar.css";
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-
 html,
 body {
   height: 100%;
@@ -119,6 +118,7 @@ body {
 }
 .form-label {
   font-weight: 400;
+  margin-left: 6px;
 }
 .page-hearder {
   display: flex;
@@ -129,7 +129,7 @@ body {
   padding-right: 10px;
   align-self: center;
 
-  &  .section-title {
+  & .section-title {
     padding: auto;
     font-family: "Cairo";
     align-self: center;

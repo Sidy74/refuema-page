@@ -1,0 +1,14 @@
+.card {
+  padding: 16px;
+}
+i {
+  color: #5ca29d;
+  margin: 16px 0px;
+}
+
+.card-title {
+  font-size: medium;
+  margin: 16px 0px;
+  font-weight: 600;
+  color: #013b45;
+}
