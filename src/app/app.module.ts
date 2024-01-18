@@ -31,6 +31,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { ArticleComponent } from './components/article/article.component';
 import { MiniMiniCardComponent } from './components/mini-mini-card/mini-mini-card.component';
 import { DatePipe } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeFr);
 
@@ -64,6 +65,7 @@ registerLocaleData(localeFr);
     ProgressBarModule,
     HttpClientModule,
     PasswordResetModule,
+    NgbModule,
   ],
   providers: [
     DatePipe,
