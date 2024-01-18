@@ -7,11 +7,7 @@ import { EditUserModalComponent } from '../edit-user-modal/edit-user-modal.compo
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { PhotoModalComponent } from '../photo-modal/photo-modal.component';
-import {
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ProgressBarModule } from '../../../../shared/progress-bar/progress-bar.module';
 import { ProfilAvatarModule } from '../profil-avatar/profil-avatar.module';
