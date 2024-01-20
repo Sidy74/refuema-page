@@ -16,7 +16,7 @@ import {
   withInterceptorsFromDi,
   provideHttpClient,
 } from '@angular/common/http';
-import { DatePipe, CommonModule, IMAGE_CONFIG } from '@angular/common';
+import { DatePipe, CommonModule } from '@angular/common';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -42,6 +42,5 @@ bootstrapApplication(AppComponent, {
     { provide: LOCALE_ID, useValue: 'fr' },
     provideAnimations(),
     provideHttpClient(withInterceptorsFromDi()),
-    
   ],
 }).catch((err) => console.error(err));
