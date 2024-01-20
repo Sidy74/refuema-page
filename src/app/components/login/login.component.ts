@@ -1,19 +1,31 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/core/_services/login/login.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UserTokenService } from 'src/app/core/_services/user-token.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User, UserInfos } from 'src/app/core/_models/user..models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
+import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.component';
+import { NgIf, NgClass, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    standalone: true,
+    imports: [
+        NgIf,
+        ProgressBarComponent,
+        ReactiveFormsModule,
+        NgClass,
+        RouterLink,
+        RouterLinkActive,
+        AsyncPipe,
+    ],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   user!: User;

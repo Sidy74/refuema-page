@@ -16,12 +16,16 @@ import { UserService } from 'src/app/core/_services/user/user.service';
 import { EditUserPasswordComponent } from './edit-user-password/edit-user-password.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { EditUserMailModalComponent } from './edit-user-mail-modal/edit-user-mail-modal.component';
+import { MatIcon } from '@angular/material/icon';
+import { ProfilAvatarComponent } from './profil-avatar/profil-avatar.component';
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default,
+    selector: 'app-profil',
+    templateUrl: './profil.component.html',
+    styleUrls: ['./profil.component.css'],
+    changeDetection: ChangeDetectionStrategy.Default,
+    standalone: true,
+    imports: [ProfilAvatarComponent, MatIcon],
 })
 export class ProfilComponent implements OnDestroy, OnInit {
   userDataSubscription?: Subscription;

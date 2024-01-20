@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-profil-avatar',
-  templateUrl: './profil-avatar.component.html',
-  styleUrls: ['./profil-avatar.component.css'],
+    selector: 'app-profil-avatar',
+    templateUrl: './profil-avatar.component.html',
+    styleUrls: ['./profil-avatar.component.css'],
+    standalone: true,
 })
 export class ProfilAvatarComponent {
   @Input() imageUrl: string =

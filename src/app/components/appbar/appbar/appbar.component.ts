@@ -1,11 +1,23 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/core/_services/login/login.service';
+import { AppbarAvatarComponent } from '../appbar-avatar/appbar-avatar.component';
+import { NgIf } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { MatToolbar } from '@angular/material/toolbar';
 
 @Component({
-  selector: 'app-appbar',
-  templateUrl: './appbar.component.html',
-  styleUrls: ['./appbar.component.css'],
+    selector: 'app-appbar',
+    templateUrl: './appbar.component.html',
+    styleUrls: ['./appbar.component.css'],
+    standalone: true,
+    imports: [
+        MatToolbar,
+        RouterLink,
+        RouterLinkActive,
+        NgIf,
+        AppbarAvatarComponent,
+    ],
 })
 export class AppbarComponent implements OnInit, OnDestroy {
   loginSubscription?: Subscription;

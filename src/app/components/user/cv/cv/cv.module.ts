@@ -10,16 +10,16 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { CustomDatePipe } from 'src/app/core/_pipes/custom-date/custom-date.pipe';
 
 @NgModule({
-  declarations: [CvViewComponent, CvComponent, CustomDatePipe],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatSliderModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-  ],
-  exports: [],
-  providers: [CustomDatePipe],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatSliderModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        CvViewComponent, CvComponent, CustomDatePipe,
+    ],
+    exports: [],
+    providers: [CustomDatePipe],
 })
 export class CvModule {}

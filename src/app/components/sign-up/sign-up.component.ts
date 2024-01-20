@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Titre } from 'src/app/core/_models/titre.model';
@@ -9,11 +9,24 @@ import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { RegistrationService } from 'src/app/core/_services/registration.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { PasswordValidator } from 'src/app/core/_validator/password.validator';
+import { MatIcon } from '@angular/material/icon';
+import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.component';
+import { NgIf, NgClass, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css'],
+    selector: 'app-sign-up',
+    templateUrl: './sign-up.component.html',
+    styleUrls: ['./sign-up.component.css'],
+    standalone: true,
+    imports: [
+        NgIf,
+        ProgressBarComponent,
+        ReactiveFormsModule,
+        NgClass,
+        NgFor,
+        MatIcon,
+        AsyncPipe,
+    ],
 })
 export class SignUpComponent implements OnInit, OnDestroy, AfterContentInit {
   signForm!: FormGroup;

@@ -1,9 +1,21 @@
 import { Component, Input } from '@angular/core';
+import { CustomDatePipe } from 'src/app/core/_pipes/custom-date/custom-date.pipe';
+import { NgIf, NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-cv-view',
-  templateUrl: './cv-view.component.html',
-  styleUrls: ['./cv-view.component.css'],
+    selector: 'app-cv-view',
+    templateUrl: './cv-view.component.html',
+    styleUrls: ['./cv-view.component.css'],
+    standalone: true,
+    imports: [
+        MatIcon,
+        NgIf,
+        NgFor,
+        NgSwitch,
+        NgSwitchCase,
+        CustomDatePipe,
+    ],
 })
 export class CvViewComponent {
   @Input() cvUserImage: string = 'N/A';

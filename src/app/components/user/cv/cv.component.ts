@@ -1,12 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { AfterContentInit, Component, OnInit } from '@angular/core';
-import {
-  Form,
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Form, FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { elementAt } from 'rxjs';
 import { UserInfos } from 'src/app/core/_models/user..models';
 import { CustomDatePipe } from 'src/app/core/_pipes/custom-date/custom-date.pipe';
@@ -15,11 +9,31 @@ import { ImageService } from 'src/app/core/_services/images/image.service';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { years } from 'src/app/shared/_utils/years';
+import { CvViewComponent } from './cv-view/cv-view.component';
+import { MatSlider, MatSliderThumb } from '@angular/material/slider';
+import { MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular/material/datepicker';
+import { MatIcon } from '@angular/material/icon';
+import { NgIf, NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
 
 @Component({
-  selector: 'app-cv',
-  templateUrl: './cv.component.html',
-  styleUrls: ['./cv.component.css'],
+    selector: 'app-cv',
+    templateUrl: './cv.component.html',
+    styleUrls: ['./cv.component.css'],
+    standalone: true,
+    imports: [
+        NgIf,
+        ReactiveFormsModule,
+        NgFor,
+        MatIcon,
+        MatDatepickerInput,
+        MatDatepickerToggle,
+        MatDatepicker,
+        MatSlider,
+        MatSliderThumb,
+        NgSwitch,
+        NgSwitchCase,
+        CvViewComponent,
+    ],
 })
 export class CvComponent implements AfterContentInit {
   years = years;

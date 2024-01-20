@@ -8,8 +8,8 @@ describe('ProgressBarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProgressBarComponent]
-    });
+    imports: [ProgressBarComponent]
+});
     fixture = TestBed.createComponent(ProgressBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

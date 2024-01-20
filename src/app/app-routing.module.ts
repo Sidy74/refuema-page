@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -14,6 +13,7 @@ import { RequestMakeComponent } from './components/request-make/request-make.com
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { CvComponent } from './components/user/cv/cv.component';
 import { ArticleComponent } from './components/article/article.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +23,12 @@ const routes: Routes = [
   { path: 'request-make', component: RequestMakeComponent },
   { path: 'passwordreset', component: PasswordResetComponent },
   { path: 'contact-us', component: ContactUsComponent },
-  { path: 'articles', component:  ArticleComponent },
+  { path: 'articles', component: ArticleComponent },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [],
+  },
 
   {
     path: 'user',

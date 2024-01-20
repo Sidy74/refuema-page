@@ -1,10 +1,20 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Article } from 'src/app/core/_models/article.model';
+import { MiniMiniCardComponent } from '../mini-mini-card/mini-mini-card.component';
+import { MiniArticleComponent } from '../mini-article/mini-article.component';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-article',
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.css'],
+    selector: 'app-article',
+    templateUrl: './article.component.html',
+    styleUrls: ['./article.component.css'],
+    standalone: true,
+    imports: [
+        NgIf,
+        NgFor,
+        MiniArticleComponent,
+        MiniMiniCardComponent,
+    ],
 })
 export class ArticleComponent implements OnInit {
   isMobile: boolean = false;

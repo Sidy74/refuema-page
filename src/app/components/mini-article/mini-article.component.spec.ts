@@ -8,8 +8,8 @@ describe('MiniArticleComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MiniArticleComponent]
-    });
+    imports: [MiniArticleComponent]
+});
     fixture = TestBed.createComponent(MiniArticleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

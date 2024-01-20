@@ -1,11 +1,22 @@
 import { Component } from '@angular/core';
 import { CardService } from 'src/app/core/_services/card/card.service';
 import { ImageService } from 'src/app/core/_services/images/image.service';
+import { BackCardComponent } from './back-card/back-card.component';
+import { FrontCardComponent } from './front-card/front-card.component';
+import { NgxPrintDirective } from 'ngx-print';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css'],
+    selector: 'app-card',
+    templateUrl: './card.component.html',
+    styleUrls: ['./card.component.css'],
+    standalone: true,
+    imports: [
+        NgIf,
+        NgxPrintDirective,
+        FrontCardComponent,
+        BackCardComponent,
+    ],
 })
 export class CardComponent {
   isgeneradedCard: boolean = false;

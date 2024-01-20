@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { UserService } from 'src/app/core/_services/user/user.service';
 
 @Component({
-  selector: 'app-password-reset',
-  templateUrl: './password-reset.component.html',
-  styleUrls: ['./password-reset.component.css'],
+    selector: 'app-password-reset',
+    templateUrl: './password-reset.component.html',
+    styleUrls: ['./password-reset.component.css'],
+    standalone: true,
+    imports: [ReactiveFormsModule],
 })
 export class PasswordResetComponent implements OnInit {
   emailForm!: FormGroup;
