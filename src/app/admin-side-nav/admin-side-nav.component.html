@@ -6,62 +6,105 @@
     class="example-sidenav"
     mode="side"
     position="start"
-    style="position: fixed; background-color: whitesmoke"
+    style="position: fixed; background-color: whitesmoke; padding: 16px"
   >
+    <i
+      (click)="showFiller = !showFiller"
+      [class]="showFiller ? 'bi bi-caret-right' : 'bi bi-caret-left '"
+      style="
+        right: 0;
+        margin-left: 18px;
+        float: right;
+        font-size: 16px;
+        cursor: pointer;
+      "
+    ></i>
     @if (showFiller) {
-    <ul>
-      <li><i class="bi bi-user"></i> ARTICLES EVENEMENTS lkks</li>
-      <li><i class="bi bi-user"></i> ARTICLES EVENEMENTS</li>
-      <li><i class="bi bi-user"></i> ARTICLES EVENEMENTS</li>
-      <li><i class="bi bi-user"></i> ARTICLES EVENEMENTS</li>
-      <li><i class="bi bi-user"></i> ARTICLES EVENEMENTS</li>
-      <li><i class="bi bi-user"></i> ARTICLES EVENEMENTS</li>
-      <li><i class="bi bi-user"></i> ARTICLES EVENEMENTS</li>
-      <li><i class="bi bi-user"></i> ARTICLES EVENEMENTS</li>
-    </ul>
-    <p>Lorem,</p>
-    }
+    <div class="container" id="close-nav-logo ">
+      <a
+        class="logo-close-nav-item"
+        id="close-nav-item"
+        routerLink="/admin/home"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <img src="../../favicon.ico" alt="" width="45%" height="45%" />
+      </a>
+    </div>
+    <div class="container p-4">
+      <a
+        class=""
+        id="close-nav-item"
+        routerLink="/admin/home"
+        routerLinkActive="router-link-active"
+        routerLinkActive="active-link"
+      >
+        <i class="bi bi-house" id="close-nav-item-icon"></i>
+      </a>
+      <a
+        class=""
+        routerLink="admin/articles"
+        id="close-nav-item"
+        routerLinkActive="active-link"
+      >
+        <i class="bi bi-journal" id="close-nav-item-icon"></i>
+      </a>
+      <a
+        class=""
+        routerLink="admin/pages"
+        id="close-nav-item"
+        routerLinkActive="active-link"
+      >
+        <i class="bi bi-file-earmark" id="close-nav-item-icon"></i>
+      </a>
 
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Big/Min
-    </button>
+      <a class="" id="close-nav-item" routerLinkActive="active-link">
+        <i class="bi bi-journal" id="close-nav-item-icon"></i>
+      </a>
+      <a class="" id="close-nav-item" routerLinkActive="active-link">
+        <i class="bi bi-journal" id="close-nav-item-icon"></i>
+      </a>
+    </div>
+
+    } @else {
+    <div class="contenair" style="margin-bottom: 18px">
+      <img src="../../assets/svgs/Logo.svg" alt="" />
+    </div>
+    <div class="container p-4">
+      <a
+        id="open-nav-item"
+        routerLink="admin/articles"
+        routerLinkActive="active-link"
+      >
+        <i class="bi bi-journal" id="open-nav-item-icon"></i>
+        <span id="open-nav-item-span"> Articles </span>
+      </a>
+      <a
+        id="open-nav-item"
+        routerLink="admin/articles"
+        routerLinkActive="active-link"
+      >
+        <i class="bi bi-journal" id="open-nav-item-icon"></i>
+        <span> Articles </span>
+      </a>
+    </div>
+    <div class="container"></div>
+    }
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <div
-      class="contenaire w-100"
-      style="
-        position: fixed;
-        top: 0;
-        background-color: whitesmoke;
-        height: 70px;
-        margin-bottom: 70px;
-      "
-    ></div>
+    <!-- <router-outlet></router-outlet> -->
     <button
       type="button"
       mat-button
       (click)="drawer.toggle()"
       style="margin-top: 70px"
     >
-      Open/Close
+      <i
+        [class]="showFiller ? 'bi bi-caret-right' : 'bi bi-caret-left '"
+        style="font-size: 2rem; cursor: pointer"
+      ></i>
     </button>
-
-    <button class="btn btn-primay" (click)="getEditorContent()">get</button>
-    <h1>TinyMCE 6 Angular Demo</h1>
-    <editor
-      apiKey="05kar5f1edhaueeyba84fwwq71d09mt0ub1ys89bxwr7bj5p"
-      [(ngModel)]="content"
-      [init]="{ plugins: 'lists link image table code help wordcount' }"
-    ></editor>
-
-    <button class="btn btn-primay" (click)="getEditorContent()">get</button>
-    <h1>TinyMCE 6 Angular Demo</h1>
-    <editor
-      apiKey="05kar5f1edhaueeyba84fwwq71d09mt0ub1ys89bxwr7bj5p"
-      [(ngModel)]="content"
-      [init]="{ plugins: 'lists link image table code help wordcount' }"
-    ></editor>
 
     <button class="btn btn-primay" (click)="getEditorContent()">get</button>
     <h1>TinyMCE 6 Angular Demo</h1>
