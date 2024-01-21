@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
+import { AdminSideNavComponent } from "../../admin-side-nav/admin-side-nav.component";
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css',
-  standalone: true,
-  imports: [EditorModule, FormsModule],
+    selector: 'app-admin',
+    templateUrl: './admin.component.html',
+    styleUrl: './admin.component.css',
+    standalone: true,
+    imports: [EditorModule, FormsModule, AdminSideNavComponent,MatSidenavModule]
 })
 export class AdminComponent {
+  drawer !: MatDrawer
+
   content = '';
   getEditorContent(): void {
     console.log(this.content);

@@ -29,3 +29,9 @@
 .bi {
   margin-right: 10px; /* Ajustez la marge entre l'icône et le texte */
 }
+.example-container {
+  width: 90vi;
+  height: 200px;
+  margin: 10px;
+  border: 1px solid #0f0d0d;
+}
