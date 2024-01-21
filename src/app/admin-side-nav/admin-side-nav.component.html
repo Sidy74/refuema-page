@@ -1,7 +1,6 @@
 <mat-drawer-container class="example-container" autosize style="height: 100vh">
   <mat-drawer
     [opened]="true"
-    #isOpen
     #drawer
     class="example-sidenav"
     mode="side"
@@ -17,83 +16,97 @@
         float: right;
         font-size: 16px;
         cursor: pointer;
+        color: #01766e;
       "
     ></i>
-    @if (showFiller) {
-    <div class="container" id="close-nav-logo ">
-      <a
-        class="logo-close-nav-item"
-        id="close-nav-item"
-        routerLink="/admin/home"
-        routerLinkActive="active-link"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <img src="../../favicon.ico" alt="" width="45%" height="45%" />
-      </a>
-    </div>
-    <div class="container p-4">
-      <a
-        class=""
-        id="close-nav-item"
-        routerLink="/admin/home"
-        routerLinkActive="router-link-active"
-        routerLinkActive="active-link"
-      >
-        <i class="bi bi-house" id="close-nav-item-icon"></i>
-      </a>
-      <a
-        class=""
-        routerLink="admin/articles"
-        id="close-nav-item"
-        routerLinkActive="active-link"
-      >
-        <i class="bi bi-journal" id="close-nav-item-icon"></i>
-      </a>
-      <a
-        class=""
-        routerLink="admin/pages"
-        id="close-nav-item"
-        routerLinkActive="active-link"
-      >
-        <i class="bi bi-file-earmark" id="close-nav-item-icon"></i>
-      </a>
+    <ng-container *ngIf="showFiller">
+      <div class="container" id="close-nav-logo ">
+        <a
+          class="logo-close-nav-item"
+          id="close-nav-item"
+          routerLink="/admin/home"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <img src="../../favicon.ico" alt="" width="45%" height="45%" />
+        </a>
+      </div>
+      <div class="container p-4">
+        <a
+          class=""
+          id="close-nav-item"
+          routerLink="/admin/home"
+          routerLinkActive="router-link-active"
+          routerLinkActive="active-link"
+          matTooltip="Accueil"
+          matTooltipPosition="right"
+        >
+          <i class="bi bi-house" id="close-nav-item-icon"></i>
+        </a>
+        <a
+          class=""
+          routerLink="admin/articles"
+          id="close-nav-item"
+          routerLinkActive="active-link"
+          matTooltip="Articles"
+          matTooltipPosition="right"
+        >
+          <i class="bi bi-journal" id="close-nav-item-icon"></i>
+        </a>
+        <a
+          class=""
+          routerLink="admin/pages"
+          id="close-nav-item"
+          routerLinkActive="active-link"
+          matTooltip="Pages"
+          matTooltipPosition="right"
+        >
+          <i class="bi bi-file-earmark" id="close-nav-item-icon"></i>
+        </a>
 
-      <a class="" id="close-nav-item" routerLinkActive="active-link">
-        <i class="bi bi-journal" id="close-nav-item-icon"></i>
-      </a>
-      <a class="" id="close-nav-item" routerLinkActive="active-link">
-        <i class="bi bi-journal" id="close-nav-item-icon"></i>
-      </a>
-    </div>
-
-    } @else {
-    <div class="contenair" style="margin-bottom: 18px">
-      <img src="../../assets/svgs/Logo.svg" alt="" />
-    </div>
-    <div class="container p-4">
-      <a
-        id="open-nav-item"
-        routerLink="admin/articles"
-        routerLinkActive="active-link"
-      >
-        <i class="bi bi-journal" id="open-nav-item-icon"></i>
-        <span id="open-nav-item-span"> Articles </span>
-      </a>
-      <a
-        id="open-nav-item"
-        routerLink="admin/articles"
-        routerLinkActive="active-link"
-      >
-        <i class="bi bi-journal" id="open-nav-item-icon"></i>
-        <span> Articles </span>
-      </a>
-    </div>
-    <div class="container"></div>
-    }
+        <a class="" id="close-nav-item" routerLinkActive="active-link">
+          <i class="bi bi-journal" id="close-nav-item-icon"></i>
+        </a>
+        <a class="" id="close-nav-item" routerLinkActive="active-link">
+          <i class="bi bi-journal" id="close-nav-item-icon"></i>
+        </a>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!showFiller">
+      <div class="contenair" style="margin-bottom: 18px">
+        <img src="../../assets/svgs/Logo.svg" alt="" />
+      </div>
+      <div class="container p-4">
+        <a
+          id="open-nav-item"
+          routerLink="admin/home"
+          routerLinkActive="active-link"
+        >
+          <i class="bi bi-house" id="open-nav-item-icon"></i>
+          <span id="open-nav-item-span"> Accueil </span>
+        </a>
+        <a
+          id="open-nav-item"
+          routerLink="admin/articles"
+          routerLinkActive="active-link"
+        >
+          <i class="bi bi-journal" id="open-nav-item-icon"></i>
+          <span id="open-nav-item-span"> Articles </span>
+        </a>
+        <a
+          id="open-nav-item"
+          routerLink="admin/pages"
+          routerLinkActive="active-link"
+        >
+          <i class="bi bi-file-earmark" id="open-nav-item-icon"></i>
+          <span id="open-nav-item-span"> Pages </span>
+        </a>
+      </div>
+      <div class="container"></div>
+    </ng-container>
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <!-- <router-outlet></router-outlet> -->
     <button
       type="button"
       mat-button
@@ -105,31 +118,13 @@
         style="font-size: 2rem; cursor: pointer"
       ></i>
     </button>
-
-    <button class="btn btn-primay" (click)="getEditorContent()">get</button>
+    <router-outlet></router-outlet>
+    <!-- <button class="btn btn-primay" (click)="getEditorContent()">get</button>
     <h1>TinyMCE 6 Angular Demo</h1>
     <editor
       apiKey="05kar5f1edhaueeyba84fwwq71d09mt0ub1ys89bxwr7bj5p"
       [(ngModel)]="content"
       [init]="{ plugins: 'lists link image table code help wordcount' }"
-    ></editor>
-
-    <button class="btn btn-primay" (click)="getEditorContent()">get</button>
-    <h1>TinyMCE 6 Angular Demo</h1>
-    <editor
-      apiKey="05kar5f1edhaueeyba84fwwq71d09mt0ub1ys89bxwr7bj5p"
-      [(ngModel)]="content"
-      [init]="{ plugins: 'lists link image table code help wordcount' }"
-    ></editor>
-
-    <button class="btn btn-primay" (click)="getEditorContent()">get</button>
-    <h1>TinyMCE 6 Angular Demo</h1>
-    <editor
-      apiKey="05kar5f1edhaueeyba84fwwq71d09mt0ub1ys89bxwr7bj5p"
-      [(ngModel)]="content"
-      [init]="{ plugins: 'lists link image table code help wordcount' }"
-    ></editor>
-
-    <button class="btn btn-primay" (click)="getEditorContent()">get</button>
+    ></editor> -->
   </div>
 </mat-drawer-container>

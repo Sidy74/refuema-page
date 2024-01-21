@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 @Component({
   selector: 'app-admin-side-nav',
@@ -15,7 +17,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     NgIf,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet,
+    RouterOutlet,MatTooltipModule
   ],
   templateUrl: './admin-side-nav.component.html',
   styleUrl: './admin-side-nav.component.css',
