@@ -1,6 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/core/_services/login/login.service';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { UserTokenService } from 'src/app/core/_services/user-token.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,19 +18,19 @@ import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.com
 import { NgIf, NgClass, AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'],
-    standalone: true,
-    imports: [
-        NgIf,
-        ProgressBarComponent,
-        ReactiveFormsModule,
-        NgClass,
-        RouterLink,
-        RouterLinkActive,
-        AsyncPipe,
-    ],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
+  standalone: true,
+  imports: [
+    NgIf,
+    ProgressBarComponent,
+    ReactiveFormsModule,
+    NgClass,
+    RouterLink,
+    RouterLinkActive,
+    AsyncPipe,
+  ],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   user!: User;
@@ -64,6 +69,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       next: (value: any) => {
         this.userTokenService.login(value.token);
         if (value.user) {
+          console.log(value);
+          
           this.shareUserInfosService.setUserData(
             new UserInfos(
               value.user.prenom,
@@ -80,7 +87,11 @@ export class LoginComponent implements OnInit, OnDestroy {
             'Vous êtes connecter avec succès ',
             'X'
           );
-          this.router.navigateByUrl('/');
+          if (value.user.role == 'admin') {
+            this.router.navigateByUrl('/admin');
+          } else {
+            this.router.navigateByUrl('/');
+          }
         }
       },
       error: (err: HttpErrorResponse) => {

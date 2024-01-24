@@ -107,18 +107,21 @@
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <button
-      type="button"
-      mat-button
-      (click)="drawer.toggle()"
-      style="margin-top: 70px"
-    >
-      <i
-        [class]="showFiller ? 'bi bi-caret-right' : 'bi bi-caret-left '"
-        style="font-size: 2rem; cursor: pointer"
-      ></i>
-    </button>
-    <router-outlet></router-outlet>
+    <div class="main">
+      <router-outlet></router-outlet>
+      <button
+        type="button"
+        mat-button
+        (click)="drawer.toggle()"
+        style="margin-top: 70px"
+      >
+        <i
+          [class]="showFiller ? 'bi bi-caret-right' : 'bi bi-caret-left '"
+          style="font-size: 2rem; cursor: pointer"
+        ></i>
+      </button>
+    </div>
+
     <!-- <button class="btn btn-primay" (click)="getEditorContent()">get</button>
     <h1>TinyMCE 6 Angular Demo</h1>
     <editor
