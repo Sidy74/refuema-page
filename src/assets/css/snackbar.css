@@ -43,7 +43,7 @@
   }
   &.snackbar-warning {
     ::before {
-      background-color: greenyellow;
+      background-color: rgb(255, 189, 47);
     }
     .mat-icon {
       color: yellow;

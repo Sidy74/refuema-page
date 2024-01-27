@@ -52,7 +52,7 @@ export class ToastService {
       data: {
         message: message,
         action: action,
-        icon: 'done',
+        icon: 'info',
         snackbar: this.snackBar,
       },
       verticalPosition: 'top',
