@@ -1,9 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { NgStyle } from '@angular/common';
 
 @Component({
-  selector: 'app-front-card',
-  templateUrl: './front-card.component.html',
-  styleUrls: ['./front-card.component.css'],
+    selector: 'app-front-card',
+    templateUrl: './front-card.component.html',
+    styleUrls: ['./front-card.component.css'],
+    standalone: true,
+    imports: [NgStyle],
 })
 export class FrontCardComponent {
   image: string =

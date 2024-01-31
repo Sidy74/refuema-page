@@ -7,14 +7,10 @@ import { EditUserModalComponent } from '../edit-user-modal/edit-user-modal.compo
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { PhotoModalComponent } from '../photo-modal/photo-modal.component';
-import {
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { ProgressBarModule } from '../../../../shared/progress-bar/progress-bar.module';
-import { ProfilAvatarModule } from '../profil-avatar/profil-avatar.module';
+
+
 import { MatSelectModule } from '@angular/material/select';
 import { EditUserPasswordComponent } from '../edit-user-password/edit-user-password.component';
 import { EditUserMailModalComponent } from '../edit-user-mail-modal/edit-user-mail-modal.component';
@@ -22,14 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CvModule } from '../../cv/cv/cv.module';
 
 @NgModule({
-  declarations: [
-    ProfilComponent,
-    EditUserModalComponent,
-    PhotoModalComponent,
-    EditUserPasswordComponent,
-    EditUserMailModalComponent,
-  ],
-  imports: [
+    imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -38,11 +27,14 @@ import { CvModule } from '../../cv/cv/cv.module';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    ProgressBarModule,
-    ProfilAvatarModule,
     MatSelectModule,
     CvModule,
     MatProgressSpinnerModule,
-  ],
+    ProfilComponent,
+    EditUserModalComponent,
+    PhotoModalComponent,
+    EditUserPasswordComponent,
+    EditUserMailModalComponent,
+],
 })
 export class ProfilModule {}

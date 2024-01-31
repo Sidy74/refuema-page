@@ -8,8 +8,8 @@ describe('PhotoModalComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PhotoModalComponent]
-    });
+    imports: [PhotoModalComponent]
+});
     fixture = TestBed.createComponent(PhotoModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

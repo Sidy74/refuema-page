@@ -8,8 +8,8 @@ describe('EditUserPasswordComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EditUserPasswordComponent]
-    });
+    imports: [EditUserPasswordComponent]
+});
     fixture = TestBed.createComponent(EditUserPasswordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

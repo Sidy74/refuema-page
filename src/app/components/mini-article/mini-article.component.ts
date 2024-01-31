@@ -1,14 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgIf, SlicePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-mini-article',
-  templateUrl: './mini-article.component.html',
-  styleUrls: ['./mini-article.component.css'],
+    selector: 'app-mini-article',
+    templateUrl: './mini-article.component.html',
+    styleUrls: ['./mini-article.component.css'],
+    standalone: true,
+    imports: [NgIf, SlicePipe],
 })
 export class MiniArticleComponent implements OnInit {
   ngOnInit(): void {}
   showMoreText = false;
-  @Input() cardMedia  = 'assets/svgs/Mali.svg'
+  @Input() cardMedia  = ''
   @Input() cardDate: string = '23';
   @Input()
   cardTitle: string = ' RESEAU DES FEMMES ENSEIGNANTES ET ETUDIANTES DU MALI';

@@ -8,8 +8,8 @@ describe('FrontCardComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FrontCardComponent]
-    });
+    imports: [FrontCardComponent]
+});
     fixture = TestBed.createComponent(FrontCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

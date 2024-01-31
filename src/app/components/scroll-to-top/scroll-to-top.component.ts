@@ -1,9 +1,12 @@
 import { Component, HostListener } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-scroll-to-top',
-  templateUrl: './scroll-to-top.component.html',
-  styleUrls: ['./scroll-to-top.component.css'],
+    selector: 'app-scroll-to-top',
+    templateUrl: './scroll-to-top.component.html',
+    styleUrls: ['./scroll-to-top.component.css'],
+    standalone: true,
+    imports: [MatIcon],
 })
 export class ScrollToTopComponent {
   @HostListener('window:scroll', ['$event'])

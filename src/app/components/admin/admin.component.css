@@ -1,0 +1,37 @@
+/* styles.css ou styles.scss */
+.fixed-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1030;
+  padding-top: 3.5rem;
+}
+
+.navbar-toggler {
+  margin-top: 10px;
+}
+
+.navbar-nav {
+  width: 100%;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.bi {
+  margin-right: 10px; /* Ajustez la marge entre l'icône et le texte */
+}
+.example-container {
+  width: 90vi;
+  height: 200px;
+  margin: 10px;
+  border: 1px solid #0f0d0d;
+}

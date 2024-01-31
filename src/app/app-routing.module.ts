@@ -14,6 +14,8 @@ import { PasswordResetComponent } from './components/password-reset/password-res
 import { CvComponent } from './components/user/cv/cv.component';
 import { ArticleComponent } from './components/article/article.component';
 
+import { AdminRoutingModule } from './components/admin/admin-routing.module';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -22,7 +24,7 @@ const routes: Routes = [
   { path: 'request-make', component: RequestMakeComponent },
   { path: 'passwordreset', component: PasswordResetComponent },
   { path: 'contact-us', component: ContactUsComponent },
-  { path: 'articles', component:  ArticleComponent },
+  { path: 'articles', component: ArticleComponent },
 
   {
     path: 'user',
@@ -37,7 +39,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), AdminRoutingModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

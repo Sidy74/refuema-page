@@ -1,16 +1,30 @@
 import { AfterContentInit, Component, Inject, OnDestroy } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { UserImageData } from 'src/app/core/_interfaces/userImage';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { UserService } from 'src/app/core/_services/user/user.service';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { ProgressBarComponent } from '../../../../shared/progress-bar/progress-bar.component';
+import { NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-photo-modal',
-  templateUrl: './photo-modal.component.html',
-  styleUrls: ['./photo-modal.component.css'],
+    selector: 'app-photo-modal',
+    templateUrl: './photo-modal.component.html',
+    styleUrls: ['./photo-modal.component.css'],
+    standalone: true,
+    imports: [
+        NgIf,
+        ProgressBarComponent,
+        MatIcon,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+        AsyncPipe,
+    ],
 })
 export class PhotoModalComponent implements OnDestroy, AfterContentInit {
   loadingSubscription$?: Subscription;

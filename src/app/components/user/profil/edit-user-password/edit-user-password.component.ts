@@ -1,16 +1,32 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { UserService } from 'src/app/core/_services/user/user.service';
 import { PasswordValidator } from 'src/app/core/_validator/password.validator';
+import { MatButton } from '@angular/material/button';
+import { ProgressBarComponent } from '../../../../shared/progress-bar/progress-bar.component';
+import { NgIf, NgClass, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-edit-user-password',
-  templateUrl: './edit-user-password.component.html',
-  styleUrls: ['./edit-user-password.component.css'],
+    selector: 'app-edit-user-password',
+    templateUrl: './edit-user-password.component.html',
+    styleUrls: ['./edit-user-password.component.css'],
+    standalone: true,
+    imports: [
+        MatDialogTitle,
+        NgIf,
+        ProgressBarComponent,
+        MatDialogContent,
+        ReactiveFormsModule,
+        NgClass,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+        AsyncPipe,
+    ],
 })
 export class EditUserPasswordComponent implements OnInit {
   editPasswordForm!: FormGroup;

@@ -8,8 +8,8 @@ describe('AppbarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AppbarComponent]
-    });
+    imports: [AppbarComponent]
+});
     fixture = TestBed.createComponent(AppbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-mini-mini-card',
-  templateUrl: './mini-mini-card.component.html',
-  styleUrls: ['./mini-mini-card.component.css'],
+    selector: 'app-mini-mini-card',
+    templateUrl: './mini-mini-card.component.html',
+    styleUrls: ['./mini-mini-card.component.css'],
+    standalone: true,
 })
 export class MiniMiniCardComponent {
   @Input() image!: string;

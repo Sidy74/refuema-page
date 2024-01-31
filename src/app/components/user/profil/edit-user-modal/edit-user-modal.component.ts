@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import { Titre } from 'src/app/core/_models/titre.model';
 import { UserInfos } from 'src/app/core/_models/user..models';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
@@ -8,11 +8,28 @@ import { RegistrationService } from 'src/app/core/_services/registration.service
 import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { UserService } from 'src/app/core/_services/user/user.service';
+import { MatButton } from '@angular/material/button';
+import { ProgressBarComponent } from '../../../../shared/progress-bar/progress-bar.component';
+import { NgIf, NgClass, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-edit-user-modal',
-  templateUrl: './edit-user-modal.component.html',
-  styleUrls: ['./edit-user-modal.component.css'],
+    selector: 'app-edit-user-modal',
+    templateUrl: './edit-user-modal.component.html',
+    styleUrls: ['./edit-user-modal.component.css'],
+    standalone: true,
+    imports: [
+        MatDialogTitle,
+        NgIf,
+        ProgressBarComponent,
+        MatDialogContent,
+        ReactiveFormsModule,
+        NgClass,
+        NgFor,
+        MatDialogActions,
+        MatButton,
+        MatDialogClose,
+        AsyncPipe,
+    ],
 })
 export class EditUserModalComponent implements OnInit {
   user!: UserInfos;
