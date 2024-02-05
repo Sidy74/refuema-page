@@ -1,3 +1,82 @@
 <div class="page-hearder">
   <div class="section-title">Articles (SOON)</div>
 </div>
+
+<hr />
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>N°</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.position }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="articles">
+    <th
+      mat-header-cell
+      *matHeaderCellDef
+      style="padding: 8px"
+      class="titre-article"
+    >
+      Articles
+      <span style="float: right">
+        <div class="btn" id="btn-primary"(click)="openAddArticle()" >Ajouter article</div>
+      </span>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="row">
+        <div class="col-10">
+          <div class="row" id="titre-article-row">
+            <span class="titre-article">
+              Titre d'article : {{ element.article }}
+            </span>
+          </div>
+          <div class="row" id="titre-article-row">
+            <span>Date de creation : 18:20 30/02/2024 </span>
+          </div>
+        </div>
+        <div class="col d-flex align-items-center justify-content-end">
+          <span style="float: right">
+            <span [matMenuTriggerFor]="articleMenu">
+              <mat-icon>more_horiz</mat-icon>
+            </span>
+            <mat-menu
+              #articleMenu="matMenu"
+              xPosition="before"
+              class="article-menu d-flex justify-content-center align-items-center"
+              overlapTrigger="false"
+            >
+              <!-- <div
+                class="d-flex justify-content-start align-items-center"
+                id="article-option-menu-item"
+              >
+                <mat-icon> add_circle_outline</mat-icon> <span>Ajouter</span>
+              </div> -->
+              <div
+                class="d-flex justify-content-start align-items-center"
+                id="article-option-menu-item"
+              >
+                <mat-icon>visibility</mat-icon> <span>Voir</span>
+              </div>
+              <div
+                class="d-flex justify-content-start align-items-center"
+                id="article-option-menu-item"
+              >
+                <mat-icon>open_in_new</mat-icon> <span>Modifier</span>
+              </div>
+              <div
+                class="d-flex justify-content-start align-items-center"
+                id="article-option-menu-item"
+              >
+                <mat-icon>delete</mat-icon> <span>Supprimer</span>
+              </div>
+            </mat-menu>
+          </span>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
