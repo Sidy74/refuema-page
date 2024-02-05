@@ -6,13 +6,21 @@ import { AdminComponent } from './admin.component';
 import { adminGuard } from 'src/app/core/_helpers/_guards/admin.guard';
 import { APagesComponent } from './a-pages/a-pages.component';
 import { AHomeComponent } from 'src/app/components/admin/a-home/a-home.component';
+import { AAddArticleComponent } from './a-articles/a-add-article/a-add-article.component';
 const adminRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
     children: [
       { path: 'home', component: AHomeComponent },
-      { path: 'articles', component: AArticlesComponent },
+      {
+        path: 'articles',
+        component: AArticlesComponent,
+      },
+      {
+        path: 'article/add',
+        component: AAddArticleComponent,
+      },
       { path: 'pages', component: APagesComponent },
     ],
   },
