@@ -1,7 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { AfterContentInit, Component, OnInit } from '@angular/core';
-import { Form, FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { elementAt } from 'rxjs';
+import { AfterContentInit, Component } from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { UserInfos } from 'src/app/core/_models/user..models';
 import { CustomDatePipe } from 'src/app/core/_pipes/custom-date/custom-date.pipe';
 import { CvService } from 'src/app/core/_services/cv/cv.service';
@@ -11,29 +16,33 @@ import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { years } from 'src/app/shared/_utils/years';
 import { CvViewComponent } from './cv-view/cv-view.component';
 import { MatSlider, MatSliderThumb } from '@angular/material/slider';
-import { MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular/material/datepicker';
+import {
+  MatDatepickerInput,
+  MatDatepickerToggle,
+  MatDatepicker,
+} from '@angular/material/datepicker';
 import { MatIcon } from '@angular/material/icon';
 import { NgIf, NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
 
 @Component({
-    selector: 'app-cv',
-    templateUrl: './cv.component.html',
-    styleUrls: ['./cv.component.css'],
-    standalone: true,
-    imports: [
-        NgIf,
-        ReactiveFormsModule,
-        NgFor,
-        MatIcon,
-        MatDatepickerInput,
-        MatDatepickerToggle,
-        MatDatepicker,
-        MatSlider,
-        MatSliderThumb,
-        NgSwitch,
-        NgSwitchCase,
-        CvViewComponent,
-    ],
+  selector: 'app-cv',
+  templateUrl: './cv.component.html',
+  styleUrls: ['./cv.component.css'],
+  standalone: true,
+  imports: [
+    NgIf,
+    ReactiveFormsModule,
+    NgFor,
+    MatIcon,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDatepicker,
+    MatSlider,
+    MatSliderThumb,
+    NgSwitch,
+    NgSwitchCase,
+    CvViewComponent,
+  ],
 })
 export class CvComponent implements AfterContentInit {
   years = years;
@@ -105,7 +114,12 @@ export class CvComponent implements AfterContentInit {
     });
     this.cvService.getCV().subscribe({
       next: (value: any) => {
-        console.log(value);
+        if (value.Message.includes(`Vous n'avez pas encore de CV`)) {
+          this.toastService.openInfo(value.Message, 'X');
+          return;
+        }
+
+        console.log(value.Message);
         this.haveCV = !this.haveCV;
         if (value.cv.description) {
           this.cvFormControls['profileForm'].controls['description'].patchValue(

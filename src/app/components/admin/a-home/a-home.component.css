@@ -1,0 +1,20 @@
+.page-hearder {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    background-color: #013b45;
+    padding: 30px;
+    padding-right: 10px;
+    align-self: center;
+  
+    & .section-title {
+      padding: auto;
+      font-family: "Cairo";
+      align-self: center;
+      text-align: center;
+      font-weight: 900;
+      font-size: x-large;
+      color: azure;
+      width: 100%;
+    }
+  }

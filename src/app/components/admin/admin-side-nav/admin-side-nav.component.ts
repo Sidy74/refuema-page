@@ -5,22 +5,24 @@ import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { AdminComponent } from "../admin.component";
 
 
 @Component({
-  selector: 'app-admin-side-nav',
-  standalone: true,
-  imports: [
-    MatSidenavModule,
-    EditorModule,
-    FormsModule,
-    NgIf,
-    RouterLink,
-    RouterLinkActive,
-    RouterOutlet,MatTooltipModule
-  ],
-  templateUrl: './admin-side-nav.component.html',
-  styleUrl: './admin-side-nav.component.css',
+    selector: 'app-admin-side-nav',
+    standalone: true,
+    templateUrl: './admin-side-nav.component.html',
+    styleUrl: './admin-side-nav.component.css',
+    imports: [
+        MatSidenavModule,
+        EditorModule,
+        FormsModule,
+        NgIf,
+        RouterLink,
+        RouterLinkActive,
+        RouterOutlet, MatTooltipModule,
+        AdminComponent
+    ]
 })
 export class AdminSideNavComponent {
   showFiller = false;

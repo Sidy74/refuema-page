@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
-import { AdminSideNavComponent } from '../../admin-side-nav/admin-side-nav.component';
+import { AdminSideNavComponent } from './admin-side-nav/admin-side-nav.component';
 import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-admin',
@@ -15,7 +16,7 @@ import { RouterOutlet } from '@angular/router';
     FormsModule,
     AdminSideNavComponent,
     MatSidenavModule,
-    RouterOutlet,
+    RouterOutlet,  
   ],
 })
 export class AdminComponent {
@@ -25,4 +26,5 @@ export class AdminComponent {
   getEditorContent(): void {
     console.log(this.content);
   }
+
 }

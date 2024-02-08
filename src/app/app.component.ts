@@ -5,7 +5,7 @@ import { AppbarComponent } from './components/appbar/appbar/appbar.component';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
-import { AdminSideNavComponent } from "./admin-side-nav/admin-side-nav.component";
+import { AdminSideNavComponent } from "./components/admin/admin-side-nav/admin-side-nav.component";
 
 @Component({
     selector: 'app-root',
@@ -23,6 +23,7 @@ import { AdminSideNavComponent } from "./admin-side-nav/admin-side-nav.component
     ]
 })
 export class AppComponent {
+  constructor(){};
   isAdmin = false;
   title = 'refue-m';
 }

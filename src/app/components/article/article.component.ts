@@ -1,22 +1,36 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  HostListener,
+  OnInit,
+} from '@angular/core';
 import { Article } from 'src/app/core/_models/article.model';
 import { MiniMiniCardComponent } from '../mini-mini-card/mini-mini-card.component';
 import { MiniArticleComponent } from '../mini-article/mini-article.component';
 import { NgIf, NgFor } from '@angular/common';
+import { PublicationService } from 'src/app/core/_services/publication/publication.service';
 
 @Component({
-    selector: 'app-article',
-    templateUrl: './article.component.html',
-    styleUrls: ['./article.component.css'],
-    standalone: true,
-    imports: [
-        NgIf,
-        NgFor,
-        MiniArticleComponent,
-        MiniMiniCardComponent,
-    ],
+  selector: 'app-article',
+  templateUrl: './article.component.html',
+  styleUrls: ['./article.component.css'],
+  standalone: true,
+  imports: [NgIf, NgFor, MiniArticleComponent, MiniMiniCardComponent],
 })
-export class ArticleComponent implements OnInit {
+export class ArticleComponent implements OnInit, AfterContentInit {
+  constructor(private publicationService: PublicationService) {}
+  ngAfterContentInit(): void {
+    let x: any;
+    this.publicationService.getArticles().subscribe({
+      next: (value) => {
+        x = value;
+        // console.log(value);
+      },
+    });
+    setTimeout(() => {
+      console.log(x);
+    }, 1000);
+  }
   isMobile: boolean = false;
   allArticles!: Array<Article>;
 

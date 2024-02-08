@@ -1,4 +1,4 @@
-<div class="" *ngIf="isAdmin">
+<div *ngIf="isAdmin">
   <app-appbar> </app-appbar>
   <app-scroll-to-top></app-scroll-to-top>
   <div class="main">
@@ -6,6 +6,6 @@
   </div>
   <app-footer></app-footer>
 </div>
-<div class="" *ngIf="!isAdmin">
+<div *ngIf="!isAdmin">
   <app-admin-side-nav></app-admin-side-nav>
 </div>
