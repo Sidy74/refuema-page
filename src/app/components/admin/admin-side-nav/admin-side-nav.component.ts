@@ -6,6 +6,8 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { AdminComponent } from "../admin.component";
+import { AppbarAvatarComponent } from '../../appbar/appbar-avatar/appbar-avatar.component';
+import { AdminSideNavAvatarComponent } from '../admin-side-nav-avatar/admin-side-nav-avatar.component';
 
 
 @Component({
@@ -21,7 +23,7 @@ import { AdminComponent } from "../admin.component";
         RouterLink,
         RouterLinkActive,
         RouterOutlet, MatTooltipModule,
-        AdminComponent
+        AdminComponent,AdminSideNavAvatarComponent
     ]
 })
 export class AdminSideNavComponent {

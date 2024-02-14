@@ -4,12 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { ShareUserInfosService } from '../share-user-infos.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   constructor(
+    private router: Router,
     private userTokenService: UserTokenService,
     private http: HttpClient,
     private shareUserInfosService: ShareUserInfosService
@@ -23,6 +25,11 @@ export class LoginService {
   logout() {
     this.userTokenService.logout();
     this.shareUserInfosService.deleteUserData();
+
+    window.onload = () => {
+      this.router.navigate(['/']);
+    };
+    location.reload();
   }
   isLogged(): Observable<boolean> {
     return this.userTokenService.isLogged();

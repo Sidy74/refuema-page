@@ -18,8 +18,16 @@ export class ShareUserInfosService {
     new BehaviorSubject<string | null>(null);
   currentUserPhoto$: Observable<string | null> =
     this.currentUserPhoto.asObservable();
-  userPhotoKey: string = '%usr%photo';
 
+  //Subject & Observable for user role
+  private currentUserRole: BehaviorSubject<any | null> = new BehaviorSubject<
+    any | null
+  >(null);
+  currentUserRole$: Observable<any | null> =
+    this.currentUserRole.asObservable();
+
+  userPhotoKey: string = '%usr%pho?to';
+  userRoleKey: string = '%user%r?o!le§';
   constructor() {}
 
   setUserData(user: UserInfos) {
@@ -37,7 +45,14 @@ export class ShareUserInfosService {
 
   deleteUserData() {
     this.currentUserInfos.next(null);
+    this.currentUserRole.next(null);
     localStorage.removeItem(this.userInfosKey);
+    localStorage.removeItem(this.userPhotoKey);
+    localStorage.removeItem(this.userRoleKey);
+  }
+  deteleUserRole() {
+    this.currentUserRole.next(null);
+    localStorage.removeItem(this.userRoleKey);
   }
 
   getUserImage(): Observable<string | null> {
@@ -55,5 +70,19 @@ export class ShareUserInfosService {
       this.currentUserInfos.next(x);
     }
     return this.currentUserInfos$;
+  }
+
+  setUserRole(userRole: string) {
+    console.log(userRole);
+    localStorage.setItem(this.userRoleKey, JSON.stringify(userRole));
+  }
+
+  getUserRole(): Observable<any | null> {
+    let userRole = localStorage.getItem(this.userRoleKey);
+    if (!!userRole) {
+      const x = JSON.parse(userRole);
+      this.currentUserRole.next(x);
+    }
+    return this.currentUserRole$;
   }
 }

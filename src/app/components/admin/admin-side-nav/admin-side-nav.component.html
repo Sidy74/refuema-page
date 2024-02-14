@@ -5,7 +5,12 @@
     class="example-sidenav"
     mode="side"
     position="start"
-    style="position: fixed; background-color: whitesmoke; padding: 16px"
+    style="
+      height: 100vh;
+      position: fixed;
+      background-color: whitesmoke;
+      padding: 16px;
+    "
   >
     <i
       (click)="showFiller = !showFiller"
@@ -19,6 +24,8 @@
         color: #01766e;
       "
     ></i>
+
+    <!-- Side close items section -->
     <ng-container *ngIf="showFiller">
       <div class="container" id="close-nav-logo ">
         <a
@@ -72,6 +79,8 @@
         </a>
       </div>
     </ng-container>
+
+    <!-- Side open items section -->
     <ng-container *ngIf="!showFiller">
       <div class="contenair" style="margin-bottom: 18px">
         <img src="../../assets/svgs/Logo.svg" alt="" />
@@ -102,8 +111,12 @@
           <span id="open-nav-item-span"> Pages </span>
         </a>
       </div>
-      <div class="container"></div>
     </ng-container>
+
+    <!-- avatar section -->
+    <div class="container p-4" style="position: fixed; bottom: 0">
+      <app-admin-side-nav-avatar></app-admin-side-nav-avatar>
+    </div>
   </mat-drawer>
 
   <div class="example-sidenav-content">

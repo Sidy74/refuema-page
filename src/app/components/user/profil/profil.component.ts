@@ -20,12 +20,12 @@ import { MatIcon } from '@angular/material/icon';
 import { ProfilAvatarComponent } from './profil-avatar/profil-avatar.component';
 
 @Component({
-    selector: 'app-profil',
-    templateUrl: './profil.component.html',
-    styleUrls: ['./profil.component.css'],
-    changeDetection: ChangeDetectionStrategy.Default,
-    standalone: true,
-    imports: [ProfilAvatarComponent, MatIcon],
+  selector: 'app-profil',
+  templateUrl: './profil.component.html',
+  styleUrls: ['./profil.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
+  standalone: true,
+  imports: [ProfilAvatarComponent, MatIcon],
 })
 export class ProfilComponent implements OnDestroy, OnInit {
   userDataSubscription?: Subscription;
@@ -37,7 +37,6 @@ export class ProfilComponent implements OnDestroy, OnInit {
   constructor(
     public dialog: MatDialog,
     private imageService: ImageService,
-    private userService: UserService,
     private shareUserInfosService: ShareUserInfosService,
     private changeDetectorRef: ChangeDetectorRef,
     private breakpointObserver: BreakpointObserver
