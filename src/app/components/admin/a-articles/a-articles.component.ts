@@ -3,6 +3,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AViewArticleComponent } from './a-view-article/a-view-article.component';
 
 @Component({
   selector: 'app-a-articles',
@@ -12,7 +14,8 @@ import { Router } from '@angular/router';
   styleUrl: './a-articles.component.css',
 })
 export class AArticlesComponent {
-  constructor(private route: Router) {}
+  constructor(private route: Router, public dialog: MatDialog) {}
+
   displayedColumns: string[] = ['position', 'articles'];
   dataSource = [
     { position: 1, article: 'articles1' },
@@ -26,5 +29,11 @@ export class AArticlesComponent {
   ];
   openAddArticle() {
     this.route.navigateByUrl('/admin/article/add');
+  }
+  openViewModal() {
+    this.dialog.open(AViewArticleComponent, {
+      width: '90vw',
+      data: { article: 'this.article' },
+    });
   }
 }
