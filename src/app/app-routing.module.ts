@@ -15,6 +15,7 @@ import { CvComponent } from './components/user/cv/cv.component';
 import { ArticleComponent } from './components/article/article.component';
 
 import { AdminRoutingModule } from './components/admin/admin-routing.module';
+import { UserRoutingModule } from './components/user/user.routing.module';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,21 +26,14 @@ const routes: Routes = [
   { path: 'passwordreset', component: PasswordResetComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'articles', component: ArticleComponent },
-
-  {
-    path: 'user',
-    component: UserComponent,
-    canActivate: [authGuard],
-    children: [
-      { path: 'profil', component: ProfilComponent },
-      { path: 'card', component: CardComponent },
-      { path: 'cv', component: CvComponent },
-    ],
-  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), AdminRoutingModule],
+  imports: [
+    RouterModule.forRoot(routes),
+    AdminRoutingModule,
+    UserRoutingModule,
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -1,4 +1,3 @@
-// admin-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AArticlesComponent } from './a-articles/a-articles.component';
@@ -11,6 +10,7 @@ const adminRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [adminGuard],
     children: [
       { path: 'home', component: AHomeComponent },
       {

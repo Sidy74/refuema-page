@@ -1,0 +1,53 @@
+.avatar-container {
+  position: relative;
+  padding-bottom: 10px;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+#image-container {
+  z-index: 999;
+  transition: 0.5s;
+
+  & img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: 0.5s;
+  }
+}
+#keyboard_arrow_down {
+  margin: 0px;
+  color: #01766e !important;
+  padding: 0px;
+  font-size: 100%;
+}
+
+::ng-deep .profil-menu {
+  margin-top: 0px;
+  border-radius: 8px !important;
+  position: relative;
+  padding: 0px 5px;
+}
+::ng-deep .mat-menu-item:hover {
+  background-color: #01766e13 !important;
+}
+
+#mat-menu-item-text {
+  font-size: small;
+  color: #01766e;
+}
+#mat-menu-item-icon {
+  padding: 5px 0px;
+  font-size: medium;
+  color: #01766e;
+  margin-right: 0px;
+}
+@media screen and (max-width: 600px) {
+  #image-container,
+  #profil-image {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}

@@ -16,6 +16,7 @@ import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.s
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.component';
 import { NgIf, NgClass, AsyncPipe } from '@angular/common';
+import { UserRole } from 'src/app/core/_helpers/_enums/user-role';
 
 @Component({
   selector: 'app-login',
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loadingSubscription$?: Subscription;
   isLoading: boolean = false;
   @Input() erroStatus!: number;
+  UserRole = UserRole;
 
   constructor(
     private loginService: LoginService,
@@ -69,8 +71,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       next: (value: any) => {
         this.userTokenService.login(value.token);
         if (value.user) {
-          console.log(value);
-          
           this.shareUserInfosService.setUserData(
             new UserInfos(
               value.user.prenom,
@@ -82,15 +82,19 @@ export class LoginComponent implements OnInit, OnDestroy {
               value.user.titre
             )
           );
+
+          this.shareUserInfosService.setUserRole(value.user.role[0]);
           this.shareUserInfosService.setUserPhoto(value.user.photo);
           this.toastService.openSuccess(
             'Vous êtes connecter avec succès ',
             'X'
           );
-          if (value.user.role == 'admin') {
-            this.router.navigateByUrl('/admin');
-          } else {
+          if (value.user.role[0] == UserRole.Admin) {
+            this.router.navigateByUrl('/admin/home');
+          } else if (value.user.role[0] == UserRole.User) {
             this.router.navigateByUrl('/');
+          } else {
+            console.log('Not found user role');
           }
         }
       },
