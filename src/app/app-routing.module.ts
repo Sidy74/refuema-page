@@ -13,6 +13,7 @@ import { RequestMakeComponent } from './components/request-make/request-make.com
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { CvComponent } from './components/user/cv/cv.component';
 import { ArticleComponent } from './components/article/article.component';
+import { ActualityComponent } from './components/actuality/actuality.component';
 
 import { AdminRoutingModule } from './components/admin/admin-routing.module';
 import { UserRoutingModule } from './components/user/user.routing.module';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'passwordreset', component: PasswordResetComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'articles', component: ArticleComponent },
+  { path: 'actualites', component: ActualityComponent },
 ];
 
 @NgModule({
