@@ -70,13 +70,6 @@
         >
           <i class="bi bi-file-earmark" id="close-nav-item-icon"></i>
         </a>
-
-        <a class="" id="close-nav-item" routerLinkActive="active-link">
-          <i class="bi bi-journal" id="close-nav-item-icon"></i>
-        </a>
-        <a class="" id="close-nav-item" routerLinkActive="active-link">
-          <i class="bi bi-journal" id="close-nav-item-icon"></i>
-        </a>
       </div>
     </ng-container>
 
@@ -114,16 +107,14 @@
     </ng-container>
 
     <!-- avatar section -->
-    <div class="container p-4" style="position: fixed; bottom: 0">
+    <div class="p-4" style="position: fixed; bottom: 0">
       <app-admin-side-nav-avatar></app-admin-side-nav-avatar>
     </div>
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <div class="main">
-      <app-admin></app-admin>
-      <!-- <router-outlet></router-outlet> -->
-    </div>
+    <app-admin></app-admin>
+    <!-- <router-outlet></router-outlet> -->
 
     <!-- <button class="btn btn-primay" (click)="getEditorContent()">get</button>
     <h1>TinyMCE 6 Angular Demo</h1>

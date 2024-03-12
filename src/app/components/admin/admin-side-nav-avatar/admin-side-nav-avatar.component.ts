@@ -1,6 +1,7 @@
 import { AfterContentInit, Component } from '@angular/core';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ImageService } from 'src/app/core/_services/images/image.service';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { LoginService } from 'src/app/core/_services/login/login.service';
@@ -10,7 +11,13 @@ import { ToastService } from 'src/app/core/_services/toast/toast.service';
 @Component({
   selector: 'app-admin-side-nav-avatar',
   standalone: true,
-  imports: [MatIconModule, MatMenuModule],
+  imports: [
+    MatIconModule,
+    MatMenuModule,
+    RouterLink,
+    RouterLinkActive,
+    RouterOutlet,
+  ],
   templateUrl: './admin-side-nav-avatar.component.html',
   styleUrl: './admin-side-nav-avatar.component.css',
 })

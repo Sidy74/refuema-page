@@ -23,3 +23,7 @@
     color: #013b45;
   }
 }
+
+#articles-table {
+  padding: 0px 16px;
+}

@@ -6,6 +6,7 @@ import { adminGuard } from 'src/app/core/_helpers/_guards/admin.guard';
 import { APagesComponent } from './a-pages/a-pages.component';
 import { AHomeComponent } from 'src/app/components/admin/a-home/a-home.component';
 import { AAddArticleComponent } from './a-articles/a-add-article/a-add-article.component';
+import { AProfilComponent } from './a-profil/a-profil.component';
 const adminRoutes: Routes = [
   {
     path: 'admin',
@@ -17,6 +18,7 @@ const adminRoutes: Routes = [
         path: 'articles',
         component: AArticlesComponent,
       },
+      {path:'profil', component : AProfilComponent},
       {
         path: 'article/add',
         component: AAddArticleComponent,

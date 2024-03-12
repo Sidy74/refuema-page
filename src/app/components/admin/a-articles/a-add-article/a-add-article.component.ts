@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
@@ -14,6 +14,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ArticleService } from 'src/app/core/_services/article/article.service';
+import { PorteePublicationService } from 'src/app/core/_services/portee-publication.service';
+import { TypePublicationService } from 'src/app/core/_services/type-publication.service';
+import { ToastService } from 'src/app/core/_services/toast/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-a-add-article',
@@ -36,29 +41,87 @@ import {
   templateUrl: './a-add-article.component.html',
   styleUrl: './a-add-article.component.css',
 })
-export class AAddArticleComponent implements OnInit {
+export class AAddArticleComponent implements OnInit, AfterContentInit {
   addArticleForm!: FormGroup;
   image: any;
   editorConfig!: any;
   panelOpenState = false;
-  constructor(private fb: FormBuilder) {}
+  imagFiles!: File[];
+  portee!: any;
+  type!: any;
+  constructor(
+    private fb: FormBuilder,
+    private articleService: ArticleService,
+    private porteePublicationService: PorteePublicationService,
+    private typePublicationService: TypePublicationService,
+    private toastService: ToastService,
+    private router: Router
+  ) {}
+
+  ngAfterContentInit(): void {
+    this.porteePublicationService.getPorteeAritcle().subscribe({
+      next: (value) => {
+        this.portee = value.titre;
+      },
+    });
+    this.typePublicationService.getTypeArticle().subscribe({
+      next: (value) => {
+        this.type = value.titre;
+      },
+    });
+  }
+
   ngOnInit(): void {
     this.addArticleForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(4)]],
-      realisationDate: ['', [Validators.required]],
       image: [''],
       description: ['', [Validators.required]],
     });
     this.editorConfig = {
       plugins: 'lists link image table code wordcount',
       menubar: 'edit insert view format table',
-      height: '100vh',
+      height: '70vh',
     };
   }
   addArticle() {
-    console.log(this.addArticleForm);
+    this.articleService.addArtilce(this.articleToFormData()).subscribe({
+      next: (value) => {
+        console.log(value);
+        this.toastService.openSuccess(value.message, 'x');
+        this.router.navigateByUrl('/admin/articles');
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
+  }
+  articleToFormData() {
+    let formData = new FormData();
+
+    formData.append('titre', this.addArticleForm.controls['title'].value);
+    formData.append(
+      'description',
+      this.addArticleForm.controls['description'].value
+    );
+    formData.append('portee', '2');
+    formData.append('type', '1');
+    console.log(this.imagFiles);
+
+    for (const key in this.imagFiles) {
+      if (Object.prototype.hasOwnProperty.call(this.imagFiles, key)) {
+        const element = this.imagFiles[key];
+        console.log(element);
+        formData.append('media[]', element);
+      }
+    }
+    // this.imagFiles.forEach((element) => {
+    //   console.log(element);
+    // });
+    return formData;
   }
   onFileSelected(event: any) {
+    this.imagFiles = event.target.files;
+
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();

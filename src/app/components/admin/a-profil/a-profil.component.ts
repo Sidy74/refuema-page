@@ -1,33 +1,26 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  ChangeDetectionStrategy,
-  OnInit,
-} from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { EditUserModalComponent } from './edit-user-modal/edit-user-modal.component';
-import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { Subscription } from 'rxjs';
 import { UserInfos } from 'src/app/core/_models/user..models';
-import { PhotoModalComponent } from './photo-modal/photo-modal.component';
 import { ImageService } from 'src/app/core/_services/images/image.service';
-import { EditUserPasswordComponent } from './edit-user-password/edit-user-password.component';
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { EditUserMailModalComponent } from './edit-user-mail-modal/edit-user-mail-modal.component';
+import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
+import { EditUserMailModalComponent } from '../../user/profil/edit-user-mail-modal/edit-user-mail-modal.component';
+import { EditUserModalComponent } from '../../user/profil/edit-user-modal/edit-user-modal.component';
+import { EditUserPasswordComponent } from '../../user/profil/edit-user-password/edit-user-password.component';
+import { PhotoModalComponent } from '../../user/profil/photo-modal/photo-modal.component';
 import { MatIcon } from '@angular/material/icon';
-import { ProfilAvatarComponent } from './profil-avatar/profil-avatar.component';
-import {MatTabGroup, MatTab, MatTabContent} from '@angular/material/tabs';
+import { MatTabGroup, MatTab, MatTabContent } from '@angular/material/tabs';
+import { ProfilAvatarComponent } from '../../user/profil/profil-avatar/profil-avatar.component';
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  selector: 'app-a-profil',
   standalone: true,
   imports: [ProfilAvatarComponent, MatIcon, MatTabGroup, MatTab, MatTabContent],
+  templateUrl: './a-profil.component.html',
+  styleUrl: './a-profil.component.css'
 })
-export class ProfilComponent implements OnDestroy, OnInit {
+export class AProfilComponent implements OnInit,OnDestroy {
   userDataSubscription?: Subscription;
   user!: UserInfos;
 
@@ -114,3 +107,5 @@ test: any;
     this.userDataSubscription?.unsubscribe();
   }
 }
+
+

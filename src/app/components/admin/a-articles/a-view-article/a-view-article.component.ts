@@ -1,10 +1,15 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatDialogContent,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-a-view-article',
   standalone: true,
-  imports: [],
+  imports: [MatDialogTitle, MatDialogContent],
   templateUrl: './a-view-article.component.html',
   styleUrl: './a-view-article.component.css',
 })

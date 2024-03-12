@@ -564,6 +564,11 @@
               </div> -->
 
               <!-- Submit button -->
+              <span class="p-2">
+                <app-progress-bar
+                  *ngIf="this.loadingService.isLoading$ | async as isLoading"
+                ></app-progress-bar
+              ></span>
               <button
                 type="submit"
                 id="btn-submit"

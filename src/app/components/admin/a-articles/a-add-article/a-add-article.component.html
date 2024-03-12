@@ -6,10 +6,10 @@
   action=""
   [formGroup]="addArticleForm"
   onsubmit="addArticle()"
-  style="padding: 60px 30px"
+  style="padding: 60px 30px ; margin: 0px 60px;"
 >
   <div class="form-outline row mb-6">
-    <div class="col-8 p-0" style="margin-right: 12px">
+    <div class="col p-0" style="margin-right: 12px">
       <div class="form-outline mb-6">
         <label class="form-label" for="form_password" style="font-size: 1.2rem"
           >Titre de votre article</label
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="col p-0">
+    <!-- <div class="col p-0">
       <div class="form-outline mb-6">
         <label class="form-label" for="form_password" style="font-size: 1.2rem"
           >Date de réalisation</label
@@ -92,7 +92,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="form-outline mb-6">
@@ -117,7 +117,7 @@
             class="drop-container"
             id="dropcontainer"
             [ngStyle]="{
-             'background-image': image ? 'url(' + image + ')' : 'none',
+              'background-image': image ? 'url(' + image + ')' : 'none',
               'background-repeat': 'no-repeat',
               'background-size': '100% 100%'
             }"
@@ -131,7 +131,7 @@
               type="file"
               id="images"
               accept="image/*"
-              required
+              [multiple]="true"
               style="display: none"
               formControlName="image"
               (change)="onFileSelected($event)"
@@ -185,8 +185,8 @@
   <button
     class="btn"
     id="btn-primary"
-    style="width: 100%"
-    mat-button
+    style="width: 100%; padding-left: 8px;"
+  
     (click)="addArticle()"
     [disabled]="addArticleForm.invalid"
   >

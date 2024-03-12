@@ -49,7 +49,7 @@ a.active-link {
 }
 
 .main {
-  padding: 0 60px;
+  padding: 0 0px;
 }
 
 @media screen and (max-width: 364px) {

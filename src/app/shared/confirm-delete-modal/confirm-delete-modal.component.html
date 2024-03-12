@@ -1,0 +1,17 @@
+<h3 mat-dialog-title>{{ data.message }}</h3>
+<mat-dialog-content>
+  {{ data.message }}
+</mat-dialog-content>
+<mat-dialog-actions style="float: right !important">
+  <button mat-button class="btn btn-danger p-1 m-1" (click)="cancelDelete()">
+    Annuler
+  </button>
+  <button
+    mat-button
+    class="btn p-1 m-1"
+    id="btn-primary"
+    (click)="confirmDelete()"
+  >
+    Supprimer
+  </button>
+</mat-dialog-actions>

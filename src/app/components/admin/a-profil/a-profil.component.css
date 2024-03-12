@@ -1,0 +1,87 @@
+.page-hearder {
+    & .profil_text {
+      padding: auto;
+      font-family: "Cairo";
+      align-self: center;
+      text-align: center;
+      font-weight: 900;
+      font-size: x-large;
+      color: azure;
+      width: 80%;
+    }
+    & .profil_edit {
+      display: flex;
+      color: white;
+      align-self: center;
+      cursor: pointer;
+    }
+    .profil_edit:hover {
+      color: #016678;
+    }
+  }
+  .profil_body {
+    padding: 40px;
+  }
+  @media screen and (max-width: 600px) {
+    .profil_text {
+      font-size: medium;
+    }
+    #col-is-mobile {
+      display: none;
+    }
+  }
+  
+  ::ng-deep .profil-menu {
+    margin-top: 0px;
+    border-radius: 8px !important;
+    position: relative;
+    padding: 0px 5px;
+  }
+  
+  .section-password,
+  .section-mail,
+  .section-informations {
+    margin-bottom: 32px;
+    margin-top: 32px;
+    font-size: 24px;
+    line-height: 40px;
+    text-align: center;
+    width: 70%;
+  }
+  
+  #btn-primary {
+    float: none !important;
+  }
+  #password,
+  #mail {
+    text-align: center;
+    font-size: x-large;
+  }
+  
+  .mat-mdc-tab-group{
+    --mdc-tab-indicator-active-indicator-color: #013b45 !important;
+      --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38);
+      --mat-tab-header-pagination-icon-color: #000;
+      --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6);
+      --mat-tab-header-active-label-text-color: #013b45 !important;
+      --mat-tab-header-active-ripple-color: #013b45 !important;
+      --mat-tab-header-inactive-ripple-color: #013b45 !important;
+      --mat-tab-header-inactive-focus-label-text-color: rgba(0, 0, 0, 0.6);
+      --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
+      --mat-tab-header-active-focus-label-text-color: #013b45 !important;;
+      --mat-tab-header-active-hover-label-text-color: #013b45 !important;;
+      --mat-tab-header-active-focus-indicator-color: #013b45 !important;;
+      --mat-tab-header-active-hover-indicator-color: #013b45 !important;
+  }
+  
+  .mat-mdc-tab-body-content {
+    height: 100% !important;
+    overflow: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  
+  .info_perso span{
+    font-style: italic;
+    font-size: 20px;
+  }

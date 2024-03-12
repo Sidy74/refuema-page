@@ -1,0 +1,72 @@
+<div class="page-hearder">
+    <app-profil-avatar [imageUrl]="user_image" (imageUrlEvent)="updateImage()"></app-profil-avatar>
+  
+    <div class="profil_text">
+      <p>
+        <!-- {{ user.titre }} -->
+        {{ user.firstName }} {{ user.lastName }}
+      </p>
+    </div>
+    <div class="profil_edit" (click)="openEditModal()">
+      <mat-icon>edit</mat-icon>
+    </div>
+  </div>
+  
+  <div class="profil_body">
+    <mat-tab-group>
+      <!-- Section Informations -->
+      <mat-tab label="Informations Personnelles">
+        <div class="mat-mdc-tab-body-content">
+          <div class="section-informations">
+            <div class="info_perso">
+              Email :
+              <span>{{ user.mail }}</span>
+            </div>
+            <div class="info_perso">
+              Numéro de téléphone :
+              <span>{{ user.phone }}</span>
+            </div>
+            <div class="info_perso">
+              Spécialité :
+              <span>{{ user.specialite }}</span>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <!-- Section Email -->
+      <mat-tab label="Changer d'E-Mail">
+        <div class="mat-mdc-tab-body-content">
+          <div class="section-mail">
+            <div class="row" id="custom">
+              <div class="col" id="mail">
+                <input type="email" class="form-control my-2" id="mail" [disabled]="true" value="{{ user.mail }}" />
+                <button class="btn form-control" id="btn-primary" (click)="openEditMail()" style="white-space: normal"
+                  [disabled]="true">
+                  Modifier ( Bientôt )
+                </button>
+              </div>
+              <!-- <div class="col" id="col-is-mobile"></div> -->
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <!-- Section Password  -->
+      <mat-tab label="Changer de mot de passe">
+        <div class="mat-mdc-tab-body-content">
+          <div class="section-password">
+            <div class="row">
+              <div class="col" id="password">
+                <input type="password" class="form-control my-2" id="password" [disabled]="true"
+                  value="°°°°°°°°°°°°°°°°" />
+                <button class="btn form-control" id="btn-primary" (click)="openEditPassword()"
+                  style="white-space: normal">
+                  Modifier
+                </button>
+              </div>
+              <!-- <div class="col" id="col-is-mobile"></div> -->
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>

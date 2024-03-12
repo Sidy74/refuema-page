@@ -1,0 +1,19 @@
+.full-screen-modal {
+    max-width: unset !important;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .full-screen-modal .mat-dialog-container {
+    max-width: 100vw;
+    max-height: 100vh;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .full-screen-modal .mat-dialog-content {
+    max-height: unset !important;
+  }
+  .mat-dialog-title{
+    background-color: rgba(0, 0, 0, 0.349);
+  }
