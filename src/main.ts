@@ -16,9 +16,13 @@ import {
   withInterceptorsFromDi,
   provideHttpClient,
 } from '@angular/common/http';
-import { DatePipe, CommonModule,registerLocaleData } from '@angular/common';
+import {
+  DatePipe,
+  CommonModule,
+  registerLocaleData,
+  SlicePipe,
+} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-
 
 registerLocaleData(localeFr);
 
@@ -34,6 +38,7 @@ bootstrapApplication(AppComponent, {
       NgbModule
     ),
     DatePipe,
+    SlicePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

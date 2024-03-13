@@ -1,21 +1,29 @@
 export class Article {
-  title!: string;
+  id!: number;
+  titre: string;
+  type: string;
   description!: string;
-  type!: number;
-  portee!: number;
-  media!: Array<string>;
+  portee!: string;
+  status!: string;
+  medias: any[];
+  date_publication!: { date: string };
 
   constructor(
-    title: string,
+    titre: string,
+    type: string,
     description: string,
-    type: number,
-    portee: number,
-    media: Array<string>
+    portee: string,
+    medias: any[],
+    date_publication: { date: string }
   ) {
-    this.title = title;
+    this.titre = titre;
+    this.type = type;
     this.description = description;
     this.portee = portee;
-    this.type = type;
-    this.media = media;
+    this.medias = medias;
+    this.status = 'Publié';
+    this.date_publication = date_publication; // Set default value for status
   }
+
+  
 }

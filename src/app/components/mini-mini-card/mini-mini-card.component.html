@@ -1,14 +1,15 @@
-<div class="card" style="width: 18rem ; margin: 6px;">
+<div class="card" style="width: 18rem; margin: 6px">
   <img
+    *ngIf="image"
     class="card-img-top w-10"
     style="height: 150px"
     [src]="image"
     alt="Card image cap"
   />
   <div class="card-body">
-    <h5 class="card-title"> {{title}}</h5>
+    <h5 class="card-title">{{ title }}</h5>
     <p class="card-text">
-        {{description}}
+      {{ description }}
     </p>
   </div>
 </div>

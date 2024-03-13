@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,14 +8,14 @@ import { environment } from 'src/environments/environment';
 })
 export class PorteePublicationService {
   private porteeArticleSubject = new BehaviorSubject<any>(null);
+  private porteeArticleObservable: Observable<any>;
+
   constructor(private http: HttpClient) {
-    this.getPorteeAritcle();
+    this.porteeArticleObservable = this.porteeArticleSubject.asObservable();
+    this.fetchPorteeArticle();
   }
-  getPorteePublication() {
-    let url = environment.apiUrl + '/portee/get';
-    return this.http.get(url);
-  }
-  getPorteeAritcle() {
+
+  private fetchPorteeArticle() {
     this.getPorteePublication().subscribe({
       next: (value: any) => {
         value.portee.forEach((element: any) => {
@@ -25,6 +25,14 @@ export class PorteePublicationService {
         });
       },
     });
-    return this.porteeArticleSubject.asObservable();
+  }
+
+  private getPorteePublication(): Observable<any> {
+    let url = environment.apiUrl + '/portee/get';
+    return this.http.get(url);
+  }
+
+  getPorteeAritcle(): Observable<any> {
+    return this.porteeArticleObservable;
   }
 }

@@ -47,7 +47,12 @@
               </span>
             </div>
             <div class="row" id="titre-article-row">
-              <span>Date de creation : 18:20 30/02/2024 </span>
+              <span
+                >{{
+                  element.date_publication.date
+                    | customDate : "JOUR_MOIS_ANNEE_UNIQUEMENT"
+                }}
+              </span>
             </div>
           </div>
           <div class="col d-flex align-items-center justify-content-end">
@@ -65,7 +70,7 @@
                   <div
                     class="d-flex justify-content-start align-items-center"
                     id="article-option-menu-item"
-                    (click)="openViewModal()"
+                    (click)="openViewModal(element)"
                   >
                     <mat-icon>visibility</mat-icon>
                   </div>

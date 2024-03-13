@@ -14,8 +14,7 @@ export class ArticleService {
   }
   deteleArticle(id: number) {
     let url = environment.apiUrl + `/admin/publication/delete/${id}`;
-    this.http.post(url,null).subscribe({});
-    console.log(url);
+    return this.http.post(url, null);
   }
   addArtilce(data: any): Observable<any> {
     data.forEach((element: any) => {
@@ -24,5 +23,9 @@ export class ArticleService {
 
     let url = environment.apiUrl + '/admin/publication';
     return this.http.post(url, data);
+  }
+  getRecentArticles() {
+    let url = environment.apiUrl + '/article/recent/get';
+    return this.http.get(url);
   }
 }

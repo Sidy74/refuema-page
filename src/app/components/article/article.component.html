@@ -1,28 +1,36 @@
-<div class="row">
-  <div class="col" *ngIf="allArticles.length !== 0">
-    <app-mini-article
-      *ngFor="let item of allArticles"
-      [cardTitle]="item.title"
-      [cardMedia]="item.media[0]"
-      [cardBodyText]="item.description"
-    ></app-mini-article>
-  </div>
-  <div class="col" *ngIf="allArticles.length === 0">
-    Il n'y a pas pas encore d'artilces.
-  </div>
-  <div class="col-3" *ngIf="!isMobileScreen()">
-    <h2>Articles Récents</h2>
-    <app-mini-mini-card
-      [image]="allArticles[0].media[0]"
-      [title]="allArticles[0].title"
-    ></app-mini-mini-card>
-    <app-mini-mini-card
-      [image]="allArticles[2].media[0]"
-      [title]="allArticles[2].title"
-    ></app-mini-mini-card>
-    <app-mini-mini-card
-      [image]="allArticles[1].media[0]"
-      [title]="allArticles[1].title"
-    ></app-mini-mini-card>
+<div class="container">
+  <div class="row">
+    <div class="col-9" *ngIf="allArticles.length !== 0">
+      <app-mini-article
+        *ngFor="let item of allArticles"
+        [cardTitle]="item.titre"
+        [cardMedia]="
+          item.medias[0] ? imageService.getImageUrl(item.medias[0].nom) : null
+        "
+        [cardBodyText]="
+          this.sanitizer.bypassSecurityTrustHtml(item.description)
+        "
+        [cardDate]="item.date_publication.date"
+      ></app-mini-article>
+    </div>
+    <div class="col" *ngIf="allArticles.length === 0">
+      Il n'y a pas encore d'articles.
+    </div>
+    <div class="col-3" *ngIf="!isMobileScreen()">
+      <span *ngIf="recentArticles.length !== 0">
+        <h2>Articles Récents</h2>
+        <app-mini-mini-card
+          *ngFor="let article of recentArticles"
+          [image]="
+            article.medias[0] ? imageService.getImageUrl(article.medias[0].nom) : null
+          "
+          [title]="article.titre"
+          [description]="
+            this.sanitizer.bypassSecurityTrustHtml(article.description)
+          "
+        >
+        </app-mini-mini-card>
+      </span>
+    </div>
   </div>
 </div>

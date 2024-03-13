@@ -61,12 +61,14 @@ export class AAddArticleComponent implements OnInit, AfterContentInit {
   ngAfterContentInit(): void {
     this.porteePublicationService.getPorteeAritcle().subscribe({
       next: (value) => {
-        this.portee = value.titre;
+        if (value) this.portee = value.id;
       },
     });
     this.typePublicationService.getTypeArticle().subscribe({
       next: (value) => {
-        this.type = value.titre;
+        if (value) {
+          this.type = value.id;
+        }
       },
     });
   }
@@ -95,6 +97,7 @@ export class AAddArticleComponent implements OnInit, AfterContentInit {
       },
     });
   }
+
   articleToFormData() {
     let formData = new FormData();
 
@@ -103,8 +106,8 @@ export class AAddArticleComponent implements OnInit, AfterContentInit {
       'description',
       this.addArticleForm.controls['description'].value
     );
-    formData.append('portee', '2');
-    formData.append('type', '1');
+    formData.append('portee', this.portee);
+    formData.append('type', this.type);
     console.log(this.imagFiles);
 
     for (const key in this.imagFiles) {

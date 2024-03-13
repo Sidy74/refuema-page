@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,15 +8,14 @@ import { environment } from 'src/environments/environment';
 })
 export class TypePublicationService {
   private typeArticleSubject = new BehaviorSubject<any>(null);
+  private typeArticleObservable: Observable<any>;
 
-  constructor(private http: HttpClient) {}
-
-  getAllTypePublication() {
-    let url = environment.apiUrl + '/type_publication/get';
-    return this.http.get(url);
+  constructor(private http: HttpClient) {
+    this.typeArticleObservable = this.typeArticleSubject.asObservable();
+    this.fetchTypeArticle();
   }
 
-  getTypeArticle() {
+  private fetchTypeArticle() {
     this.getAllTypePublication().subscribe({
       next: (value: any) => {
         value.types.forEach((element: any) => {
@@ -26,7 +25,14 @@ export class TypePublicationService {
         });
       },
     });
+  }
 
-    return this.typeArticleSubject.asObservable();
+  private getAllTypePublication(): Observable<any> {
+    let url = environment.apiUrl + '/type_publication/get';
+    return this.http.get(url);
+  }
+
+  getTypeArticle(): Observable<any> {
+    return this.typeArticleObservable;
   }
 }
