@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AViewArticleComponent } from './a-view-article/a-view-article.component';
-import { PublicationService } from 'src/app/core/_services/publication/publication.service';
 import { ArticleService } from 'src/app/core/_services/article/article.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { NgIf } from '@angular/common';
@@ -40,7 +39,6 @@ export class AArticlesComponent implements OnInit {
   getArticles() {
     this.articleService.getAllArticle().subscribe({
       next: (value: any) => {
-        console.log(value.publication);
         this.dataSource = value.publication;
       },
     });
@@ -74,8 +72,7 @@ export class AArticlesComponent implements OnInit {
       if (result) {
         this.articleService.deteleArticle(id).subscribe({
           next: (value: any) => {
-            console.log(value);
-            this.toastService.openError(value.message.toString(), 'x');
+            this.toastService.openSuccess(value.message.toString(), 'x');
             this.getArticles();
           },
           error: (err) => {

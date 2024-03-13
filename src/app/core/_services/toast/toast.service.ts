@@ -22,7 +22,7 @@ export class ToastService {
   }
   openError(message: string, action: any) {
     this.snackBar.openFromComponent(SnackbarComponent, {
-      duration: 2000,
+      duration: 3000,
       data: {
         message: message,
         action: action,

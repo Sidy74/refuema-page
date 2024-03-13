@@ -101,11 +101,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       error: (err: HttpErrorResponse) => {
         this.loadingService.isLoading.next(false);
         this.erroStatus = err.status;
-        if (err.status == 401) {
-          this.toastService.openError(
-            this.formControl['mail'].value + ` n'est pas autoriser.`,
-            'X'
-          );
+        console.log(err);
+
+        if (err.status == 404) {
+          this.toastService.openError(err.error.message, 'X');
+        } else if (err.status == 401) {
+          this.toastService.openError(err.error.message, 'X');
         }
       },
       complete: () =>
