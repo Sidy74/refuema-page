@@ -1,3 +1,10 @@
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  state,
+} from '@angular/animations';
 import { NgIf } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import {
@@ -17,6 +24,17 @@ import { ImageService } from 'src/app/core/_services/images/image.service';
   imports: [MatDialogTitle, MatDialogContent, NgIf, MatIconModule],
   templateUrl: './a-view-article.component.html',
   styleUrl: './a-view-article.component.css',
+  animations: [
+    trigger('slideInBottom', [
+      transition(':enter', [
+        style({ transform: 'translateY(100%)' }),
+        animate('300ms ease-out', style({ transform: 'translateY(0)' })),
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ transform: 'translateY(100%)' })),
+      ]),
+    ]),
+  ],
 })
 export class AViewArticleComponent {
   description!: any;

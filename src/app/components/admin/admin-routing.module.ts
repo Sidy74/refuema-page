@@ -7,6 +7,7 @@ import { APagesComponent } from './a-pages/a-pages.component';
 import { AHomeComponent } from 'src/app/components/admin/a-home/a-home.component';
 import { AAddArticleComponent } from './a-articles/a-add-article/a-add-article.component';
 import { AProfilComponent } from './a-profil/a-profil.component';
+import { APublicationsComponent } from './a-publications/a-publications.component';
 const adminRoutes: Routes = [
   {
     path: 'admin',
@@ -18,12 +19,13 @@ const adminRoutes: Routes = [
         path: 'articles',
         component: AArticlesComponent,
       },
-      {path:'profil', component : AProfilComponent},
+      { path: 'profil', component: AProfilComponent },
       {
         path: 'article/add',
         component: AAddArticleComponent,
       },
       { path: 'pages', component: APagesComponent },
+      { path: 'publications', component: APublicationsComponent },
     ],
   },
 ];
