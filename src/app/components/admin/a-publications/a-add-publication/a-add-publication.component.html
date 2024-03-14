@@ -1,1 +1,196 @@
-<p>a-add-publication works!</p>
+<div class="page-hearder">
+  <div class="section-title">Ajouter une publication</div>
+</div>
+
+<form
+  action=""
+  [formGroup]="addPublicationForm"
+  (ngSubmit)="addPublication()"
+  style="padding: 60px 30px; margin: 0px 60px"
+>
+  <!-- Type de publication input select -->
+  <div class="form-outline mb-6">
+    <label class="form-label" for="titre_form" style="font-size: 1.2rem"
+      >Type</label
+    >
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      type="select"
+      id="type_form"
+      formControlName="type"
+      [ngClass]="{
+        isInvalid:
+          addPublicationForm.controls['type'].invalid &&
+          addPublicationForm.controls['type'].touched
+      }"
+    >
+      <option selected *ngIf="types.length === 0">
+        <span> N/A</span>
+      </option>
+      <option *ngFor="let item of types" [value]="item.id">
+        <span> {{ item.titre }}</span>
+      </option>
+    </select>
+  </div>
+
+  <!-- Portee de publication input select -->
+  <div class="form-outline mb-6">
+    <label class="form-label" for="titre_form" style="font-size: 1.2rem"
+      >Portée</label
+    >
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      type="select"
+      id="type_form"
+      formControlName="portee"
+      [ngClass]="{
+        isInvalid:
+          addPublicationForm.controls['portee'].invalid &&
+          addPublicationForm.controls['portee'].touched
+      }"
+    >
+      <option selected *ngIf="portees.length === 0">
+        <span> N/A</span>
+      </option>
+      <option *ngFor="let item of portees" [value]="item.id">
+        <span> {{ item.titre }}</span>
+      </option>
+    </select>
+  </div>
+
+  <div class="form-outline mb-6">
+    <label class="form-label" for="form_password" style="font-size: 1.2rem"
+      >Titre de votre publication</label
+    >
+    <input
+      class="form-control"
+      style="font-size: 1.2rem"
+      formControlName="title"
+      [ngClass]="{
+        isInvalid:
+          addPublicationForm.get('title')?.invalid &&
+          addPublicationForm.get('title')?.touched
+      }"
+    />
+    <div class="error_message">
+      <div
+        *ngIf="
+          addPublicationForm.controls['title'].invalid &&
+          (addPublicationForm.controls['title'].dirty ||
+            addPublicationForm.controls['title'].touched)
+        "
+      >
+        <span
+          class="error_message_content"
+          *ngIf="addPublicationForm.controls['title'].errors?.['required']"
+          >Veuillez saisir le titre
+        </span>
+        <span
+          class="error_message_content"
+          *ngIf="addPublicationForm.controls['title'].errors?.['minlength']"
+          >*Veuillez saisir 4 charactères au minimun!</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="form-outline mb-6">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <label
+              class="form-label"
+              for="form_password"
+              style="font-size: 1.2rem"
+              >Image de votre article</label
+            >
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ image ? "Pas d image" : image }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="d-flex justify-content-center align-items-center">
+          <label
+            for="images"
+            class="drop-container"
+            id="dropcontainer"
+            [ngStyle]="{
+              'background-image': image ? 'url(' + image + ')' : 'none',
+              'background-repeat': 'no-repeat',
+              'background-size': '100% 100%'
+            }"
+          >
+            <span *ngIf="image == null || image == undefined" class="drop-title"
+              >Ajouter une image</span
+            >
+            <mat-icon>add</mat-icon>
+
+            <input
+              type="file"
+              id="images"
+              accept="image/*"
+              [multiple]="true"
+              style="display: none"
+              formControlName="image"
+              (change)="onFileSelected($event)"
+            />
+          </label>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <div class="form-outline mb-6">
+    <label class="form-label" for="form_password" style="font-size: 1.2rem"
+      >Description de votre article</label
+    >
+    <div class="">
+      <div class="error_message">
+        <div
+          *ngIf="
+            addPublicationForm.controls['description'].invalid &&
+            (addPublicationForm.controls['description'].dirty ||
+              addPublicationForm.controls['description'].touched)
+          "
+        >
+          <span
+            class="error_message_content"
+            *ngIf="addPublicationForm.controls['description'].errors?.['required']"
+            >Veuillez selectionner la date de réalisation
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <editor
+      [ngClass]="{
+        isInvalid:
+          addPublicationForm.get('description')?.invalid &&
+          addPublicationForm.get('description')?.touched
+      }"
+      apiKey="05kar5f1edhaueeyba84fwwq71d09mt0ub1ys89bxwr7bj5p"
+      [init]="editorConfig"
+      formControlName="description"
+    >
+    </editor>
+
+    <!-- <input
+    formControlName="lastName"
+    class="form-control"
+    style="font-size: 1.2rem"
+  /> -->
+  </div>
+
+  <button
+    class="btn"
+    id="btn-primary"
+    style="width: 100%; padding-left: 8px"
+    [disabled]="addPublicationForm.invalid"
+  >
+    <!-- isLoading -->
+    Ajouter
+  </button>
+</form>

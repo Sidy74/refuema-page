@@ -16,7 +16,7 @@ export class PorteePublicationService {
   }
 
   private fetchPorteeArticle() {
-    this.getPorteePublication().subscribe({
+    this.getAllPorteePublication().subscribe({
       next: (value: any) => {
         value.portee.forEach((element: any) => {
           if (element.titre == 'Public') {
@@ -27,7 +27,7 @@ export class PorteePublicationService {
     });
   }
 
-  private getPorteePublication(): Observable<any> {
+   getAllPorteePublication(): Observable<any> {
     let url = environment.apiUrl + '/portee/get';
     return this.http.get(url);
   }

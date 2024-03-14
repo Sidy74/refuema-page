@@ -14,6 +14,10 @@ export class PublicationService {
   private projetsSubject = new BehaviorSubject<any>(null);
   private conferencesSubject = new BehaviorSubject<any>(null);
 
+  addPublication(data: FormData) {
+    let url = environment.apiUrl + '/admin/publication';
+    return this.http.post(url, data);
+  }
   getPublication() {
     let url = environment.apiUrl + '/publication/get';
     return this.http.get(url);

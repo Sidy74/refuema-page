@@ -8,6 +8,7 @@ import { AHomeComponent } from 'src/app/components/admin/a-home/a-home.component
 import { AAddArticleComponent } from './a-articles/a-add-article/a-add-article.component';
 import { AProfilComponent } from './a-profil/a-profil.component';
 import { APublicationsComponent } from './a-publications/a-publications.component';
+import { AAddPublicationComponent } from './a-publications/a-add-publication/a-add-publication.component';
 const adminRoutes: Routes = [
   {
     path: 'admin',
@@ -26,10 +27,10 @@ const adminRoutes: Routes = [
       },
       { path: 'pages', component: APagesComponent },
       { path: 'publications', component: APublicationsComponent },
+      { path: 'publication/add', component: AAddPublicationComponent },
     ],
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(adminRoutes)],
   exports: [RouterModule],

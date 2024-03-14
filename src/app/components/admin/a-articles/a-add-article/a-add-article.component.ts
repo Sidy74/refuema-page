@@ -117,9 +117,7 @@ export class AAddArticleComponent implements OnInit, AfterContentInit {
         formData.append('media[]', element);
       }
     }
-    // this.imagFiles.forEach((element) => {
-    //   console.log(element);
-    // });
+   
     return formData;
   }
   onFileSelected(event: any) {
