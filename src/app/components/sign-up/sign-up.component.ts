@@ -11,12 +11,12 @@ import { Subscription } from 'rxjs';
 import { Titre } from 'src/app/core/_models/titre.model';
 import { TypeDocument } from 'src/app/core/_models/type-document.models';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
-import { RegistrationService } from 'src/app/core/_services/registration.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { PasswordValidator } from 'src/app/core/_validator/password.validator';
 import { MatIcon } from '@angular/material/icon';
 import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.component';
 import { NgIf, NgClass, NgFor, AsyncPipe } from '@angular/common';
+import { RegistrationService } from 'src/app/core/_services/registration/registration.service';
 
 @Component({
   selector: 'app-sign-up',

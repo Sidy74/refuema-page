@@ -18,64 +18,34 @@ export class PublicationService {
     let url = environment.apiUrl + '/admin/publication';
     return this.http.post(url, data);
   }
-  getPublication() {
-    let url = environment.apiUrl + '/publication/get';
+  deletePublication(id: number) {
+    let url = environment.apiUrl + `/admin/publication/delete/${id}`;
+    return this.http.post(url, null);
+  }
+  getAllPublicationPublic() {
+    let url = environment.apiUrl + '/admin/publication/get';
     return this.http.get(url);
   }
-  getArticles() {
-    this.getPublication().subscribe({
-      next: (value: any) => {
-        var x: Array<any> = [];
-        value.publication.forEach((element: any) => {
-          if ((element.type = 'Articles')) {
-            x.push(element);
-          }
-        });
-        this.articlesSubject.next(x);
-      },
-    });
-    return this.articlesSubject.asObservable();
+  getAllPublicationPrivee() {
+    let url = environment.apiUrl + '/admin/publication/private/get';
+    return this.http.get(url);
   }
-  getProjets() {
-    this.getPublication().subscribe({
-      next: (value: any) => {
-        var x: Array<any> = [];
-        value.publication.forEach((element: any) => {
-          if ((element.type = 'Projet')) {
-            x.push(element);
-          }
-        });
-        this.projetsSubject.next(x);
-      },
-    });
-    return this.projetsSubject.asObservable();
+  getAllPublicationNotAccepted() {
+    let url = environment.apiUrl + '/admin/publication/no_send/get';
+    return this.http.get(url);
   }
-  getConferences() {
-    this.getPublication().subscribe({
-      next: (value: any) => {
-        var x: Array<any> = [];
-        value.publication.forEach((element: any) => {
-          if ((element.type = 'Conference')) {
-            x.push(element);
-          }
-        });
-        this.conferencesSubject.next(x);
-      },
-    });
-    return this.conferencesSubject.asObservable();
-  }
-  getRencontres() {
-    this.getPublication().subscribe({
-      next: (value: any) => {
-        var x: Array<any> = [];
-        value.publication.forEach((element: any) => {
-          if ((element.type = 'Rencontre')) {
-            x.push(element);
-          }
-        });
-        this.rencontresSubject.next(x);
-      },
-    });
-    return this.rencontresSubject.asObservable();
-  }
+  // getArticles() {
+  //   this.getAllPublication().subscribe({
+  //     next: (value: any) => {
+  //       var x: Array<any> = [];
+  //       value.publication.forEach((element: any) => {
+  //         if ((element.type = 'Articles')) {
+  //           x.push(element);
+  //         }
+  //       });
+  //       this.articlesSubject.next(x);
+  //     },
+  //   });
+  //   return this.articlesSubject.asObservable();
+  // }
 }

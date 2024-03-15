@@ -27,7 +27,7 @@ export class TypePublicationService {
     });
   }
 
-   getAllTypePublication(): Observable<any> {
+  getAllTypePublication(): Observable<any> {
     let url = environment.apiUrl + '/type_publication/get';
     return this.http.get(url);
   }

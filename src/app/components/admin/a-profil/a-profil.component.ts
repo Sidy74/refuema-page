@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { UserInfos } from 'src/app/core/_models/user..models';
 import { ImageService } from 'src/app/core/_services/images/image.service';
-import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { EditUserMailModalComponent } from '../../user/profil/edit-user-mail-modal/edit-user-mail-modal.component';
 import { EditUserModalComponent } from '../../user/profil/edit-user-modal/edit-user-modal.component';
 import { EditUserPasswordComponent } from '../../user/profil/edit-user-password/edit-user-password.component';
@@ -12,21 +11,22 @@ import { PhotoModalComponent } from '../../user/profil/photo-modal/photo-modal.c
 import { MatIcon } from '@angular/material/icon';
 import { MatTabGroup, MatTab, MatTabContent } from '@angular/material/tabs';
 import { ProfilAvatarComponent } from '../../user/profil/profil-avatar/profil-avatar.component';
+import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos/share-user-infos.service';
 
 @Component({
   selector: 'app-a-profil',
   standalone: true,
   imports: [ProfilAvatarComponent, MatIcon, MatTabGroup, MatTab, MatTabContent],
   templateUrl: './a-profil.component.html',
-  styleUrl: './a-profil.component.css'
+  styleUrl: './a-profil.component.css',
 })
-export class AProfilComponent implements OnInit,OnDestroy {
+export class AProfilComponent implements OnInit, OnDestroy {
   userDataSubscription?: Subscription;
   user!: UserInfos;
 
   user_image: any =
     'https://c0.klipartz.com/pngpicture/613/636/gratis-png-iconos-de-la-computadora-perfil-de-usuario-avatar-masculino-avatar-thumbnail.png';
-test: any;
+  test: any;
 
   constructor(
     public dialog: MatDialog,
@@ -107,5 +107,3 @@ test: any;
     this.userDataSubscription?.unsubscribe();
   }
 }
-
-

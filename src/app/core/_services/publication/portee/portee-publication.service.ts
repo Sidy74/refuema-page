@@ -27,7 +27,7 @@ export class PorteePublicationService {
     });
   }
 
-   getAllPorteePublication(): Observable<any> {
+  getAllPorteePublication(): Observable<any> {
     let url = environment.apiUrl + '/portee/get';
     return this.http.get(url);
   }

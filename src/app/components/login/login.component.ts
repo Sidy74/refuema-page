@@ -12,11 +12,11 @@ import { Subscription } from 'rxjs';
 import { User, UserInfos } from 'src/app/core/_models/user..models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
-import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.component';
 import { NgIf, NgClass, AsyncPipe } from '@angular/common';
 import { UserRole } from 'src/app/core/_helpers/_enums/user-role';
+import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos/share-user-infos.service';
 
 @Component({
   selector: 'app-login',

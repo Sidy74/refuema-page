@@ -1,0 +1,22 @@
+<div [@slideInBottom] class="animation">
+  <div mat-dialog-title class="mat-dialog-title d-flex align-items-center">
+    <div class="d-flex justify-content-center align-items-center w-100 p-4">
+      <div class="col-1">
+        <div class="btn-close-modal" (click)="closeModal()">
+          <mat-icon class="clear-icon">clear</mat-icon>
+        </div>
+      </div>
+      <div class="col d-flex justify-content-center align-items-center">
+        <h2 style="color: aliceblue">
+          {{ publication.publication.titre }}
+        </h2>
+      </div>
+    </div>
+  </div>
+  <mat-dialog-content>
+    <div class="image" *ngIf="image">
+      <img src="{{ image }}" alt="" />
+    </div>
+    <div class="description" [innerHTML]="description"></div>
+  </mat-dialog-content>
+</div>

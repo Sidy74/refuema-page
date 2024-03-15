@@ -8,10 +8,10 @@ import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 import { ImageService } from 'src/app/core/_services/images/image.service';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
 import { LoginService } from 'src/app/core/_services/login/login.service';
-import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
+import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos/share-user-infos.service';
 
 @Component({
     selector: 'app-appbar-avatar',

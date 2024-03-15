@@ -3,7 +3,7 @@ import { UserTokenService } from '../user-token.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { ShareUserInfosService } from '../share-user-infos.service';
+import { ShareUserInfosService } from '../share-user-infos/share-user-infos.service';
 import { Router } from '@angular/router';
 
 @Injectable({

@@ -7,7 +7,7 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
 import { AdminSideNavComponent } from './components/admin/admin-side-nav/admin-side-nav.component';
 import { Subscription } from 'rxjs';
-import { ShareUserInfosService } from './core/_services/share-user-infos.service';
+import { ShareUserInfosService } from './core/_services/share-user-infos/share-user-infos.service';
 import { UserRole } from './core/_helpers/_enums/user-role';
 import { User } from './core/_models/user..models';
 

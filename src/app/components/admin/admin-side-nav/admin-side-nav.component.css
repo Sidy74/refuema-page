@@ -9,6 +9,11 @@
   font-size: 1.5rem;
   color: #01766e;
 }
+#open-nav-item-child {
+  text-decoration: none;
+  color: #01766e;
+  font-size: 0.5rem;
+}
 #open-nav-item-icon {
   font-size: 1.5rem;
 }
@@ -56,4 +61,8 @@ a.active-link {
   .main {
     padding: 0 30px;
   }
+}
+
+.mat-menu {
+  background-color: red;
 }

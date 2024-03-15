@@ -9,6 +9,9 @@ import { AAddArticleComponent } from './a-articles/a-add-article/a-add-article.c
 import { AProfilComponent } from './a-profil/a-profil.component';
 import { APublicationsComponent } from './a-publications/a-publications.component';
 import { AAddPublicationComponent } from './a-publications/a-add-publication/a-add-publication.component';
+import { APublicationsPublicComponent } from './a-publications/a-publications-public/a-publications-public.component';
+import { APublicationsPriveeComponent } from './a-publications/a-publications-privee/a-publications-privee.component';
+import { APublicationNoAccptedComponent } from './a-publications/a-publication-no-accpted/a-publication-no-accpted.component';
 const adminRoutes: Routes = [
   {
     path: 'admin',
@@ -26,7 +29,15 @@ const adminRoutes: Routes = [
         component: AAddArticleComponent,
       },
       { path: 'pages', component: APagesComponent },
-      { path: 'publications', component: APublicationsComponent },
+      {
+        path: 'publications',
+        component: APublicationsComponent,
+        children: [
+          { path: 'public', component: APublicationsPublicComponent },
+          { path: 'privee', component: APublicationsPriveeComponent },
+          { path: 'not/accepted', component: APublicationNoAccptedComponent },
+        ],
+      },
       { path: 'publication/add', component: AAddPublicationComponent },
     ],
   },

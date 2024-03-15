@@ -1,0 +1,50 @@
+.titre-article {
+  color: #303738;
+  font-size: 1.25rem;
+  font-weight: 550;
+  line-height: 1.2;
+}
+
+#titre-article-row {
+  padding: 10px 12px;
+}
+
+#article-option-menu-item {
+  padding: 12px 8px;
+  cursor: pointer;
+  span {
+    margin-left: 8px;
+  }
+}
+#article-option-menu-item:hover {
+  background-color: #01766e13;
+  mat-icon,
+  span {
+    color: #013b45;
+  }
+}
+
+#articles-table {
+  padding: 0px 16px;
+}
+
+.mat-mdc-chip-set {
+  max-width: 90px;
+  max-height: 10px;
+}
+.Rencontre {
+  background-color: #ee7525 !important;
+  color: white !important;
+}
+.Article {
+  background-color: rgb(106, 57, 241) !important;
+}
+.Conference {
+  background-color: aqua !important;
+}
+.Publié {
+  background-color: #fcd116 !important;
+}
+.Non.Publié {
+  background-color: #fcd116 !important;
+}

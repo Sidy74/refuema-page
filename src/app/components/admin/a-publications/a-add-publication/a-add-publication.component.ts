@@ -1,4 +1,4 @@
-import { NgStyle, NgIf, NgClass, NgFor } from '@angular/common';
+import { NgStyle, NgIf, NgClass, NgFor, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -17,10 +17,10 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { PorteePublication } from 'src/app/core/_models/portee-publication';
 import { TypePublication } from 'src/app/core/_models/type-publication';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
-import { PorteePublicationService } from 'src/app/core/_services/portee-publication.service';
+import { PorteePublicationService } from 'src/app/core/_services/publication/portee/portee-publication.service';
 import { PublicationService } from 'src/app/core/_services/publication/publication.service';
+import { TypePublicationService } from 'src/app/core/_services/publication/type/type-publication.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
-import { TypePublicationService } from 'src/app/core/_services/type-publication.service';
 
 @Component({
   selector: 'app-a-add-publication',
@@ -58,7 +58,8 @@ export class AAddPublicationComponent implements OnInit {
     private publicationService: PublicationService,
     private toastService: ToastService,
     private loadingService: LoadingService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -106,7 +107,7 @@ export class AAddPublicationComponent implements OnInit {
       .subscribe({
         next: (value: any) => {
           this.toastService.openSuccess(value.message, 'x');
-          this.router.navigateByUrl('/admin/publications');
+          this.location.back();
         },
       });
   }

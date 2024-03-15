@@ -2,22 +2,22 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { NgIf } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import {
+  MatDialogTitle,
+  MatDialogContent,
   MatDialogRef,
   MAT_DIALOG_DATA,
-  MatDialogContent,
-  MatDialogTitle,
+  MatDialogModule,
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageService } from 'src/app/core/_services/images/image.service';
 
 @Component({
-  selector: 'app-a-view-article',
+  selector: 'app-a-view-publication',
   standalone: true,
-  imports: [MatDialogTitle, MatDialogContent, NgIf, MatIconModule],
-  templateUrl: './a-view-article.component.html',
-  styleUrl: './a-view-article.component.css',
+  imports: [NgIf, MatIconModule, MatDialogModule],
+  templateUrl: './a-view-publication.component.html',
+  styleUrl: './a-view-publication.component.css',
   animations: [
     trigger('slideInBottom', [
       transition(':enter', [
@@ -30,20 +30,22 @@ import { ImageService } from 'src/app/core/_services/images/image.service';
     ]),
   ],
 })
-export class AViewArticleComponent {
+export class AViewPublicationComponent {
   description!: any;
   image!: any;
   constructor(
     private imageService: ImageService,
     private sanitizer: DomSanitizer,
-    public dialogRef: MatDialogRef<AViewArticleComponent>,
-    @Inject(MAT_DIALOG_DATA) public article: any
+    public dialogRef: MatDialogRef<AViewPublicationComponent>,
+    @Inject(MAT_DIALOG_DATA) public publication: any
   ) {
     this.description = this.sanitizer.bypassSecurityTrustHtml(
-      article.article.description
+      publication.publication.description
     );
-    if (article.article.medias.length !== 0) {
-      this.image = this.imageService.getImageUrl(article.article.medias[0].nom);
+    if (publication.publication.medias.length !== 0) {
+      this.image = this.imageService.getImageUrl(
+        publication.publication.medias[0].nom
+      );
     } else {
       this.image = null;
     }

@@ -11,7 +11,6 @@ import { UserInfos } from 'src/app/core/_models/user..models';
 import { CustomDatePipe } from 'src/app/core/_pipes/custom-date/custom-date.pipe';
 import { CvService } from 'src/app/core/_services/cv/cv.service';
 import { ImageService } from 'src/app/core/_services/images/image.service';
-import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { years } from 'src/app/shared/_utils/years';
 import { CvViewComponent } from './cv-view/cv-view.component';
@@ -23,6 +22,7 @@ import {
 } from '@angular/material/datepicker';
 import { MatIcon } from '@angular/material/icon';
 import { NgIf, NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
+import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos/share-user-infos.service';
 
 @Component({
   selector: 'app-cv',

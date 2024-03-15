@@ -15,10 +15,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { ArticleService } from 'src/app/core/_services/article/article.service';
-import { PorteePublicationService } from 'src/app/core/_services/portee-publication.service';
-import { TypePublicationService } from 'src/app/core/_services/type-publication.service';
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { Router } from '@angular/router';
+import { PorteePublicationService } from 'src/app/core/_services/publication/portee/portee-publication.service';
+import { TypePublicationService } from 'src/app/core/_services/publication/type/type-publication.service';
 
 @Component({
   selector: 'app-a-add-article',
@@ -117,7 +117,7 @@ export class AAddArticleComponent implements OnInit, AfterContentInit {
         formData.append('media[]', element);
       }
     }
-   
+
     return formData;
   }
   onFileSelected(event: any) {

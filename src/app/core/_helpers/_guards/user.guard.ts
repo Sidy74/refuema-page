@@ -1,5 +1,5 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { ShareUserInfosService } from '../../_services/share-user-infos.service';
+import { ShareUserInfosService } from '../../_services/share-user-infos/share-user-infos.service';
 import { inject } from '@angular/core';
 import { UserRole } from '../_enums/user-role';
 import { map } from 'rxjs';

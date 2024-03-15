@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserModalComponent } from './edit-user-modal/edit-user-modal.component';
-import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos.service';
+
 import { Subscription } from 'rxjs';
 import { UserInfos } from 'src/app/core/_models/user..models';
 import { PhotoModalComponent } from './photo-modal/photo-modal.component';
@@ -17,7 +17,8 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { EditUserMailModalComponent } from './edit-user-mail-modal/edit-user-mail-modal.component';
 import { MatIcon } from '@angular/material/icon';
 import { ProfilAvatarComponent } from './profil-avatar/profil-avatar.component';
-import {MatTabGroup, MatTab, MatTabContent} from '@angular/material/tabs';
+import { MatTabGroup, MatTab, MatTabContent } from '@angular/material/tabs';
+import { ShareUserInfosService } from 'src/app/core/_services/share-user-infos/share-user-infos.service';
 
 @Component({
   selector: 'app-profil',
@@ -33,7 +34,7 @@ export class ProfilComponent implements OnDestroy, OnInit {
 
   user_image: any =
     'https://c0.klipartz.com/pngpicture/613/636/gratis-png-iconos-de-la-computadora-perfil-de-usuario-avatar-masculino-avatar-thumbnail.png';
-test: any;
+  test: any;
 
   constructor(
     public dialog: MatDialog,
