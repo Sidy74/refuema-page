@@ -28,6 +28,7 @@
     <!-- Side close items section -->
     <ng-container *ngIf="showFiller">
       <div class="container" id="close-nav-logo ">
+        <!-- Accueil -->
         <a
           class="logo-close-nav-item"
           id="close-nav-item"
@@ -39,6 +40,7 @@
         </a>
       </div>
       <div class="container p-4">
+        <!-- Accueil -->
         <a
           class=""
           id="close-nav-item"
@@ -50,17 +52,42 @@
         >
           <i class="bi bi-house" id="close-nav-item-icon"></i>
         </a>
-
+        <!-- Publication -->
         <a
-          class=""
-          routerLink="admin/articles"
-          id="close-nav-item"
+          id="open-nav-item"
+          [routerLinkActiveOptions]="{ exact: false }"
           routerLinkActive="active-link"
-          matTooltip="Articles"
+          matTooltip="Publications"
           matTooltipPosition="right"
+          [matMenuTriggerFor]="menu"
         >
-          <i class="bi bi-journal" id="close-nav-item-icon"></i>
+          <i class="bi bi-journal" id="open-nav-item-icon"></i>
+          <mat-menu #menu="matMenu" [xPosition]="'after'">
+            <a
+              mat-menu-item
+              id="open-nav-item-child"
+              routerLink="admin/publications/public"
+              routerLinkActive="active-link"
+              >Publics</a
+            >
+            <a
+              mat-menu-item
+              id="open-nav-item-child"
+              routerLink="admin/publications/privee"
+              routerLinkActive="active-link"
+              >Privée
+            </a>
+            <a
+              mat-menu-item
+              id="open-nav-item-child"
+              routerLink="admin/publications/not/accepted"
+              routerLinkActive="active-link"
+              >Non publiées
+            </a>
+          </mat-menu>
         </a>
+
+        <!-- Pages -->
         <a
           class=""
           routerLink="admin/pages"
@@ -127,15 +154,6 @@
             </a>
           </mat-menu>
         </a>
-        <!-- Article -->
-        <a
-          id="open-nav-item"
-          routerLink="admin/articles"
-          routerLinkActive="active-link"
-        >
-          <i class="bi bi-journal" id="open-nav-item-icon"></i>
-          <span id="open-nav-item-span"> Articles </span>
-        </a>
         <!-- Pages -->
         <a
           id="open-nav-item"
@@ -156,14 +174,5 @@
 
   <div class="example-sidenav-content">
     <app-admin></app-admin>
-    <!-- <router-outlet></router-outlet> -->
-
-    <!-- <button class="btn btn-primay" (click)="getEditorContent()">get</button>
-    <h1>TinyMCE 6 Angular Demo</h1>
-    <editor
-      apiKey="05kar5f1edhaueeyba84fwwq71d09mt0ub1ys89bxwr7bj5p"
-      [(ngModel)]="content"
-      [init]="{ plugins: 'lists link image table code help wordcount' }"
-    ></editor> -->
   </div>
 </mat-drawer-container>

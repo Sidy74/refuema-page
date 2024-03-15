@@ -10,6 +10,8 @@ import { CustomDatePipe } from 'src/app/core/_pipes/custom-date/custom-date.pipe
 import { PublicationService } from 'src/app/core/_services/publication/publication.service';
 import { AViewPublicationComponent } from '../a-view-publication/a-view-publication.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastService } from 'src/app/core/_services/toast/toast.service';
+import { ConfirmDeleteModalComponent } from 'src/app/shared/confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
   selector: 'app-a-publications-public',
@@ -35,7 +37,8 @@ export class APublicationsPublicComponent {
   constructor(
     private router: Router,
     private dialog: MatDialog,
-    private publicationService: PublicationService
+    private publicationService: PublicationService,
+    private toastService: ToastService
   ) {}
   ngOnInit(): void {
     this.getAllPublicationPublic();
@@ -60,7 +63,31 @@ export class APublicationsPublicComponent {
   openAddPublication() {
     this.router.navigateByUrl('admin/publication/add');
   }
-  detelePublication(id: number) {}
+
+  detelePublication(id: number) {
+    const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
+      data: {
+        title: `Supprimer l'article`,
+        message: `Voulez-vous supprimer cet'article ?`,
+      },
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.publicationService.deletePublication(id).subscribe({
+          next: (value: any) => {
+            this.toastService.openSuccess(value.message.toString(), 'x');
+            this.getAllPublicationPublic();
+          },
+          error: (err) => {
+            this.toastService.openError(err.message, 'x');
+          },
+        });
+      }
+    });
+  }
+
   openViewModal(publication: any) {
     this.dialog.open(AViewPublicationComponent, {
       panelClass: 'full-screen-modal',
