@@ -1,0 +1,59 @@
+body {
+  background-color: white;
+  -webkit-print-color-adjust: exact;
+}
+
+.card {
+  width: auto;
+  height: 100%;
+  /* overflow: hidden; */
+  background-color:white;
+  padding: 10px 30px;
+  margin-top: 10px;
+  border: none;
+  align-items: center;
+}
+
+.backcard {
+  position: relative;
+  margin-top: 100px;
+  padding: 10px;
+  height: 5.5cm;
+  width: 8.5cm;
+}
+
+.frontcard {
+  position: relative;
+  height: 5.5cm;
+  width: 8.5cm;
+  margin-top: 100px;
+  padding: 10px;
+  break-after: page;
+}
+
+.backcardsvg,
+.frontcardsvg {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.card-image {
+  max-width: 100%;
+
+  width: 90px;
+  height: 90px;
+  background-size: cover;
+  border-radius: 50%;
+  border: 1px solid #016678;
+  overflow: hidden;
+  cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+  .card-image {
+    width: 80px;
+    height: 80px;
+  }
+}
