@@ -79,7 +79,7 @@
         *ngIf="
           updatePublicationForm.controls['title'].invalid &&
           (updatePublicationForm.controls['title'].dirty ||
-          updatePublicationForm.controls['title'].touched)
+            updatePublicationForm.controls['title'].touched)
         "
       >
         <span
@@ -188,7 +188,7 @@
     class="btn"
     id="btn-primary"
     style="width: 100%; padding-left: 8px"
-    [disabled]="updatePublicationForm.invalid"
+    [disabled]="!formChanged && updatePublicationForm.valid"
   >
     <!-- isLoading -->
     Modifier

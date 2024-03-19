@@ -1,5 +1,5 @@
 import { NgStyle, NgIf, NgFor, NgClass } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -17,6 +17,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { PorteePublication } from 'src/app/core/_models/portee-publication';
 import { TypePublication } from 'src/app/core/_models/type-publication';
 import { PorteePublicationService } from 'src/app/core/_services/publication/portee/portee-publication.service';
+import { PublicationService } from 'src/app/core/_services/publication/publication.service';
 import { TypePublicationService } from 'src/app/core/_services/publication/type/type-publication.service';
 
 @Component({
@@ -48,12 +49,13 @@ export class AEditPublicationComponent implements OnInit {
   portees: PorteePublication[] = [];
   formControls: any;
   currentPublication!: any;
+  formChanged: boolean = false;
 
   constructor(
     private porteePublicationService: PorteePublicationService,
     private typePublicationService: TypePublicationService,
     private fb: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,private publicationService: PublicationService
   ) {
     this.updatePublicationForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(4)]],
@@ -63,21 +65,7 @@ export class AEditPublicationComponent implements OnInit {
       description: ['', [Validators.required]],
     });
     this.formControls = this.updatePublicationForm.controls;
-
-    this.typePublicationService.getAllTypePublication().subscribe({
-      next: (value) => {
-        if (value) {
-          value.types.forEach((element: TypePublication) => {
-            this.types.push(new TypePublication(element.id, element.titre));
-          });
-
-          this.formControls['type'].patchValue(this.types[0].id);
-        }
-      },
-    });
   }
-
-  updatePublication() {}
 
   ngOnInit(): void {
     // Charger les types de publication
@@ -99,6 +87,10 @@ export class AEditPublicationComponent implements OnInit {
       menubar: 'edit insert view format table',
       height: '70vh',
     };
+
+    this.updatePublicationForm.valueChanges.subscribe(() => {
+      this.formChanged = true;
+    });
   }
 
   loadPorteesAndPublication(): void {
@@ -140,6 +132,7 @@ export class AEditPublicationComponent implements OnInit {
     if (portee) {
       this.formControls['portee'].patchValue(portee.id);
     }
+    this.formChanged = false;
   }
 
   publicationToFormData() {
@@ -170,4 +163,8 @@ export class AEditPublicationComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
+
+  updatePublication() {
+    this.publicationService.updatePublication(this.publicationToFormData())
+   }
 }

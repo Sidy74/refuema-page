@@ -10,9 +10,6 @@ export class PublicationService {
   constructor(private http: HttpClient) {}
 
   private articlesSubject = new BehaviorSubject<any>(null);
-  private rencontresSubject = new BehaviorSubject<any>(null);
-  private projetsSubject = new BehaviorSubject<any>(null);
-  private conferencesSubject = new BehaviorSubject<any>(null);
 
   addPublication(data: FormData) {
     let url = environment.apiUrl + '/admin/publication';
@@ -48,4 +45,9 @@ export class PublicationService {
   //   });
   //   return this.articlesSubject.asObservable();
   // }
+
+  updatePublication(arg0: FormData) {
+    let url = environment.apiUrl + `/admin/i/m/not/found`;
+    return this.http.post(url, arg0);
+  }
 }
