@@ -16,7 +16,6 @@ import {
 import { Titre } from 'src/app/core/_models/titre.model';
 import { UserInfos } from 'src/app/core/_models/user..models';
 import { LoadingService } from 'src/app/core/_services/loading/loading.service';
-
 import { ToastService } from 'src/app/core/_services/toast/toast.service';
 import { UserService } from 'src/app/core/_services/user/user.service';
 import { MatButton } from '@angular/material/button';

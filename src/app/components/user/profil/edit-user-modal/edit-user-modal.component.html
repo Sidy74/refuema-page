@@ -137,11 +137,12 @@
               updateForm.controls['titre'].invalid &&
               updateForm.controls['titre'].touched
           }"
-        ><option selected *ngIf="titres.length === 0" [value]="0">
+        >
+          <option selected *ngIf="titres.length === 0" [value]="0">
             <span> N/A</span>
           </option>
-          
-          <option  selected *ngFor="let item of titres" [value]="item.id">
+
+          <option selected *ngFor="let item of titres" [value]="item.id">
             <span> {{ item.titre }}</span>
           </option>
         </select>

@@ -1,5 +1,5 @@
 import { NgStyle, NgIf, NgFor, NgClass } from '@angular/common';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -55,7 +55,8 @@ export class AEditPublicationComponent implements OnInit {
     private porteePublicationService: PorteePublicationService,
     private typePublicationService: TypePublicationService,
     private fb: FormBuilder,
-    private route: ActivatedRoute,private publicationService: PublicationService
+    private route: ActivatedRoute,
+    private publicationService: PublicationService
   ) {
     this.updatePublicationForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(4)]],
@@ -165,6 +166,6 @@ export class AEditPublicationComponent implements OnInit {
   }
 
   updatePublication() {
-    this.publicationService.updatePublication(this.publicationToFormData())
-   }
+    this.publicationService.updatePublication(this.publicationToFormData());
+  }
 }
