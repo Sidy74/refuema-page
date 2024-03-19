@@ -1,5 +1,9 @@
 <div [@slideInBottom] class="animation">
-  <div mat-dialog-title class="mat-dialog-title d-flex align-items-center">
+  <div
+    mat-dialog-title
+    class="mat-dialog-title d-flex align-items-center"
+    [id]="publication.publication.type"
+  >
     <div class="d-flex justify-content-center align-items-center w-100 p-4">
       <div class="col-1">
         <div class="btn-close-modal" (click)="closeModal()">
@@ -7,7 +11,7 @@
         </div>
       </div>
       <div class="col d-flex justify-content-center align-items-center">
-        <h2 style="color: aliceblue">
+        <h2 style="color: #011a1f;">
           {{ publication.publication.titre }}
         </h2>
       </div>

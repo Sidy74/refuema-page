@@ -53,7 +53,7 @@
               <div class="col">
                 <mat-chip-set aria-label="Fish selection">
                   <mat-chip [className]="element.type">
-                    {{ element.type }}
+                    {{ element.type.toString().toUpperCase() }}
                   </mat-chip>
                 </mat-chip-set>
               </div>
@@ -94,6 +94,7 @@
                   ><div
                     class="d-flex justify-content-start align-items-center"
                     id="article-option-menu-item"
+                    (click)="openEditModal(element)"
                   >
                     <mat-icon>open_in_new</mat-icon>
                   </div></mat-grid-tile

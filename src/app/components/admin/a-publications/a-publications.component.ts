@@ -1,13 +1,5 @@
-import { NgIf, SlicePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatTableModule } from '@angular/material/table';
-import { Router, RouterOutlet } from '@angular/router';
-import { CustomDatePipe } from 'src/app/core/_pipes/custom-date/custom-date.pipe';
-import { PublicationService } from 'src/app/core/_services/publication/publication.service';
-import { MatChipsModule } from '@angular/material/chips';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-a-publications',

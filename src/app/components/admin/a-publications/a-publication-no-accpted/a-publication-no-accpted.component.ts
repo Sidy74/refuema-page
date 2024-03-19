@@ -95,8 +95,18 @@ export class APublicationNoAccptedComponent {
       maxHeight: '100vh',
       height: '100%',
       width: '100%',
-
       data: { publication: publication },
+    });
+  }
+  openEditModal(publication: any) {
+    // Convertir l'objet publication en JSON
+    const publicationJson = JSON.stringify(publication);
+
+    // Encoder en base64
+    const publicationBase64 = btoa(publicationJson);
+
+    this.router.navigate(['/admin/publications/edit'], {
+      queryParams: { publication: publicationBase64 },
     });
   }
 }

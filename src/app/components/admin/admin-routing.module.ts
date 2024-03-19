@@ -10,6 +10,7 @@ import { AAddPublicationComponent } from './a-publications/a-add-publication/a-a
 import { APublicationsPublicComponent } from './a-publications/a-publications-public/a-publications-public.component';
 import { APublicationsPriveeComponent } from './a-publications/a-publications-privee/a-publications-privee.component';
 import { APublicationNoAccptedComponent } from './a-publications/a-publication-no-accpted/a-publication-no-accpted.component';
+import { AEditPublicationComponent } from './a-publications/a-edit-publication/a-edit-publication.component';
 const adminRoutes: Routes = [
   {
     path: 'admin',
@@ -28,6 +29,7 @@ const adminRoutes: Routes = [
           { path: 'public', component: APublicationsPublicComponent },
           { path: 'privee', component: APublicationsPriveeComponent },
           { path: 'not/accepted', component: APublicationNoAccptedComponent },
+          { path: 'edit', component: AEditPublicationComponent },
         ],
       },
       { path: 'publication/add', component: AAddPublicationComponent },
